@@ -128,7 +128,8 @@ h2:first-of-type{margin-top:28px}
 .card[id]{scroll-margin-top:84px}
 .card:target{border-color:var(--c,var(--ki));box-shadow:0 0 0 1px var(--c,var(--ki)),0 0 34px -8px var(--c,var(--ki))}
 .card:target::before{width:5px}
-@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+/* No smooth-scroll here on purpose: a tier-list link can be sixty cards
+   away, and animating that far reads as the page having lost its place. */
 .card .top{display:flex;gap:12px;align-items:center;margin-bottom:12px}
 .card .top>div{min-width:0;flex:1}
 .card .who{margin-top:3px;font-size:11px;color:var(--faint);letter-spacing:.04em}
@@ -225,9 +226,10 @@ running total, and it burns health for as long as it is held.</p>
 <p class="sub" style="margin-bottom:14px">Each rung multiplies the one before
 it, so the ladder compounds. Every gain is a convar &mdash; these are the
 shipped defaults, not fixed numbers.</p>
-<div class="tscroll"><table><thead><tr><th>Rung</th><th>Convar</th>
+<div class="tscroll"><table><thead><tr><th>Form</th>
+<th style="text-align:right">Rung</th><th>Convar</th>
 <th style="text-align:right">Gain</th></tr></thead>
-<tbody><tr><td>1</td><td><code>dbz_form_mult_ssj1</code></td><td class="n">×50</td></tr><tr><td>2</td><td><code>dbz_form_mult_ssj2</code></td><td class="n">×2</td></tr><tr><td>3</td><td><code>dbz_form_mult_ssj3</code></td><td class="n">×4</td></tr><tr><td>4</td><td><code>dbz_form_mult_ssj4</code></td><td class="n">×100</td></tr><tr><td>5</td><td><code>dbz_form_mult_ssj_blue</code></td><td class="n">×10</td></tr><tr><td>6</td><td><code>dbz_form_mult_kaioken</code></td><td class="n">×2</td></tr><tr><td>7</td><td><code>dbz_form_mult_ultra_instinct</code></td><td class="n">×20</td></tr><tr><td>form_fullpower</td><td><code>dbz_form_mult_fullpower</code></td><td class="n">×50</td></tr></tbody></table></div>
+<tbody><tr><td>Super Saiyan</td><td class="n">1</td><td><code>dbz_form_mult_ssj1</code></td><td class="n">×50</td></tr><tr><td>Super Saiyan 2</td><td class="n">2</td><td><code>dbz_form_mult_ssj2</code></td><td class="n">×2</td></tr><tr><td>Super Saiyan 3</td><td class="n">3</td><td><code>dbz_form_mult_ssj3</code></td><td class="n">×4</td></tr><tr><td>Super Saiyan 4</td><td class="n">4</td><td><code>dbz_form_mult_ssj4</code></td><td class="n">×100</td></tr><tr><td>Super Saiyan Blue</td><td class="n">&mdash;</td><td><code>dbz_form_mult_ssj_blue</code></td><td class="n">×10</td></tr><tr><td>Kaioken</td><td class="n">&mdash;</td><td><code>dbz_form_mult_kaioken</code></td><td class="n">×2</td></tr><tr><td>Ultra Instinct</td><td class="n">&mdash;</td><td><code>dbz_form_mult_ultra_instinct</code></td><td class="n">×20</td></tr><tr><td>Full Power</td><td class="n">&mdash;</td><td><code>dbz_form_mult_fullpower</code></td><td class="n">×50</td></tr></tbody></table></div>
 <h2>Every form</h2>
 <div class="ctl">
   <input type="search" id="q" placeholder="Search a form or a fighter&hellip;" aria-label="Search forms">

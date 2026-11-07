@@ -118,7 +118,8 @@ h2:first-of-type{margin-top:28px}
 .card[id]{scroll-margin-top:84px}
 .card:target{border-color:var(--c,var(--ki));box-shadow:0 0 0 1px var(--c,var(--ki)),0 0 34px -8px var(--c,var(--ki))}
 .card:target::before{width:5px}
-@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+/* No smooth-scroll here on purpose: a tier-list link can be sixty cards
+   away, and animating that far reads as the page having lost its place. */
 .card .top{display:flex;gap:12px;align-items:center;margin-bottom:12px}
 .card .top>div{min-width:0;flex:1}
 .card .who{margin-top:3px;font-size:11px;color:var(--faint);letter-spacing:.04em}

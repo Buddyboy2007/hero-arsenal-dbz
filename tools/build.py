@@ -100,6 +100,19 @@ def accent(f):
     return "rgb(%d,%d,%d)" % tuple(int(x) for x in (list(c) + [0, 0, 0])[:3])
 
 
+CVAR_WORDS = {"ssj1": "Super Saiyan", "ssj2": "Super Saiyan 2",
+              "ssj3": "Super Saiyan 3", "ssj4": "Super Saiyan 4",
+              "ssj_blue": "Super Saiyan Blue", "kaioken": "Kaioken",
+              "ultra_instinct": "Ultra Instinct", "fullpower": "Full Power"}
+
+
+def pretty_cvar(key):
+    """Name the ladder rungs the way the show does, not the way the cvar does."""
+    if key in CVAR_WORDS:
+        return CVAR_WORDS[key]
+    return " ".join(w.capitalize() for w in key.split("_"))
+
+
 def slug(s):
     return re.sub(r"[^a-z0-9]+", "-", str(s).lower()).strip("-")
 
@@ -474,14 +487,23 @@ def build_forms(d):
 </article>""")
 
     sc = d["scaling"]
+    # The convar suffix is the form's real name; the Lua's numeric `rung`
+    # only indexes the first four, so the rest get a dash rather than an
+    # index number they do not actually answer to.
+    def rung_name(cvar):
+        return pretty_cvar(cvar.replace("dbz_form_mult_", ""))
+
     rungs = "".join(
-        f'<tr><td>{i + 1}</td><td><code>{e(r["cvar"])}</code></td>'
+        f'<tr><td>{e(rung_name(r["cvar"]))}</td>'
+        f'<td class="n">{i + 1 if i < 4 else "&mdash;"}</td>'
+        f'<td><code>{e(r["cvar"])}</code></td>'
         f'<td class="n">{mult(r["mult"])}</td></tr>'
         for i, r in enumerate(sc["rungGains"]))
     named = "".join(
-        f'<tr><td>{e(k)}</td><td><code>{e(v["cvar"])}</code></td>'
+        f'<tr><td>{e(rung_name(v["cvar"]))}</td><td class="n">&mdash;</td>'
+        f'<td><code>{e(v["cvar"])}</code></td>'
         f'<td class="n">{mult(v["mult"])}</td></tr>'
-        for k, v in (sc.get("namedRungs") or {}).items())
+        for v in (sc.get("namedRungs") or {}).values())
 
     withforms = [f for f in d["fighters"] if f["forms"]]
     deepest = max(withforms, key=lambda f: len(f["forms"])) if withforms else None
@@ -503,7 +525,8 @@ running total, and it burns health for as long as it is held.</p>
 <p class="sub" style="margin-bottom:14px">Each rung multiplies the one before
 it, so the ladder compounds. Every gain is a convar &mdash; these are the
 shipped defaults, not fixed numbers.</p>
-<div class="tscroll"><table><thead><tr><th>Rung</th><th>Convar</th>
+<div class="tscroll"><table><thead><tr><th>Form</th>
+<th style="text-align:right">Rung</th><th>Convar</th>
 <th style="text-align:right">Gain</th></tr></thead>
 <tbody>{rungs}{named}</tbody></table></div>
 <h2>Every form</h2>
