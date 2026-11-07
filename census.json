@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-07T16:43:02-05:00",
+ "generatedAt": "2026-11-07T16:53:32-05:00",
  "counts": {
   "characters": 1631,
   "packs": 153,
@@ -608,7 +608,7 @@
    "count": 1
   },
   {
-   "pack": "[DrGBase] Warden",
+   "pack": "[DrGBase] Warden & Sculk",
    "ws": "3831103150",
    "count": 1
   },
@@ -7661,7 +7661,7 @@
    "named": true,
    "family": "DrGBase",
    "sprite": false,
-   "pack": "[DrGBase] Warden",
+   "pack": "[DrGBase] Warden & Sculk",
    "ws": "3831103150",
    "category": "Minecraft",
    "health": null,
