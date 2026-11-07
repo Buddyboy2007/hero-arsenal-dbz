@@ -1,0 +1,14 @@
+[Unit]
+Description=Rebuild the Hero Arsenal DBZ roster site every ten minutes
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=10min
+# Fire immediately if the machine was asleep over a tick, rather than
+# silently skipping it.
+Persistent=true
+AccuracySec=30s
+Unit=dbz-site.service
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,192 @@
+/* ---------------------------------------------------------------------------
+   Hero Arsenal DBZ -- one deliberately dark look.
+   Palette is the roster's own: Super Saiyan gold is the accent because it is
+   the colour the top of the ladder actually wears in game; Kamehameha blue
+   carries the beams; Rose pink marks the danger figures. Neutrals are pushed
+   violet rather than left pure grey so they sit under those three.
+   Figures are set in a mono face on purpose -- this is a site about power
+   levels, and the numbers have to line up in a column to be read.
+--------------------------------------------------------------------------- */
+:root{
+  color-scheme:dark;
+  --bg:#07060b; --bg-lift:#0c0a12; --panel:#12101a; --card:#191622;
+  --line:#231f2e; --line-hi:#332c42;
+  --ink:#f3eff7; --ink-2:#cdc5d8; --dim:#968ea6; --faint:#645c73;
+  --ki:#ffb020; --ki-soft:#ffd27a; --beam:#4ab8ff; --rose:#ff5f8f;
+  --namek:#5fd98a; --void:#a97bff;
+  --grad:linear-gradient(90deg,var(--ki),var(--rose) 55%,var(--void));
+  --display:'Archivo Black',Impact,'Haettenschweiler','Arial Narrow Bold',sans-serif;
+  --body:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --tierZ:#ffe08a; --tierX:#ffb020; --tierS:#ff7a4d; --tierA:#ff5f8f;
+  --tierB:#a97bff; --tierC:#4ab8ff; --tierD:#5fd98a; --tierF:#7e8596;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);
+  font-size:15px;line-height:1.55;min-height:100vh;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%,rgba(255,176,32,.09),transparent 70%),
+    radial-gradient(ellipse 60% 40% at 90% 100%,rgba(169,123,255,.07),transparent 70%);
+  background-attachment:fixed;
+}
+img{max-width:100%;display:block}
+a{color:var(--beam);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--ki);outline-offset:2px;border-radius:4px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* --- bar ---------------------------------------------------------------- */
+.bar{
+  position:sticky;top:0;z-index:50;display:flex;align-items:center;
+  gap:18px;flex-wrap:wrap;padding:11px clamp(14px,4vw,34px);
+  background:rgba(7,6,11,.93);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.brand{
+  font:400 17px/1 var(--display);letter-spacing:.055em;text-transform:uppercase;
+  white-space:nowrap;color:var(--ink);
+}
+.brand i{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto}
+.tabs a{
+  padding:7px 13px;border-radius:999px;border:1px solid var(--line-hi);
+  font:700 11px/1 var(--body);letter-spacing:.09em;text-transform:uppercase;
+  color:var(--dim);background:rgba(255,255,255,.015);transition:color .14s,border-color .14s,background .14s;
+}
+.tabs a:hover{color:var(--ink);border-color:var(--faint);text-decoration:none}
+.tabs a[aria-current="page"]{
+  color:#1b1205;background:var(--ki);border-color:var(--ki-soft);
+}
+
+/* --- layout ------------------------------------------------------------- */
+.wrap{max-width:1180px;margin:0 auto;padding:clamp(22px,4vw,46px) clamp(14px,4vw,34px) 80px}
+.hd{margin:0 0 6px;font:400 clamp(28px,5.4vw,46px)/1.02 var(--display);
+    letter-spacing:.012em;text-transform:uppercase;text-wrap:balance}
+.hd em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{margin:0 0 26px;max-width:66ch;color:var(--dim);font-size:15.5px}
+h2{margin:40px 0 14px;font:400 clamp(17px,2.6vw,21px)/1.15 var(--display);
+   letter-spacing:.05em;text-transform:uppercase;color:var(--ink)}
+h2:first-of-type{margin-top:28px}
+.eyebrow{font:700 10.5px/1 var(--body);letter-spacing:.17em;text-transform:uppercase;color:var(--faint)}
+
+/* --- meta strip --------------------------------------------------------- */
+.strip{display:flex;flex-wrap:wrap;gap:0;margin:0 0 30px;
+  border:1px solid var(--line);border-radius:12px;background:var(--panel);overflow:hidden}
+.strip div{flex:1 1 128px;padding:13px 16px;border-right:1px solid var(--line)}
+.strip div:last-child{border-right:0}
+.strip b{display:block;font:400 20px/1.1 var(--mono);font-weight:700;color:var(--ki);
+  font-variant-numeric:tabular-nums}
+.strip span{display:block;margin-top:3px;font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--faint);font-weight:700}
+
+/* --- controls ----------------------------------------------------------- */
+.ctl{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin:0 0 22px}
+.ctl input[type=search]{
+  flex:1 1 230px;min-width:0;padding:9px 13px;border-radius:9px;
+  border:1px solid var(--line-hi);background:var(--bg-lift);color:var(--ink);
+  font:500 14px var(--body)}
+.ctl input[type=search]::placeholder{color:var(--faint)}
+.chip{
+  padding:7px 12px;border-radius:999px;border:1px solid var(--line-hi);
+  background:transparent;color:var(--dim);cursor:pointer;
+  font:700 10.5px/1 var(--body);letter-spacing:.09em;text-transform:uppercase}
+.chip:hover{color:var(--ink);border-color:var(--faint)}
+.chip[aria-pressed="true"]{background:var(--ink);color:#0a0810;border-color:var(--ink)}
+.count{margin-left:auto;font:600 11px var(--mono);color:var(--faint);
+  letter-spacing:.06em;font-variant-numeric:tabular-nums}
+
+/* --- sigil (a fighter's own aura colour, not decoration) ---------------- */
+.sig{
+  flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:10px;
+  font:400 13px/1 var(--display);letter-spacing:.02em;color:#0a0810;
+  background:var(--c,var(--ki));box-shadow:0 0 0 1px rgba(255,255,255,.1) inset;
+}
+.sig.sm{width:28px;height:28px;border-radius:8px;font-size:10px}
+
+/* --- cards -------------------------------------------------------------- */
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(285px,1fr))}
+.card{
+  border:1px solid var(--line);border-radius:13px;background:var(--card);
+  padding:15px 16px;position:relative;overflow:hidden}
+.card::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--c,var(--line-hi))}
+.card h3{margin:0;font:400 15px/1.2 var(--display);letter-spacing:.025em;
+  text-transform:uppercase;padding-right:46px}
+.card .top{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+.card .top>div{min-width:0;flex:1}
+.card .who{margin-top:3px;font-size:11px;color:var(--faint);letter-spacing:.04em}
+.tag{
+  position:absolute;top:13px;right:14px;padding:3px 9px;border-radius:6px;
+  font:400 12px/1.25 var(--display);letter-spacing:.04em;color:#0a0810;background:var(--t,var(--ki))}
+.rows{display:grid;gap:0;margin:0;font-size:12.5px}
+.rows div{display:flex;justify-content:space-between;gap:12px;
+  padding:5px 0;border-top:1px solid var(--line)}
+.rows div:first-child{border-top:0}
+.rows dt,.rows span:first-child{color:var(--dim)}
+.rows b{font:600 12.5px var(--mono);color:var(--ink-2);font-variant-numeric:tabular-nums;
+  text-align:right;white-space:nowrap}
+.rows b.hi{color:var(--ki)}
+.moves{margin:12px 0 0;padding:11px 0 0;border-top:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:5px}
+.mv{padding:3px 8px;border-radius:6px;background:var(--bg-lift);
+  border:1px solid var(--line);font-size:11px;color:var(--ink-2);white-space:nowrap}
+.mv.form{border-color:rgba(255,176,32,.4);color:var(--ki-soft)}
+.mv.borrowed{opacity:.6}
+
+/* --- tier rows ---------------------------------------------------------- */
+.tier{display:flex;margin:0 0 11px;border:1px solid var(--line);border-radius:13px;
+  background:var(--panel);overflow:hidden;min-height:84px}
+.tier .let{
+  flex:none;width:78px;display:grid;place-content:center;gap:2px;text-align:center;
+  background:var(--t);color:#0a0810;padding:10px 4px}
+.tier .let b{font:400 32px/1 var(--display);letter-spacing:.01em}
+.tier .let span{font:700 9.5px/1 var(--body);letter-spacing:.1em;text-transform:uppercase;opacity:.72}
+.tier .body{flex:1;min-width:0;padding:11px 14px;display:flex;flex-direction:column;gap:9px}
+.tier .note{font-size:11.5px;color:var(--dim)}
+.tier .note b{color:var(--ink-2);font:600 11.5px var(--mono)}
+.tier .mem{display:flex;flex-wrap:wrap;gap:6px}
+.tier .empty{color:var(--faint);font-size:12px;font-style:italic}
+.fchip{
+  display:flex;align-items:center;gap:7px;padding:4px 10px 4px 4px;border-radius:999px;
+  background:var(--bg-lift);border:1px solid var(--line);font-size:12.5px;color:var(--ink-2);
+  max-width:100%}
+.fchip:hover{border-color:var(--faint);text-decoration:none;color:var(--ink)}
+.fchip .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fchip .bd{font:600 10.5px var(--mono);color:var(--faint);font-variant-numeric:tabular-nums}
+
+/* --- tables ------------------------------------------------------------- */
+.tscroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:580px}
+th,td{padding:9px 13px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:700 10px var(--body);letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);background:var(--bg-lift);position:sticky;top:0;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.n{font:600 13px var(--mono);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+tbody tr:hover td{background:rgba(255,255,255,.018)}
+
+/* --- prose -------------------------------------------------------------- */
+.prose{max-width:68ch}
+.prose p{margin:0 0 14px;color:var(--ink-2)}
+.prose code{font:600 12.5px var(--mono);background:var(--bg-lift);
+  border:1px solid var(--line);border-radius:5px;padding:1px 5px;color:var(--ki-soft)}
+.prose ul{margin:0 0 16px;padding-left:20px;color:var(--ink-2)}
+.prose li{margin:0 0 7px}
+.panel{border:1px solid var(--line);border-radius:12px;background:var(--panel);
+  padding:16px 18px;margin:0 0 18px}
+.foot{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
+  color:var(--faint);font-size:11.5px;line-height:1.75}
+.foot b{color:var(--dim);font-family:var(--mono);font-weight:600}
+.hidden{display:none!important}
+
+@media (max-width:700px){
+  .bar{gap:10px;padding:9px 13px}
+  .tabs{margin-left:0;width:100%;overflow-x:auto;flex-wrap:nowrap;
+    scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .tabs::-webkit-scrollbar{display:none}
+  .tabs a{flex:none}
+  .tier .let{width:58px}
+  .tier .let b{font-size:25px}
+  .strip div{flex:1 1 50%}
+  .count{margin-left:0;width:100%}
+}

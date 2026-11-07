@@ -1,0 +1,758 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DBZ Tier List</title>
+<meta name="description" content="Every fighter, ability and tier in the Hero Arsenal DBZ roster, read straight out of the running Garry's Mod install.">
+<meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap">
+<style>/* ---------------------------------------------------------------------------
+   Hero Arsenal DBZ -- one deliberately dark look.
+   Palette is the roster's own: Super Saiyan gold is the accent because it is
+   the colour the top of the ladder actually wears in game; Kamehameha blue
+   carries the beams; Rose pink marks the danger figures. Neutrals are pushed
+   violet rather than left pure grey so they sit under those three.
+   Figures are set in a mono face on purpose -- this is a site about power
+   levels, and the numbers have to line up in a column to be read.
+--------------------------------------------------------------------------- */
+:root{
+  color-scheme:dark;
+  --bg:#07060b; --bg-lift:#0c0a12; --panel:#12101a; --card:#191622;
+  --line:#231f2e; --line-hi:#332c42;
+  --ink:#f3eff7; --ink-2:#cdc5d8; --dim:#968ea6; --faint:#645c73;
+  --ki:#ffb020; --ki-soft:#ffd27a; --beam:#4ab8ff; --rose:#ff5f8f;
+  --namek:#5fd98a; --void:#a97bff;
+  --grad:linear-gradient(90deg,var(--ki),var(--rose) 55%,var(--void));
+  --display:'Archivo Black',Impact,'Haettenschweiler','Arial Narrow Bold',sans-serif;
+  --body:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --tierZ:#ffe08a; --tierX:#ffb020; --tierS:#ff7a4d; --tierA:#ff5f8f;
+  --tierB:#a97bff; --tierC:#4ab8ff; --tierD:#5fd98a; --tierF:#7e8596;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);
+  font-size:15px;line-height:1.55;min-height:100vh;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%,rgba(255,176,32,.09),transparent 70%),
+    radial-gradient(ellipse 60% 40% at 90% 100%,rgba(169,123,255,.07),transparent 70%);
+  background-attachment:fixed;
+}
+img{max-width:100%;display:block}
+a{color:var(--beam);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--ki);outline-offset:2px;border-radius:4px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* --- bar ---------------------------------------------------------------- */
+.bar{
+  position:sticky;top:0;z-index:50;display:flex;align-items:center;
+  gap:18px;flex-wrap:wrap;padding:11px clamp(14px,4vw,34px);
+  background:rgba(7,6,11,.93);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.brand{
+  font:400 17px/1 var(--display);letter-spacing:.055em;text-transform:uppercase;
+  white-space:nowrap;color:var(--ink);
+}
+.brand i{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto}
+.tabs a{
+  padding:7px 13px;border-radius:999px;border:1px solid var(--line-hi);
+  font:700 11px/1 var(--body);letter-spacing:.09em;text-transform:uppercase;
+  color:var(--dim);background:rgba(255,255,255,.015);transition:color .14s,border-color .14s,background .14s;
+}
+.tabs a:hover{color:var(--ink);border-color:var(--faint);text-decoration:none}
+.tabs a[aria-current="page"]{
+  color:#1b1205;background:var(--ki);border-color:var(--ki-soft);
+}
+
+/* --- layout ------------------------------------------------------------- */
+.wrap{max-width:1180px;margin:0 auto;padding:clamp(22px,4vw,46px) clamp(14px,4vw,34px) 80px}
+.hd{margin:0 0 6px;font:400 clamp(28px,5.4vw,46px)/1.02 var(--display);
+    letter-spacing:.012em;text-transform:uppercase;text-wrap:balance}
+.hd em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{margin:0 0 26px;max-width:66ch;color:var(--dim);font-size:15.5px}
+h2{margin:40px 0 14px;font:400 clamp(17px,2.6vw,21px)/1.15 var(--display);
+   letter-spacing:.05em;text-transform:uppercase;color:var(--ink)}
+h2:first-of-type{margin-top:28px}
+.eyebrow{font:700 10.5px/1 var(--body);letter-spacing:.17em;text-transform:uppercase;color:var(--faint)}
+
+/* --- meta strip --------------------------------------------------------- */
+.strip{display:flex;flex-wrap:wrap;gap:0;margin:0 0 30px;
+  border:1px solid var(--line);border-radius:12px;background:var(--panel);overflow:hidden}
+.strip div{flex:1 1 128px;padding:13px 16px;border-right:1px solid var(--line)}
+.strip div:last-child{border-right:0}
+.strip b{display:block;font:400 20px/1.1 var(--mono);font-weight:700;color:var(--ki);
+  font-variant-numeric:tabular-nums}
+.strip span{display:block;margin-top:3px;font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--faint);font-weight:700}
+
+/* --- controls ----------------------------------------------------------- */
+.ctl{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin:0 0 22px}
+.ctl input[type=search]{
+  flex:1 1 230px;min-width:0;padding:9px 13px;border-radius:9px;
+  border:1px solid var(--line-hi);background:var(--bg-lift);color:var(--ink);
+  font:500 14px var(--body)}
+.ctl input[type=search]::placeholder{color:var(--faint)}
+.chip{
+  padding:7px 12px;border-radius:999px;border:1px solid var(--line-hi);
+  background:transparent;color:var(--dim);cursor:pointer;
+  font:700 10.5px/1 var(--body);letter-spacing:.09em;text-transform:uppercase}
+.chip:hover{color:var(--ink);border-color:var(--faint)}
+.chip[aria-pressed="true"]{background:var(--ink);color:#0a0810;border-color:var(--ink)}
+.count{margin-left:auto;font:600 11px var(--mono);color:var(--faint);
+  letter-spacing:.06em;font-variant-numeric:tabular-nums}
+
+/* --- sigil (a fighter's own aura colour, not decoration) ---------------- */
+.sig{
+  flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:10px;
+  font:400 13px/1 var(--display);letter-spacing:.02em;color:#0a0810;
+  background:var(--c,var(--ki));box-shadow:0 0 0 1px rgba(255,255,255,.1) inset;
+}
+.sig.sm{width:28px;height:28px;border-radius:8px;font-size:10px}
+
+/* --- cards -------------------------------------------------------------- */
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(285px,1fr))}
+.card{
+  border:1px solid var(--line);border-radius:13px;background:var(--card);
+  padding:15px 16px;position:relative;overflow:hidden}
+.card::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--c,var(--line-hi))}
+.card h3{margin:0;font:400 15px/1.2 var(--display);letter-spacing:.025em;
+  text-transform:uppercase;padding-right:46px}
+.card .top{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+.card .top>div{min-width:0;flex:1}
+.card .who{margin-top:3px;font-size:11px;color:var(--faint);letter-spacing:.04em}
+.tag{
+  position:absolute;top:13px;right:14px;padding:3px 9px;border-radius:6px;
+  font:400 12px/1.25 var(--display);letter-spacing:.04em;color:#0a0810;background:var(--t,var(--ki))}
+.rows{display:grid;gap:0;margin:0;font-size:12.5px}
+.rows div{display:flex;justify-content:space-between;gap:12px;
+  padding:5px 0;border-top:1px solid var(--line)}
+.rows div:first-child{border-top:0}
+.rows dt,.rows span:first-child{color:var(--dim)}
+.rows b{font:600 12.5px var(--mono);color:var(--ink-2);font-variant-numeric:tabular-nums;
+  text-align:right;white-space:nowrap}
+.rows b.hi{color:var(--ki)}
+.moves{margin:12px 0 0;padding:11px 0 0;border-top:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:5px}
+.mv{padding:3px 8px;border-radius:6px;background:var(--bg-lift);
+  border:1px solid var(--line);font-size:11px;color:var(--ink-2);white-space:nowrap}
+.mv.form{border-color:rgba(255,176,32,.4);color:var(--ki-soft)}
+.mv.borrowed{opacity:.6}
+
+/* --- tier rows ---------------------------------------------------------- */
+.tier{display:flex;margin:0 0 11px;border:1px solid var(--line);border-radius:13px;
+  background:var(--panel);overflow:hidden;min-height:84px}
+.tier .let{
+  flex:none;width:78px;display:grid;place-content:center;gap:2px;text-align:center;
+  background:var(--t);color:#0a0810;padding:10px 4px}
+.tier .let b{font:400 32px/1 var(--display);letter-spacing:.01em}
+.tier .let span{font:700 9.5px/1 var(--body);letter-spacing:.1em;text-transform:uppercase;opacity:.72}
+.tier .body{flex:1;min-width:0;padding:11px 14px;display:flex;flex-direction:column;gap:9px}
+.tier .note{font-size:11.5px;color:var(--dim)}
+.tier .note b{color:var(--ink-2);font:600 11.5px var(--mono)}
+.tier .mem{display:flex;flex-wrap:wrap;gap:6px}
+.tier .empty{color:var(--faint);font-size:12px;font-style:italic}
+.fchip{
+  display:flex;align-items:center;gap:7px;padding:4px 10px 4px 4px;border-radius:999px;
+  background:var(--bg-lift);border:1px solid var(--line);font-size:12.5px;color:var(--ink-2);
+  max-width:100%}
+.fchip:hover{border-color:var(--faint);text-decoration:none;color:var(--ink)}
+.fchip .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fchip .bd{font:600 10.5px var(--mono);color:var(--faint);font-variant-numeric:tabular-nums}
+
+/* --- tables ------------------------------------------------------------- */
+.tscroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:580px}
+th,td{padding:9px 13px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:700 10px var(--body);letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);background:var(--bg-lift);position:sticky;top:0;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.n{font:600 13px var(--mono);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+tbody tr:hover td{background:rgba(255,255,255,.018)}
+
+/* --- prose -------------------------------------------------------------- */
+.prose{max-width:68ch}
+.prose p{margin:0 0 14px;color:var(--ink-2)}
+.prose code{font:600 12.5px var(--mono);background:var(--bg-lift);
+  border:1px solid var(--line);border-radius:5px;padding:1px 5px;color:var(--ki-soft)}
+.prose ul{margin:0 0 16px;padding-left:20px;color:var(--ink-2)}
+.prose li{margin:0 0 7px}
+.panel{border:1px solid var(--line);border-radius:12px;background:var(--panel);
+  padding:16px 18px;margin:0 0 18px}
+.foot{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
+  color:var(--faint);font-size:11.5px;line-height:1.75}
+.foot b{color:var(--dim);font-family:var(--mono);font-weight:600}
+.hidden{display:none!important}
+
+@media (max-width:700px){
+  .bar{gap:10px;padding:9px 13px}
+  .tabs{margin-left:0;width:100%;overflow-x:auto;flex-wrap:nowrap;
+    scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .tabs::-webkit-scrollbar{display:none}
+  .tabs a{flex:none}
+  .tier .let{width:58px}
+  .tier .let b{font-size:25px}
+  .strip div{flex:1 1 50%}
+  .count{margin-left:0;width:100%}
+}
+</style>
+</head>
+<body>
+<header class="bar">
+  <span class="brand">Hero Arsenal <i>DBZ</i></span>
+  <nav class="tabs" aria-label="Sections"><a href="index.html">Roster</a><a href="tiers.html" aria-current="page">Tier List</a><a href="abilities.html">Abilities</a><a href="forms.html">Forms</a><a href="about.html">How It Works</a></nav>
+</header>
+<main class="wrap">
+<p class="eyebrow">Updated 2026-11-07</p>
+<h1 class="hd">Tier list &amp; <em>power ladder</em></h1>
+<p class="sub">Eight letters over thirty-one bands. The letter is a reading of
+the band, and the band is the only thing the game itself cares about &mdash;
+every fighter&#39;s health and damage come out of it by the same formula.</p>
+<section class="strip"><div><b>8</b><span>tiers</span></div><div><b>27</b><span>bands in use</span></div><div><b>×2</b><span>gain per band</span></div><div><b>×32,768</b><span>top of the ladder</span></div></section>
+<section class="tier">
+  <div class="let" style="--t:var(--tierZ)">
+    <b>Z</b><span>2 fighters</span></div>
+  <div class="body">
+    <p class="note">Apex. Above everything, by request. <b>band 30</b>, up to <b>×32,768</b> damage.</p>
+    <div class="mem"><a class="fchip" href="index.html#bt3_gogeta_ssj4"><span class="sig sm" style="--c:rgb(255,220,60);color:#0a0810" aria-hidden="true">GS</span><span class="nm">Gogeta (SSJ4)</span><span class="bd">30</span></a><a class="fchip" href="index.html#bt3_gogeta_ssj4_alt"><span class="sig sm" style="--c:rgb(255,220,60);color:#0a0810" aria-hidden="true">GS</span><span class="nm">Gogeta (SSJ4, Alt)</span><span class="bd">30</span></a></div>
+  </div>
+</section><section class="tier">
+  <div class="let" style="--t:var(--tierX)">
+    <b>X</b><span>3 fighters</span></div>
+  <div class="body">
+    <p class="note">World-ending. Two tiers clear of the next letter. <b>bands 24&ndash;28</b>, up to <b>×16,384</b> damage.</p>
+    <div class="mem"><a class="fchip" href="index.html#beerus_dbz"><span class="sig sm" style="--c:rgb(170,80,255);color:#f3eff7" aria-hidden="true">BE</span><span class="nm">Beerus</span><span class="bd">28</span></a><a class="fchip" href="index.html#gogeta_dbz"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">GO</span><span class="nm">Gogeta</span><span class="bd">26</span></a><a class="fchip" href="index.html#frieza_dbz"><span class="sig sm" style="--c:rgb(170,90,255);color:#f3eff7" aria-hidden="true">FR</span><span class="nm">Frieza</span><span class="bd">24</span></a></div>
+  </div>
+</section><section class="tier">
+  <div class="let" style="--t:var(--tierS)">
+    <b>S</b><span>3 fighters</span></div>
+  <div class="body">
+    <p class="note">Elite. Fusions and the top of the originals. <b>bands 20&ndash;22</b>, up to <b>×2,048</b> damage.</p>
+    <div class="mem"><a class="fchip" href="index.html#broly_sparking_zero"><span class="sig sm" style="--c:rgb(70,235,90);color:#0a0810" aria-hidden="true">BR</span><span class="nm">Broly</span><span class="bd">22</span></a><a class="fchip" href="index.html#gohan_dbz"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">GO</span><span class="nm">Gohan</span><span class="bd">21</span></a><a class="fchip" href="index.html#bt3_vegito_super"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">SV</span><span class="nm">Super Vegito</span><span class="bd">20</span></a></div>
+  </div>
+</section><section class="tier">
+  <div class="let" style="--t:var(--tierA)">
+    <b>A</b><span>11 fighters</span></div>
+  <div class="body">
+    <p class="note">Excellent. Wins most of the roster on stats alone. <b>bands 16&ndash;19</b>, up to <b>×724</b> damage.</p>
+    <div class="mem"><a class="fchip" href="index.html#goku_sparking_zero"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">GO</span><span class="nm">Goku</span><span class="bd">19</span></a><a class="fchip" href="index.html#bt3_gogeta_super"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">SG</span><span class="nm">Super Gogeta</span><span class="bd">19</span></a><a class="fchip" href="index.html#bt3_broly_lssj"><span class="sig sm" style="--c:rgb(70,235,90);color:#0a0810" aria-hidden="true">BL</span><span class="nm">Broly (LSSJ)</span><span class="bd">18</span></a><a class="fchip" href="index.html#bt3_buu_buuhan"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">SB</span><span class="nm">Super Buu (Gohan absorbed)</span><span class="bd">18</span></a><a class="fchip" href="index.html#bt3_gohan_ultimate"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">UG</span><span class="nm">Ultimate Gohan</span><span class="bd">18</span></a><a class="fchip" href="index.html#bt3_goku_ssj4"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">BG</span><span class="nm">BT3 Goku (SSJ4)</span><span class="bd">17</span></a><a class="fchip" href="index.html#vegeta_dbz"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">VE</span><span class="nm">Vegeta</span><span class="bd">17</span></a><a class="fchip" href="index.html#bt3_vegito"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">VE</span><span class="nm">Vegito</span><span class="bd">17</span></a><a class="fchip" href="index.html#bt3_vegeta_ssj"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">BV</span><span class="nm">BT3 Vegeta (SSJ)</span><span class="bd">16</span></a><a class="fchip" href="index.html#bt3_goku_black"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">GB</span><span class="nm">Goku Black</span><span class="bd">16</span></a><a class="fchip" href="index.html#bt3_buu_buutenks"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">SB</span><span class="nm">Super Buu (Gotenks absorbed)</span><span class="bd">16</span></a></div>
+  </div>
+</section><section class="tier">
+  <div class="let" style="--t:var(--tierB)">
+    <b>B</b><span>13 fighters</span></div>
+  <div class="body">
+    <p class="note">Good. Dangerous, but has a ceiling. <b>bands 12&ndash;15</b>, up to <b>×181</b> damage.</p>
+    <div class="mem"><a class="fchip" href="index.html#bt3_goku_ssj3_end"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">BG</span><span class="nm">BT3 Goku (SSJ3)</span><span class="bd">15</span></a><a class="fchip" href="index.html#jiren_dbz"><span class="sig sm" style="--c:rgb(255,70,30);color:#f3eff7" aria-hidden="true">JI</span><span class="nm">Jiren</span><span class="bd">15</span></a><a class="fchip" href="index.html#bt3_buu_super"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">SB</span><span class="nm">Super Buu</span><span class="bd">15</span></a><a class="fchip" href="index.html#bt3_janemba"><span class="sig sm" style="--c:rgb(70,235,90);color:#0a0810" aria-hidden="true">SJ</span><span class="nm">Super Janemba</span><span class="bd">15</span></a><a class="fchip" href="index.html#bt3_buu_kid"><span class="sig sm" style="--c:rgb(70,235,90);color:#0a0810" aria-hidden="true">KB</span><span class="nm">Kid Buu</span><span class="bd">14</span></a><a class="fchip" href="index.html#bt3_buu_kid_dbsz"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">KB</span><span class="nm">Kid Buu (Sparking)</span><span class="bd">14</span></a><a class="fchip" href="index.html#bt3_goku_ssj2_end"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">BG</span><span class="nm">BT3 Goku (SSJ2)</span><span class="bd">13</span></a><a class="fchip" href="index.html#bt3_cell_perfect"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">CP</span><span class="nm">Cell (Perfect Form)</span><span class="bd">13</span></a><a class="fchip" href="index.html#bt3_buu_majin"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">MB</span><span class="nm">Majin Buu</span><span class="bd">13</span></a><a class="fchip" href="index.html#trunks_dbz"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">TR</span><span class="nm">Trunks</span><span class="bd">13</span></a><a class="fchip" href="index.html#bt3_buu_evil"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">EB</span><span class="nm">Evil Buu</span><span class="bd">12</span></a><a class="fchip" href="index.html#bt3_piccolo_end"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">PE</span><span class="nm">Piccolo (End)</span><span class="bd">12</span></a><a class="fchip" href="index.html#bt3_piccolo_bare"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">PN</span><span class="nm">Piccolo (No Turban)</span><span class="bd">12</span></a></div>
+  </div>
+</section><section class="tier">
+  <div class="let" style="--t:var(--tierC)">
+    <b>C</b><span>11 fighters</span></div>
+  <div class="body">
+    <p class="note">Average. Mid-ladder; reads as a fair fight. <b>bands 8&ndash;11</b>, up to <b>×45.25</b> damage.</p>
+    <div class="mem"><a class="fchip" href="index.html#bt3_goku_ssj_end"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">BG</span><span class="nm">BT3 Goku (SSJ)</span><span class="bd">11</span></a><a class="fchip" href="index.html#bt3_goku_ssj_dmg"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">BG</span><span class="nm">BT3 Goku (SSJ, Damaged)</span><span class="bd">11</span></a><a class="fchip" href="index.html#cell_dbz"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">CE</span><span class="nm">Cell</span><span class="bd">11</span></a><a class="fchip" href="index.html#bt3_cooler_meta"><span class="sig sm" style="--c:rgb(170,90,255);color:#f3eff7" aria-hidden="true">MC</span><span class="nm">Meta-Cooler</span><span class="bd">11</span></a><a class="fchip" href="index.html#bt3_cooler_meta_acc"><span class="sig sm" style="--c:rgb(170,90,255);color:#f3eff7" aria-hidden="true">MC</span><span class="nm">Meta-Cooler (Armored)</span><span class="bd">11</span></a><a class="fchip" href="index.html#bt3_cooler_final"><span class="sig sm" style="--c:rgb(170,90,255);color:#f3eff7" aria-hidden="true">CF</span><span class="nm">Cooler (Final Form)</span><span class="bd">10</span></a><a class="fchip" href="index.html#bt3_goku_end"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">BG</span><span class="nm">BT3 Goku (End)</span><span class="bd">9</span></a><a class="fchip" href="index.html#piccolo_dbz"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">PI</span><span class="nm">Piccolo</span><span class="bd">9</span></a><a class="fchip" href="index.html#bt3_yamcha"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">YA</span><span class="nm">Yamcha</span><span class="bd">9</span></a><a class="fchip" href="index.html#bt3_tien"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">TS</span><span class="nm">Tien Shinhan</span><span class="bd">8</span></a><a class="fchip" href="index.html#bt3_tien_shirtless"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">TS</span><span class="nm">Tien Shinhan (Shirtless)</span><span class="bd">8</span></a></div>
+  </div>
+</section><section class="tier">
+  <div class="let" style="--t:var(--tierD)">
+    <b>D</b><span>13 fighters</span></div>
+  <div class="body">
+    <p class="note">Weak. Outclassed by anything above C. <b>bands 4&ndash;7</b>, up to <b>×11.31</b> damage.</p>
+    <div class="mem"><a class="fchip" href="index.html#bt3_cooler"><span class="sig sm" style="--c:rgb(170,90,255);color:#f3eff7" aria-hidden="true">CO</span><span class="nm">Cooler</span><span class="bd">7</span></a><a class="fchip" href="index.html#bt3_cooler_acc"><span class="sig sm" style="--c:rgb(170,90,255);color:#f3eff7" aria-hidden="true">CA</span><span class="nm">Cooler (Armored)</span><span class="bd">7</span></a><a class="fchip" href="index.html#oozaru_dbz"><span class="sig sm" style="--c:rgb(205,90,255);color:#f3eff7" aria-hidden="true">OO</span><span class="nm">Oozaru</span><span class="bd">7</span></a><a class="fchip" href="index.html#bt3_turles"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">TU</span><span class="nm">Turles</span><span class="bd">7</span></a><a class="fchip" href="index.html#bt3_vegeta"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">BV</span><span class="nm">BT3 Vegeta</span><span class="bd">6</span></a><a class="fchip" href="index.html#bt3_frieza_fullpwr"><span class="sig sm" style="--c:rgb(170,90,255);color:#f3eff7" aria-hidden="true">FF</span><span class="nm">Frieza (Full Power)</span><span class="bd">6</span></a><a class="fchip" href="index.html#bt3_frieza_fullpwr_acc"><span class="sig sm" style="--c:rgb(170,90,255);color:#f3eff7" aria-hidden="true">FF</span><span class="nm">Frieza (Full Power, Armored)</span><span class="bd">6</span></a><a class="fchip" href="index.html#bt3_goku_mid"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">BG</span><span class="nm">BT3 Goku (Mid)</span><span class="bd">5</span></a><a class="fchip" href="index.html#bt3_frieza_final"><span class="sig sm" style="--c:rgb(170,90,255);color:#f3eff7" aria-hidden="true">FF</span><span class="nm">Frieza (Final Form)</span><span class="bd">5</span></a><a class="fchip" href="index.html#bt3_frieza_final_acc"><span class="sig sm" style="--c:rgb(170,90,255);color:#f3eff7" aria-hidden="true">FF</span><span class="nm">Frieza (Final Form, Armored)</span><span class="bd">5</span></a><a class="fchip" href="index.html#bt3_piccolo_early"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">PE</span><span class="nm">Piccolo (Early)</span><span class="bd">5</span></a><a class="fchip" href="index.html#bt3_bardock"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">BA</span><span class="nm">Bardock</span><span class="bd">4</span></a><a class="fchip" href="index.html#bt3_bardock_dmg"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">BD</span><span class="nm">Bardock (Damaged)</span><span class="bd">4</span></a></div>
+  </div>
+</section><section class="tier">
+  <div class="let" style="--t:var(--tierF)">
+    <b>F</b><span>10 fighters</span></div>
+  <div class="body">
+    <p class="note">Stock. Band 0 is shipped stats, unscaled. <b>bands 0&ndash;3</b>, up to <b>×2.83</b> damage.</p>
+    <div class="mem"><a class="fchip" href="index.html#bt3_nappa"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">NA</span><span class="nm">Nappa</span><span class="bd">3</span></a><a class="fchip" href="index.html#bt3_nappa_armorless"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">NA</span><span class="nm">Nappa (Armorless)</span><span class="bd">3</span></a><a class="fchip" href="index.html#bt3_goku_early"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">BG</span><span class="nm">BT3 Goku (Early)</span><span class="bd">2</span></a><a class="fchip" href="index.html#bt3_chocolate"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">CH</span><span class="nm">Chocolate</span><span class="bd">2</span></a><a class="fchip" href="index.html#bt3_raditz"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">RA</span><span class="nm">Raditz</span><span class="bd">2</span></a><a class="fchip" href="index.html#bt3_salza"><span class="sig sm" style="--c:rgb(170,90,255);color:#f3eff7" aria-hidden="true">SA</span><span class="nm">Salza</span><span class="bd">2</span></a><a class="fchip" href="index.html#bt3_frieza_soldier"><span class="sig sm" style="--c:rgb(170,90,255);color:#f3eff7" aria-hidden="true">FS</span><span class="nm">Frieza Soldier</span><span class="bd">1</span></a><a class="fchip" href="index.html#bt3_frieza_soldier_alt"><span class="sig sm" style="--c:rgb(170,90,255);color:#f3eff7" aria-hidden="true">FS</span><span class="nm">Frieza Soldier (Alt)</span><span class="bd">1</span></a><a class="fchip" href="index.html#bt3_kid_goku"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">KG</span><span class="nm">Kid Goku</span><span class="bd">0</span></a><a class="fchip" href="index.html#bt3_kid_goku_alt"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">KG</span><span class="nm">Kid Goku (Alt)</span><span class="bd">0</span></a></div>
+  </div>
+</section>
+<h2>Every fighter by band</h2>
+<p class="sub" style="margin-bottom:14px">Rating is <code>spread ^ band</code>,
+capped at 1e+03T. Health and damage each take its square root,
+which is what holds time-to-kill roughly constant as you climb.</p>
+<div class="tscroll"><table>
+<thead><tr><th>Band</th><th>Tier</th><th>Fighter</th><th>Source</th>
+<th style="text-align:right">Rating</th><th style="text-align:right">Damage</th>
+<th style="text-align:right">Eff. health</th><th style="text-align:right">Moves</th>
+<th style="text-align:right">Forms</th></tr></thead>
+<tbody><tr><td>30</td>
+<td><span class="tag" style="position:static;--t:var(--tierZ)">Z</span></td>
+<td><a href="index.html#bt3_gogeta_ssj4">Gogeta (SSJ4)</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">1.07B</td>
+<td class="n">×32,768</td>
+<td class="n">1,000,000,000</td>
+<td class="n">14</td><td class="n">0</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierZ)">Z</span></td>
+<td><a href="index.html#bt3_gogeta_ssj4_alt">Gogeta (SSJ4, Alt)</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">1.07B</td>
+<td class="n">×32,768</td>
+<td class="n">1,000,000,000</td>
+<td class="n">14</td><td class="n">0</td></tr><tr><td>28</td>
+<td><span class="tag" style="position:static;--t:var(--tierX)">X</span></td>
+<td><a href="index.html#beerus_dbz">Beerus</a></td>
+<td>Hero Arsenal</td>
+<td class="n">268M</td>
+<td class="n">×16,384</td>
+<td class="n">819,200,000</td>
+<td class="n">17</td><td class="n">1</td></tr><tr><td>26</td>
+<td><span class="tag" style="position:static;--t:var(--tierX)">X</span></td>
+<td><a href="index.html#gogeta_dbz">Gogeta</a></td>
+<td>Hero Arsenal</td>
+<td class="n">67.1M</td>
+<td class="n">×8,192</td>
+<td class="n">409,600,000</td>
+<td class="n">15</td><td class="n">3</td></tr><tr><td>24</td>
+<td><span class="tag" style="position:static;--t:var(--tierX)">X</span></td>
+<td><a href="index.html#frieza_dbz">Frieza</a></td>
+<td>Hero Arsenal</td>
+<td class="n">16.8M</td>
+<td class="n">×4,096</td>
+<td class="n">204,800,000</td>
+<td class="n">15</td><td class="n">3</td></tr><tr><td>22</td>
+<td><span class="tag" style="position:static;--t:var(--tierS)">S</span></td>
+<td><a href="index.html#broly_sparking_zero">Broly</a></td>
+<td>Hero Arsenal</td>
+<td class="n">4.19M</td>
+<td class="n">×2,048</td>
+<td class="n">102,400,000</td>
+<td class="n">16</td><td class="n">5</td></tr><tr><td>21</td>
+<td><span class="tag" style="position:static;--t:var(--tierS)">S</span></td>
+<td><a href="index.html#gohan_dbz">Gohan</a></td>
+<td>Hero Arsenal</td>
+<td class="n">2.1M</td>
+<td class="n">×1,448</td>
+<td class="n">72,407,734</td>
+<td class="n">15</td><td class="n">3</td></tr><tr><td>20</td>
+<td><span class="tag" style="position:static;--t:var(--tierS)">S</span></td>
+<td><a href="index.html#bt3_vegito_super">Super Vegito</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">1.05M</td>
+<td class="n">×1,024</td>
+<td class="n">51,200,000</td>
+<td class="n">15</td><td class="n">0</td></tr><tr><td>19</td>
+<td><span class="tag" style="position:static;--t:var(--tierA)">A</span></td>
+<td><a href="index.html#goku_sparking_zero">Goku</a></td>
+<td>Hero Arsenal</td>
+<td class="n">524,288</td>
+<td class="n">×724</td>
+<td class="n">36,203,867</td>
+<td class="n">15</td><td class="n">7</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierA)">A</span></td>
+<td><a href="index.html#bt3_gogeta_super">Super Gogeta</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">524,288</td>
+<td class="n">×724</td>
+<td class="n">36,203,867</td>
+<td class="n">15</td><td class="n">0</td></tr><tr><td>18</td>
+<td><span class="tag" style="position:static;--t:var(--tierA)">A</span></td>
+<td><a href="index.html#bt3_broly_lssj">Broly (LSSJ)</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">262,144</td>
+<td class="n">×512</td>
+<td class="n">25,600,000</td>
+<td class="n">15</td><td class="n">0</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierA)">A</span></td>
+<td><a href="index.html#bt3_buu_buuhan">Super Buu (Gohan absorbed)</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">262,144</td>
+<td class="n">×512</td>
+<td class="n">25,600,000</td>
+<td class="n">8</td><td class="n">0</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierA)">A</span></td>
+<td><a href="index.html#bt3_gohan_ultimate">Ultimate Gohan</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">262,144</td>
+<td class="n">×512</td>
+<td class="n">25,600,000</td>
+<td class="n">15</td><td class="n">0</td></tr><tr><td>17</td>
+<td><span class="tag" style="position:static;--t:var(--tierA)">A</span></td>
+<td><a href="index.html#bt3_goku_ssj4">BT3 Goku (SSJ4)</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">131,072</td>
+<td class="n">×362</td>
+<td class="n">18,101,934</td>
+<td class="n">15</td><td class="n">0</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierA)">A</span></td>
+<td><a href="index.html#vegeta_dbz">Vegeta</a></td>
+<td>Hero Arsenal</td>
+<td class="n">131,072</td>
+<td class="n">×362</td>
+<td class="n">18,101,934</td>
+<td class="n">15</td><td class="n">7</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierA)">A</span></td>
+<td><a href="index.html#bt3_vegito">Vegito</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">131,072</td>
+<td class="n">×362</td>
+<td class="n">18,101,934</td>
+<td class="n">15</td><td class="n">1</td></tr><tr><td>16</td>
+<td><span class="tag" style="position:static;--t:var(--tierA)">A</span></td>
+<td><a href="index.html#bt3_vegeta_ssj">BT3 Vegeta (SSJ)</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">65,536</td>
+<td class="n">×256</td>
+<td class="n">12,800,000</td>
+<td class="n">15</td><td class="n">0</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierA)">A</span></td>
+<td><a href="index.html#bt3_goku_black">Goku Black</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">65,536</td>
+<td class="n">×256</td>
+<td class="n">12,800,000</td>
+<td class="n">15</td><td class="n">1</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierA)">A</span></td>
+<td><a href="index.html#bt3_buu_buutenks">Super Buu (Gotenks absorbed)</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">65,536</td>
+<td class="n">×256</td>
+<td class="n">12,800,000</td>
+<td class="n">8</td><td class="n">0</td></tr><tr><td>15</td>
+<td><span class="tag" style="position:static;--t:var(--tierB)">B</span></td>
+<td><a href="index.html#bt3_goku_ssj3_end">BT3 Goku (SSJ3)</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">32,768</td>
+<td class="n">×181</td>
+<td class="n">9,050,967</td>
+<td class="n">15</td><td class="n">0</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierB)">B</span></td>
+<td><a href="index.html#jiren_dbz">Jiren</a></td>
+<td>Hero Arsenal</td>
+<td class="n">32,768</td>
+<td class="n">×181</td>
+<td class="n">9,956,063</td>
+<td class="n">18</td><td class="n">2</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierB)">B</span></td>
+<td><a href="index.html#bt3_buu_super">Super Buu</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">32,768</td>
+<td class="n">×181</td>
+<td class="n">9,050,967</td>
+<td class="n">8</td><td class="n">2</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierB)">B</span></td>
+<td><a href="index.html#bt3_janemba">Super Janemba</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">32,768</td>
+<td class="n">×181</td>
+<td class="n">9,050,967</td>
+<td class="n">15</td><td class="n">0</td></tr><tr><td>14</td>
+<td><span class="tag" style="position:static;--t:var(--tierB)">B</span></td>
+<td><a href="index.html#bt3_buu_kid">Kid Buu</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">16,384</td>
+<td class="n">×128</td>
+<td class="n">6,400,000</td>
+<td class="n">15</td><td class="n">0</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierB)">B</span></td>
+<td><a href="index.html#bt3_buu_kid_dbsz">Kid Buu (Sparking)</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">16,384</td>
+<td class="n">×128</td>
+<td class="n">6,400,000</td>
+<td class="n">8</td><td class="n">0</td></tr><tr><td>13</td>
+<td><span class="tag" style="position:static;--t:var(--tierB)">B</span></td>
+<td><a href="index.html#bt3_goku_ssj2_end">BT3 Goku (SSJ2)</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">8,192</td>
+<td class="n">×90.51</td>
+<td class="n">4,525,483</td>
+<td class="n">15</td><td class="n">0</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierB)">B</span></td>
+<td><a href="index.html#bt3_cell_perfect">Cell (Perfect Form)</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">8,192</td>
+<td class="n">×90.51</td>
+<td class="n">4,525,483</td>
+<td class="n">15</td><td class="n">0</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierB)">B</span></td>
+<td><a href="index.html#bt3_buu_majin">Majin Buu</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">8,192</td>
+<td class="n">×90.51</td>
+<td class="n">4,525,483</td>
+<td class="n">8</td><td class="n">4</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierB)">B</span></td>
+<td><a href="index.html#trunks_dbz">Trunks</a></td>
+<td>Hero Arsenal</td>
+<td class="n">8,192</td>
+<td class="n">×90.51</td>
+<td class="n">4,525,483</td>
+<td class="n">19</td><td class="n">2</td></tr><tr><td>12</td>
+<td><span class="tag" style="position:static;--t:var(--tierB)">B</span></td>
+<td><a href="index.html#bt3_buu_evil">Evil Buu</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">4,096</td>
+<td class="n">×64</td>
+<td class="n">3,200,000</td>
+<td class="n">8</td><td class="n">0</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierB)">B</span></td>
+<td><a href="index.html#bt3_piccolo_end">Piccolo (End)</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">4,096</td>
+<td class="n">×64</td>
+<td class="n">3,200,000</td>
+<td class="n">15</td><td class="n">0</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierB)">B</span></td>
+<td><a href="index.html#bt3_piccolo_bare">Piccolo (No Turban)</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">4,096</td>
+<td class="n">×64</td>
+<td class="n">3,200,000</td>
+<td class="n">15</td><td class="n">0</td></tr><tr><td>11</td>
+<td><span class="tag" style="position:static;--t:var(--tierC)">C</span></td>
+<td><a href="index.html#bt3_goku_ssj_end">BT3 Goku (SSJ)</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">2,048</td>
+<td class="n">×45.25</td>
+<td class="n">2,262,742</td>
+<td class="n">15</td><td class="n">0</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierC)">C</span></td>
+<td><a href="index.html#bt3_goku_ssj_dmg">BT3 Goku (SSJ, Damaged)</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">2,048</td>
+<td class="n">×45.25</td>
+<td class="n">2,262,742</td>
+<td class="n">15</td><td class="n">0</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierC)">C</span></td>
+<td><a href="index.html#cell_dbz">Cell</a></td>
+<td>Hero Arsenal</td>
+<td class="n">2,048</td>
+<td class="n">×45.25</td>
+<td class="n">2,262,742</td>
+<td class="n">15</td><td class="n">3</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierC)">C</span></td>
+<td><a href="index.html#bt3_cooler_meta">Meta-Cooler</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">2,048</td>
+<td class="n">×45.25</td>
+<td class="n">2,262,742</td>
+<td class="n">8</td><td class="n">0</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierC)">C</span></td>
+<td><a href="index.html#bt3_cooler_meta_acc">Meta-Cooler (Armored)</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">2,048</td>
+<td class="n">×45.25</td>
+<td class="n">2,262,742</td>
+<td class="n">8</td><td class="n">0</td></tr><tr><td>10</td>
+<td><span class="tag" style="position:static;--t:var(--tierC)">C</span></td>
+<td><a href="index.html#bt3_cooler_final">Cooler (Final Form)</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">1,024</td>
+<td class="n">×32</td>
+<td class="n">1,600,000</td>
+<td class="n">8</td><td class="n">0</td></tr><tr><td>9</td>
+<td><span class="tag" style="position:static;--t:var(--tierC)">C</span></td>
+<td><a href="index.html#bt3_goku_end">BT3 Goku (End)</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">512</td>
+<td class="n">×22.63</td>
+<td class="n">1,131,371</td>
+<td class="n">15</td><td class="n">4</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierC)">C</span></td>
+<td><a href="index.html#piccolo_dbz">Piccolo</a></td>
+<td>Hero Arsenal</td>
+<td class="n">512</td>
+<td class="n">×22.63</td>
+<td class="n">1,131,371</td>
+<td class="n">15</td><td class="n">4</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierC)">C</span></td>
+<td><a href="index.html#bt3_yamcha">Yamcha</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">512</td>
+<td class="n">×22.63</td>
+<td class="n">1,131,371</td>
+<td class="n">4</td><td class="n">4</td></tr><tr><td>8</td>
+<td><span class="tag" style="position:static;--t:var(--tierC)">C</span></td>
+<td><a href="index.html#bt3_tien">Tien Shinhan</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">256</td>
+<td class="n">×16</td>
+<td class="n">800,000</td>
+<td class="n">15</td><td class="n">4</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierC)">C</span></td>
+<td><a href="index.html#bt3_tien_shirtless">Tien Shinhan (Shirtless)</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">256</td>
+<td class="n">×16</td>
+<td class="n">800,000</td>
+<td class="n">15</td><td class="n">4</td></tr><tr><td>7</td>
+<td><span class="tag" style="position:static;--t:var(--tierD)">D</span></td>
+<td><a href="index.html#bt3_cooler">Cooler</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">128</td>
+<td class="n">×11.31</td>
+<td class="n">565,685</td>
+<td class="n">8</td><td class="n">1</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierD)">D</span></td>
+<td><a href="index.html#bt3_cooler_acc">Cooler (Armored)</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">128</td>
+<td class="n">×11.31</td>
+<td class="n">565,685</td>
+<td class="n">8</td><td class="n">1</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierD)">D</span></td>
+<td><a href="index.html#oozaru_dbz">Oozaru</a></td>
+<td>Hero Arsenal</td>
+<td class="n">128</td>
+<td class="n">×11.31</td>
+<td class="n">169,706</td>
+<td class="n">7</td><td class="n">0</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierD)">D</span></td>
+<td><a href="index.html#bt3_turles">Turles</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">128</td>
+<td class="n">×11.31</td>
+<td class="n">565,685</td>
+<td class="n">15</td><td class="n">1</td></tr><tr><td>6</td>
+<td><span class="tag" style="position:static;--t:var(--tierD)">D</span></td>
+<td><a href="index.html#bt3_vegeta">BT3 Vegeta</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">64</td>
+<td class="n">×8</td>
+<td class="n">400,000</td>
+<td class="n">15</td><td class="n">1</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierD)">D</span></td>
+<td><a href="index.html#bt3_frieza_fullpwr">Frieza (Full Power)</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">64</td>
+<td class="n">×8</td>
+<td class="n">400,000</td>
+<td class="n">8</td><td class="n">0</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierD)">D</span></td>
+<td><a href="index.html#bt3_frieza_fullpwr_acc">Frieza (Full Power, Armored)</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">64</td>
+<td class="n">×8</td>
+<td class="n">400,000</td>
+<td class="n">8</td><td class="n">0</td></tr><tr><td>5</td>
+<td><span class="tag" style="position:static;--t:var(--tierD)">D</span></td>
+<td><a href="index.html#bt3_goku_mid">BT3 Goku (Mid)</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">32</td>
+<td class="n">×5.66</td>
+<td class="n">282,843</td>
+<td class="n">15</td><td class="n">2</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierD)">D</span></td>
+<td><a href="index.html#bt3_frieza_final">Frieza (Final Form)</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">32</td>
+<td class="n">×5.66</td>
+<td class="n">282,843</td>
+<td class="n">8</td><td class="n">0</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierD)">D</span></td>
+<td><a href="index.html#bt3_frieza_final_acc">Frieza (Final Form, Armored)</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">32</td>
+<td class="n">×5.66</td>
+<td class="n">282,843</td>
+<td class="n">8</td><td class="n">0</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierD)">D</span></td>
+<td><a href="index.html#bt3_piccolo_early">Piccolo (Early)</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">32</td>
+<td class="n">×5.66</td>
+<td class="n">282,843</td>
+<td class="n">15</td><td class="n">0</td></tr><tr><td>4</td>
+<td><span class="tag" style="position:static;--t:var(--tierD)">D</span></td>
+<td><a href="index.html#bt3_bardock">Bardock</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">16</td>
+<td class="n">×4</td>
+<td class="n">200,000</td>
+<td class="n">15</td><td class="n">0</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierD)">D</span></td>
+<td><a href="index.html#bt3_bardock_dmg">Bardock (Damaged)</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">16</td>
+<td class="n">×4</td>
+<td class="n">200,000</td>
+<td class="n">15</td><td class="n">0</td></tr><tr><td>3</td>
+<td><span class="tag" style="position:static;--t:var(--tierF)">F</span></td>
+<td><a href="index.html#bt3_nappa">Nappa</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">8</td>
+<td class="n">×2.83</td>
+<td class="n">141,421</td>
+<td class="n">15</td><td class="n">0</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierF)">F</span></td>
+<td><a href="index.html#bt3_nappa_armorless">Nappa (Armorless)</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">8</td>
+<td class="n">×2.83</td>
+<td class="n">141,421</td>
+<td class="n">15</td><td class="n">0</td></tr><tr><td>2</td>
+<td><span class="tag" style="position:static;--t:var(--tierF)">F</span></td>
+<td><a href="index.html#bt3_goku_early">BT3 Goku (Early)</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">4</td>
+<td class="n">×2</td>
+<td class="n">100,000</td>
+<td class="n">15</td><td class="n">3</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierF)">F</span></td>
+<td><a href="index.html#bt3_chocolate">Chocolate</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">4</td>
+<td class="n">×2</td>
+<td class="n">100,000</td>
+<td class="n">15</td><td class="n">0</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierF)">F</span></td>
+<td><a href="index.html#bt3_raditz">Raditz</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">4</td>
+<td class="n">×2</td>
+<td class="n">100,000</td>
+<td class="n">15</td><td class="n">0</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierF)">F</span></td>
+<td><a href="index.html#bt3_salza">Salza</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">4</td>
+<td class="n">×2</td>
+<td class="n">100,000</td>
+<td class="n">15</td><td class="n">0</td></tr><tr><td>1</td>
+<td><span class="tag" style="position:static;--t:var(--tierF)">F</span></td>
+<td><a href="index.html#bt3_frieza_soldier">Frieza Soldier</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">2</td>
+<td class="n">×1.41</td>
+<td class="n">70,711</td>
+<td class="n">8</td><td class="n">0</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierF)">F</span></td>
+<td><a href="index.html#bt3_frieza_soldier_alt">Frieza Soldier (Alt)</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">2</td>
+<td class="n">×1.41</td>
+<td class="n">70,711</td>
+<td class="n">8</td><td class="n">0</td></tr><tr><td>0</td>
+<td><span class="tag" style="position:static;--t:var(--tierF)">F</span></td>
+<td><a href="index.html#bt3_kid_goku">Kid Goku</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">1</td>
+<td class="n">×1</td>
+<td class="n">50,000</td>
+<td class="n">15</td><td class="n">0</td></tr><tr><td></td>
+<td><span class="tag" style="position:static;--t:var(--tierF)">F</span></td>
+<td><a href="index.html#bt3_kid_goku_alt">Kid Goku (Alt)</a></td>
+<td>Budokai Tenkaichi 3</td>
+<td class="n">1</td>
+<td class="n">×1</td>
+<td class="n">50,000</td>
+<td class="n">15</td><td class="n">0</td></tr></tbody></table></div>
+<footer class="foot">
+<p>Generated <b>2026-11-07T01:23:57-05:00</b> from the running Garry&#39;s Mod
+install &mdash; 12 Hero Arsenal heroes read out of the workshop
+<code>.gma</code> files, 54 Tenkaichi fighters read by executing
+<code>z_dbz_bt3.lua</code> itself. Rebuilt every ten minutes; nothing on this
+site is typed by hand.</p>
+<p>Hero Arsenal Engine DBZ by <b>FRITAS</b>. Tenkaichi 3 models by
+<b>RandomOne</b>. Tier bands, scaling and the patch layer are this
+repository&#39;s own.</p>
+</footer>
+</main>
+</body>
+</html>

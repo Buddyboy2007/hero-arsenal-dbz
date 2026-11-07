@@ -1,0 +1,11 @@
+[Unit]
+Description=Rebuild and publish the Hero Arsenal DBZ roster site
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=%h/projects/hero-arsenal-dbz/tools/update.sh
+# The job is cheap (a few seconds) but reads a Steam install that may be
+# busy; don't let a stuck run overlap the next tick.
+TimeoutStartSec=300

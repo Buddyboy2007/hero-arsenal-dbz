@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DBZ Transformations</title>
+<meta name="description" content="Every fighter, ability and tier in the Hero Arsenal DBZ roster, read straight out of the running Garry's Mod install.">
+<meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap">
+<style>/* ---------------------------------------------------------------------------
+   Hero Arsenal DBZ -- one deliberately dark look.
+   Palette is the roster's own: Super Saiyan gold is the accent because it is
+   the colour the top of the ladder actually wears in game; Kamehameha blue
+   carries the beams; Rose pink marks the danger figures. Neutrals are pushed
+   violet rather than left pure grey so they sit under those three.
+   Figures are set in a mono face on purpose -- this is a site about power
+   levels, and the numbers have to line up in a column to be read.
+--------------------------------------------------------------------------- */
+:root{
+  color-scheme:dark;
+  --bg:#07060b; --bg-lift:#0c0a12; --panel:#12101a; --card:#191622;
+  --line:#231f2e; --line-hi:#332c42;
+  --ink:#f3eff7; --ink-2:#cdc5d8; --dim:#968ea6; --faint:#645c73;
+  --ki:#ffb020; --ki-soft:#ffd27a; --beam:#4ab8ff; --rose:#ff5f8f;
+  --namek:#5fd98a; --void:#a97bff;
+  --grad:linear-gradient(90deg,var(--ki),var(--rose) 55%,var(--void));
+  --display:'Archivo Black',Impact,'Haettenschweiler','Arial Narrow Bold',sans-serif;
+  --body:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --tierZ:#ffe08a; --tierX:#ffb020; --tierS:#ff7a4d; --tierA:#ff5f8f;
+  --tierB:#a97bff; --tierC:#4ab8ff; --tierD:#5fd98a; --tierF:#7e8596;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);
+  font-size:15px;line-height:1.55;min-height:100vh;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%,rgba(255,176,32,.09),transparent 70%),
+    radial-gradient(ellipse 60% 40% at 90% 100%,rgba(169,123,255,.07),transparent 70%);
+  background-attachment:fixed;
+}
+img{max-width:100%;display:block}
+a{color:var(--beam);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--ki);outline-offset:2px;border-radius:4px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* --- bar ---------------------------------------------------------------- */
+.bar{
+  position:sticky;top:0;z-index:50;display:flex;align-items:center;
+  gap:18px;flex-wrap:wrap;padding:11px clamp(14px,4vw,34px);
+  background:rgba(7,6,11,.93);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.brand{
+  font:400 17px/1 var(--display);letter-spacing:.055em;text-transform:uppercase;
+  white-space:nowrap;color:var(--ink);
+}
+.brand i{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto}
+.tabs a{
+  padding:7px 13px;border-radius:999px;border:1px solid var(--line-hi);
+  font:700 11px/1 var(--body);letter-spacing:.09em;text-transform:uppercase;
+  color:var(--dim);background:rgba(255,255,255,.015);transition:color .14s,border-color .14s,background .14s;
+}
+.tabs a:hover{color:var(--ink);border-color:var(--faint);text-decoration:none}
+.tabs a[aria-current="page"]{
+  color:#1b1205;background:var(--ki);border-color:var(--ki-soft);
+}
+
+/* --- layout ------------------------------------------------------------- */
+.wrap{max-width:1180px;margin:0 auto;padding:clamp(22px,4vw,46px) clamp(14px,4vw,34px) 80px}
+.hd{margin:0 0 6px;font:400 clamp(28px,5.4vw,46px)/1.02 var(--display);
+    letter-spacing:.012em;text-transform:uppercase;text-wrap:balance}
+.hd em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{margin:0 0 26px;max-width:66ch;color:var(--dim);font-size:15.5px}
+h2{margin:40px 0 14px;font:400 clamp(17px,2.6vw,21px)/1.15 var(--display);
+   letter-spacing:.05em;text-transform:uppercase;color:var(--ink)}
+h2:first-of-type{margin-top:28px}
+.eyebrow{font:700 10.5px/1 var(--body);letter-spacing:.17em;text-transform:uppercase;color:var(--faint)}
+
+/* --- meta strip --------------------------------------------------------- */
+.strip{display:flex;flex-wrap:wrap;gap:0;margin:0 0 30px;
+  border:1px solid var(--line);border-radius:12px;background:var(--panel);overflow:hidden}
+.strip div{flex:1 1 128px;padding:13px 16px;border-right:1px solid var(--line)}
+.strip div:last-child{border-right:0}
+.strip b{display:block;font:400 20px/1.1 var(--mono);font-weight:700;color:var(--ki);
+  font-variant-numeric:tabular-nums}
+.strip span{display:block;margin-top:3px;font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--faint);font-weight:700}
+
+/* --- controls ----------------------------------------------------------- */
+.ctl{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin:0 0 22px}
+.ctl input[type=search]{
+  flex:1 1 230px;min-width:0;padding:9px 13px;border-radius:9px;
+  border:1px solid var(--line-hi);background:var(--bg-lift);color:var(--ink);
+  font:500 14px var(--body)}
+.ctl input[type=search]::placeholder{color:var(--faint)}
+.chip{
+  padding:7px 12px;border-radius:999px;border:1px solid var(--line-hi);
+  background:transparent;color:var(--dim);cursor:pointer;
+  font:700 10.5px/1 var(--body);letter-spacing:.09em;text-transform:uppercase}
+.chip:hover{color:var(--ink);border-color:var(--faint)}
+.chip[aria-pressed="true"]{background:var(--ink);color:#0a0810;border-color:var(--ink)}
+.count{margin-left:auto;font:600 11px var(--mono);color:var(--faint);
+  letter-spacing:.06em;font-variant-numeric:tabular-nums}
+
+/* --- sigil (a fighter's own aura colour, not decoration) ---------------- */
+.sig{
+  flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:10px;
+  font:400 13px/1 var(--display);letter-spacing:.02em;color:#0a0810;
+  background:var(--c,var(--ki));box-shadow:0 0 0 1px rgba(255,255,255,.1) inset;
+}
+.sig.sm{width:28px;height:28px;border-radius:8px;font-size:10px}
+
+/* --- cards -------------------------------------------------------------- */
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(285px,1fr))}
+.card{
+  border:1px solid var(--line);border-radius:13px;background:var(--card);
+  padding:15px 16px;position:relative;overflow:hidden}
+.card::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--c,var(--line-hi))}
+.card h3{margin:0;font:400 15px/1.2 var(--display);letter-spacing:.025em;
+  text-transform:uppercase;padding-right:46px}
+.card .top{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+.card .top>div{min-width:0;flex:1}
+.card .who{margin-top:3px;font-size:11px;color:var(--faint);letter-spacing:.04em}
+.tag{
+  position:absolute;top:13px;right:14px;padding:3px 9px;border-radius:6px;
+  font:400 12px/1.25 var(--display);letter-spacing:.04em;color:#0a0810;background:var(--t,var(--ki))}
+.rows{display:grid;gap:0;margin:0;font-size:12.5px}
+.rows div{display:flex;justify-content:space-between;gap:12px;
+  padding:5px 0;border-top:1px solid var(--line)}
+.rows div:first-child{border-top:0}
+.rows dt,.rows span:first-child{color:var(--dim)}
+.rows b{font:600 12.5px var(--mono);color:var(--ink-2);font-variant-numeric:tabular-nums;
+  text-align:right;white-space:nowrap}
+.rows b.hi{color:var(--ki)}
+.moves{margin:12px 0 0;padding:11px 0 0;border-top:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:5px}
+.mv{padding:3px 8px;border-radius:6px;background:var(--bg-lift);
+  border:1px solid var(--line);font-size:11px;color:var(--ink-2);white-space:nowrap}
+.mv.form{border-color:rgba(255,176,32,.4);color:var(--ki-soft)}
+.mv.borrowed{opacity:.6}
+
+/* --- tier rows ---------------------------------------------------------- */
+.tier{display:flex;margin:0 0 11px;border:1px solid var(--line);border-radius:13px;
+  background:var(--panel);overflow:hidden;min-height:84px}
+.tier .let{
+  flex:none;width:78px;display:grid;place-content:center;gap:2px;text-align:center;
+  background:var(--t);color:#0a0810;padding:10px 4px}
+.tier .let b{font:400 32px/1 var(--display);letter-spacing:.01em}
+.tier .let span{font:700 9.5px/1 var(--body);letter-spacing:.1em;text-transform:uppercase;opacity:.72}
+.tier .body{flex:1;min-width:0;padding:11px 14px;display:flex;flex-direction:column;gap:9px}
+.tier .note{font-size:11.5px;color:var(--dim)}
+.tier .note b{color:var(--ink-2);font:600 11.5px var(--mono)}
+.tier .mem{display:flex;flex-wrap:wrap;gap:6px}
+.tier .empty{color:var(--faint);font-size:12px;font-style:italic}
+.fchip{
+  display:flex;align-items:center;gap:7px;padding:4px 10px 4px 4px;border-radius:999px;
+  background:var(--bg-lift);border:1px solid var(--line);font-size:12.5px;color:var(--ink-2);
+  max-width:100%}
+.fchip:hover{border-color:var(--faint);text-decoration:none;color:var(--ink)}
+.fchip .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fchip .bd{font:600 10.5px var(--mono);color:var(--faint);font-variant-numeric:tabular-nums}
+
+/* --- tables ------------------------------------------------------------- */
+.tscroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:580px}
+th,td{padding:9px 13px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:700 10px var(--body);letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);background:var(--bg-lift);position:sticky;top:0;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.n{font:600 13px var(--mono);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+tbody tr:hover td{background:rgba(255,255,255,.018)}
+
+/* --- prose -------------------------------------------------------------- */
+.prose{max-width:68ch}
+.prose p{margin:0 0 14px;color:var(--ink-2)}
+.prose code{font:600 12.5px var(--mono);background:var(--bg-lift);
+  border:1px solid var(--line);border-radius:5px;padding:1px 5px;color:var(--ki-soft)}
+.prose ul{margin:0 0 16px;padding-left:20px;color:var(--ink-2)}
+.prose li{margin:0 0 7px}
+.panel{border:1px solid var(--line);border-radius:12px;background:var(--panel);
+  padding:16px 18px;margin:0 0 18px}
+.foot{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
+  color:var(--faint);font-size:11.5px;line-height:1.75}
+.foot b{color:var(--dim);font-family:var(--mono);font-weight:600}
+.hidden{display:none!important}
+
+@media (max-width:700px){
+  .bar{gap:10px;padding:9px 13px}
+  .tabs{margin-left:0;width:100%;overflow-x:auto;flex-wrap:nowrap;
+    scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .tabs::-webkit-scrollbar{display:none}
+  .tabs a{flex:none}
+  .tier .let{width:58px}
+  .tier .let b{font-size:25px}
+  .strip div{flex:1 1 50%}
+  .count{margin-left:0;width:100%}
+}
+</style>
+</head>
+<body>
+<header class="bar">
+  <span class="brand">Hero Arsenal <i>DBZ</i></span>
+  <nav class="tabs" aria-label="Sections"><a href="index.html">Roster</a><a href="tiers.html">Tier List</a><a href="abilities.html">Abilities</a><a href="forms.html" aria-current="page">Forms</a><a href="about.html">How It Works</a></nav>
+</header>
+<main class="wrap">
+<p class="eyebrow">42 distinct transformations</p>
+<h1 class="hd">Forms &amp; the <em>gain ladder</em></h1>
+<p class="sub">A transformation is worth a multiplier, and the two kinds of
+multiplier behave differently. A ladder rung compounds on whatever the fighter
+already had. A Kaioken rung is absolute: reaching it <em>replaces</em> the
+running total, and it burns health for as long as it is held.</p>
+<section class="strip"><div><b>42</b><span>distinct forms</span></div><div><b>73</b><span>form slots on the roster</span></div><div><b>25</b><span>fighters who transform</span></div><div><b>7</b><span>deepest ladder &mdash; Goku</span></div><div><b>×100</b><span>largest single gain</span></div></section>
+<h2>The standard ladder</h2>
+<p class="sub" style="margin-bottom:14px">Each rung multiplies the one before
+it, so the ladder compounds. Every gain is a convar &mdash; these are the
+shipped defaults, not fixed numbers.</p>
+<div class="tscroll"><table><thead><tr><th>Rung</th><th>Convar</th>
+<th style="text-align:right">Gain</th></tr></thead>
+<tbody><tr><td>1</td><td><code>dbz_form_mult_ssj1</code></td><td class="n">×50</td></tr><tr><td>2</td><td><code>dbz_form_mult_ssj2</code></td><td class="n">×2</td></tr><tr><td>3</td><td><code>dbz_form_mult_ssj3</code></td><td class="n">×4</td></tr><tr><td>4</td><td><code>dbz_form_mult_ssj4</code></td><td class="n">×100</td></tr><tr><td>5</td><td><code>dbz_form_mult_ssj_blue</code></td><td class="n">×10</td></tr><tr><td>6</td><td><code>dbz_form_mult_kaioken</code></td><td class="n">×2</td></tr><tr><td>7</td><td><code>dbz_form_mult_ultra_instinct</code></td><td class="n">×20</td></tr><tr><td>form_fullpower</td><td><code>dbz_form_mult_fullpower</code></td><td class="n">×50</td></tr></tbody></table></div>
+<h2>Every form</h2>
+<div class="ctl">
+  <input type="search" id="q" placeholder="Search a form or a fighter&hellip;" aria-label="Search forms">
+  <span class="count" id="count" role="status"></span>
+</div>
+<div class="grid"><article class="card" style="--c:var(--ki)"
+  data-s="super saiyan 4 goku vegeta bt3 goku (end)">
+  
+  <h3>Super Saiyan 4</h3>
+  <div class="who">3 fighters</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Changes form: new aura, new stats, and for most a new body.</p>
+  <div class="rows"><div><span>Multiplier</span><b class="hi">×100</b></div><div><span>Cooldown</span><b>1s</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#goku_sparking_zero"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">GO</span><span class="nm">Goku</span><span class="bd">19</span></a><a class="fchip" href="index.html#vegeta_dbz"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">VE</span><span class="nm">Vegeta</span><span class="bd">17</span></a><a class="fchip" href="index.html#bt3_goku_end"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">BG</span><span class="nm">BT3 Goku (End)</span><span class="bd">9</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="gohan absorbed super buu majin buu">
+  
+  <h3>Gohan Absorbed</h3>
+  <div class="who">2 fighters</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Ladder rung 4, worth x100, compounding on whatever came before it.</p>
+  <div class="rows"><div><span>Multiplier</span><b class="hi">×100</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#bt3_buu_super"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">SB</span><span class="nm">Super Buu</span><span class="bd">15</span></a><a class="fchip" href="index.html#bt3_buu_majin"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">MB</span><span class="nm">Majin Buu</span><span class="bd">13</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="super saiyan gogeta gohan goku vegeta trunks bt3 goku (end) bt3 vegeta bt3 goku (mid)">
+  
+  <h3>Super Saiyan</h3>
+  <div class="who">8 fighters</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Changes form: new aura, new stats, and for most a new body.</p>
+  <div class="rows"><div><span>Multiplier</span><b class="hi">×50</b></div><div><span>Cooldown</span><b>1s</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#gogeta_dbz"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">GO</span><span class="nm">Gogeta</span><span class="bd">26</span></a><a class="fchip" href="index.html#gohan_dbz"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">GO</span><span class="nm">Gohan</span><span class="bd">21</span></a><a class="fchip" href="index.html#goku_sparking_zero"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">GO</span><span class="nm">Goku</span><span class="bd">19</span></a><a class="fchip" href="index.html#vegeta_dbz"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">VE</span><span class="nm">Vegeta</span><span class="bd">17</span></a><a class="fchip" href="index.html#trunks_dbz"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">TR</span><span class="nm">Trunks</span><span class="bd">13</span></a><a class="fchip" href="index.html#bt3_goku_end"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">BG</span><span class="nm">BT3 Goku (End)</span><span class="bd">9</span></a><span class="fchip" style="color:var(--faint)">+2 more</span></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="final form cooler cooler (armored)">
+  
+  <h3>Final Form</h3>
+  <div class="who">2 fighters</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Ladder rung 1, worth x50, compounding on whatever came before it.</p>
+  <div class="rows"><div><span>Multiplier</span><b class="hi">×50</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#bt3_cooler"><span class="sig sm" style="--c:rgb(170,90,255);color:#f3eff7" aria-hidden="true">CO</span><span class="nm">Cooler</span><span class="bd">7</span></a><a class="fchip" href="index.html#bt3_cooler_acc"><span class="sig sm" style="--c:rgb(170,90,255);color:#f3eff7" aria-hidden="true">CA</span><span class="nm">Cooler (Armored)</span><span class="bd">7</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="evil buu majin buu">
+  
+  <h3>Evil Buu</h3>
+  <div class="who">1 fighter</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Ladder rung 1, worth x50, compounding on whatever came before it.</p>
+  <div class="rows"><div><span>Multiplier</span><b class="hi">×50</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#bt3_buu_majin"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">MB</span><span class="nm">Majin Buu</span><span class="bd">13</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="super saiyan rose goku black">
+  
+  <h3>Super Saiyan Rose</h3>
+  <div class="who">1 fighter</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Ladder rung 1, worth x50, compounding on whatever came before it.</p>
+  <div class="rows"><div><span>Multiplier</span><b class="hi">×50</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#bt3_goku_black"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">GB</span><span class="nm">Goku Black</span><span class="bd">16</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="super vegito vegito">
+  
+  <h3>Super Vegito</h3>
+  <div class="who">1 fighter</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Ladder rung 1, worth x50, compounding on whatever came before it.</p>
+  <div class="rows"><div><span>Multiplier</span><b class="hi">×50</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#bt3_vegito"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">VE</span><span class="nm">Vegito</span><span class="bd">17</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="kaioken x20 yamcha tien shinhan tien shinhan (shirtless) turles bt3 goku (mid)">
+  <span class="tag" style="--t:var(--rose);color:#190308">ABS</span>
+  <h3>Kaioken x20</h3>
+  <div class="who">5 fighters</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Absolute x20 -- replaces the running total instead of compounding on it. Costs 100 health a second to hold.</p>
+  <div class="rows"><div><span>Multiplier</span><b class="hi">×20</b></div><div><span>Health / sec</span><b>100</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#bt3_yamcha"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">YA</span><span class="nm">Yamcha</span><span class="bd">9</span></a><a class="fchip" href="index.html#bt3_tien"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">TS</span><span class="nm">Tien Shinhan</span><span class="bd">8</span></a><a class="fchip" href="index.html#bt3_tien_shirtless"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">TS</span><span class="nm">Tien Shinhan (Shirtless)</span><span class="bd">8</span></a><a class="fchip" href="index.html#bt3_turles"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">TU</span><span class="nm">Turles</span><span class="bd">7</span></a><a class="fchip" href="index.html#bt3_goku_mid"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">BG</span><span class="nm">BT3 Goku (Mid)</span><span class="bd">5</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="kaioken x4 yamcha tien shinhan tien shinhan (shirtless) bt3 goku (early)">
+  <span class="tag" style="--t:var(--rose);color:#190308">ABS</span>
+  <h3>Kaioken x4</h3>
+  <div class="who">4 fighters</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Absolute x4 -- replaces the running total instead of compounding on it. Costs 100 health a second to hold.</p>
+  <div class="rows"><div><span>Multiplier</span><b class="hi">×4</b></div><div><span>Health / sec</span><b>100</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#bt3_yamcha"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">YA</span><span class="nm">Yamcha</span><span class="bd">9</span></a><a class="fchip" href="index.html#bt3_tien"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">TS</span><span class="nm">Tien Shinhan</span><span class="bd">8</span></a><a class="fchip" href="index.html#bt3_tien_shirtless"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">TS</span><span class="nm">Tien Shinhan (Shirtless)</span><span class="bd">8</span></a><a class="fchip" href="index.html#bt3_goku_early"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">BG</span><span class="nm">BT3 Goku (Early)</span><span class="bd">2</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="gotenks absorbed super buu majin buu">
+  
+  <h3>Gotenks Absorbed</h3>
+  <div class="who">2 fighters</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Ladder rung 3, worth x4, compounding on whatever came before it.</p>
+  <div class="rows"><div><span>Multiplier</span><b class="hi">×4</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#bt3_buu_super"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">SB</span><span class="nm">Super Buu</span><span class="bd">15</span></a><a class="fchip" href="index.html#bt3_buu_majin"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">MB</span><span class="nm">Majin Buu</span><span class="bd">13</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="super saiyan 3 goku bt3 goku (end)">
+  
+  <h3>Super Saiyan 3</h3>
+  <div class="who">2 fighters</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Changes form: new aura, new stats, and for most a new body.</p>
+  <div class="rows"><div><span>Multiplier</span><b class="hi">×4</b></div><div><span>Cooldown</span><b>1s</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#goku_sparking_zero"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">GO</span><span class="nm">Goku</span><span class="bd">19</span></a><a class="fchip" href="index.html#bt3_goku_end"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">BG</span><span class="nm">BT3 Goku (End)</span><span class="bd">9</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="kaioken x3 yamcha tien shinhan tien shinhan (shirtless) bt3 goku (early)">
+  <span class="tag" style="--t:var(--rose);color:#190308">ABS</span>
+  <h3>Kaioken x3</h3>
+  <div class="who">4 fighters</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Absolute x3 -- replaces the running total instead of compounding on it. Costs 100 health a second to hold.</p>
+  <div class="rows"><div><span>Multiplier</span><b class="hi">×3</b></div><div><span>Health / sec</span><b>100</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#bt3_yamcha"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">YA</span><span class="nm">Yamcha</span><span class="bd">9</span></a><a class="fchip" href="index.html#bt3_tien"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">TS</span><span class="nm">Tien Shinhan</span><span class="bd">8</span></a><a class="fchip" href="index.html#bt3_tien_shirtless"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">TS</span><span class="nm">Tien Shinhan (Shirtless)</span><span class="bd">8</span></a><a class="fchip" href="index.html#bt3_goku_early"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">BG</span><span class="nm">BT3 Goku (Early)</span><span class="bd">2</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="super saiyan 2 gohan goku vegeta bt3 goku (end)">
+  
+  <h3>Super Saiyan 2</h3>
+  <div class="who">4 fighters</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Changes form: new aura, new stats, and for most a new body.</p>
+  <div class="rows"><div><span>Multiplier</span><b class="hi">×2</b></div><div><span>Cooldown</span><b>1s</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#gohan_dbz"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">GO</span><span class="nm">Gohan</span><span class="bd">21</span></a><a class="fchip" href="index.html#goku_sparking_zero"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">GO</span><span class="nm">Goku</span><span class="bd">19</span></a><a class="fchip" href="index.html#vegeta_dbz"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">VE</span><span class="nm">Vegeta</span><span class="bd">17</span></a><a class="fchip" href="index.html#bt3_goku_end"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">BG</span><span class="nm">BT3 Goku (End)</span><span class="bd">9</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="kaioken x2 yamcha tien shinhan tien shinhan (shirtless)">
+  <span class="tag" style="--t:var(--rose);color:#190308">ABS</span>
+  <h3>Kaioken x2</h3>
+  <div class="who">3 fighters</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Absolute x2 -- replaces the running total instead of compounding on it. Costs 100 health a second to hold.</p>
+  <div class="rows"><div><span>Multiplier</span><b class="hi">×2</b></div><div><span>Health / sec</span><b>100</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#bt3_yamcha"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">YA</span><span class="nm">Yamcha</span><span class="bd">9</span></a><a class="fchip" href="index.html#bt3_tien"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">TS</span><span class="nm">Tien Shinhan</span><span class="bd">8</span></a><a class="fchip" href="index.html#bt3_tien_shirtless"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">TS</span><span class="nm">Tien Shinhan (Shirtless)</span><span class="bd">8</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="kaioken goku bt3 goku (early)">
+  <span class="tag" style="--t:var(--rose);color:#190308">ABS</span>
+  <h3>Kaioken</h3>
+  <div class="who">2 fighters</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Changes form: new aura, new stats, and for most a new body.</p>
+  <div class="rows"><div><span>Multiplier</span><b class="hi">×2</b></div><div><span>Health / sec</span><b>100</b></div><div><span>Cooldown</span><b>1s</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#goku_sparking_zero"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">GO</span><span class="nm">Goku</span><span class="bd">19</span></a><a class="fchip" href="index.html#bt3_goku_early"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">BG</span><span class="nm">BT3 Goku (Early)</span><span class="bd">2</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="super buu majin buu">
+  
+  <h3>Super Buu</h3>
+  <div class="who">1 fighter</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Ladder rung 2, worth x2, compounding on whatever came before it.</p>
+  <div class="rows"><div><span>Multiplier</span><b class="hi">×2</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#bt3_buu_majin"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">MB</span><span class="nm">Majin Buu</span><span class="bd">13</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="super saiyan blue gogeta goku vegeta">
+  
+  <h3>Super Saiyan Blue</h3>
+  <div class="who">3 fighters</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Changes form: new aura, new stats, and for most a new body.</p>
+  <div class="rows"><div><span>Cooldown</span><b>1s</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#gogeta_dbz"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">GO</span><span class="nm">Gogeta</span><span class="bd">26</span></a><a class="fchip" href="index.html#goku_sparking_zero"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">GO</span><span class="nm">Goku</span><span class="bd">19</span></a><a class="fchip" href="index.html#vegeta_dbz"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">VE</span><span class="nm">Vegeta</span><span class="bd">17</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="100% full power frieza">
+  
+  <h3>100% Full Power</h3>
+  <div class="who">1 fighter</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Changes form: new aura, new stats, and for most a new body.</p>
+  <div class="rows"><div><span>Cooldown</span><b>1s</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#frieza_dbz"><span class="sig sm" style="--c:rgb(170,90,255);color:#f3eff7" aria-hidden="true">FR</span><span class="nm">Frieza</span><span class="bd">24</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="black frieza frieza">
+  
+  <h3>Black Frieza</h3>
+  <div class="who">1 fighter</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Changes form: new aura, new stats, and for most a new body.</p>
+  <div class="rows"><div><span>Cooldown</span><b>1s</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#frieza_dbz"><span class="sig sm" style="--c:rgb(170,90,255);color:#f3eff7" aria-hidden="true">FR</span><span class="nm">Frieza</span><span class="bd">24</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="broly (super) broly">
+  
+  <h3>Broly (Super)</h3>
+  <div class="who">1 fighter</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Changes form: new aura, new stats, and for most a new body.</p>
+  <div class="rows"><div><span>Cooldown</span><b>1s</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#broly_sparking_zero"><span class="sig sm" style="--c:rgb(70,235,90);color:#0a0810" aria-hidden="true">BR</span><span class="nm">Broly</span><span class="bd">22</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="full power jiren">
+  
+  <h3>Full Power</h3>
+  <div class="who">1 fighter</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Changes form: new aura, new stats, and for most a new body.</p>
+  <div class="rows"><div><span>Cooldown</span><b>1s</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#jiren_dbz"><span class="sig sm" style="--c:rgb(255,70,30);color:#f3eff7" aria-hidden="true">JI</span><span class="nm">Jiren</span><span class="bd">15</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="full power super saiyan (super) broly">
+  
+  <h3>Full Power Super Saiyan (Super)</h3>
+  <div class="who">1 fighter</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Changes form: new aura, new stats, and for most a new body.</p>
+  <div class="rows"><div><span>Cooldown</span><b>1s</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#broly_sparking_zero"><span class="sig sm" style="--c:rgb(70,235,90);color:#0a0810" aria-hidden="true">BR</span><span class="nm">Broly</span><span class="bd">22</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="gohan beast gohan">
+  
+  <h3>Gohan Beast</h3>
+  <div class="who">1 fighter</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Changes form: new aura, new stats, and for most a new body.</p>
+  <div class="rows"><div><span>Cooldown</span><b>1s</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#gohan_dbz"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">GO</span><span class="nm">Gohan</span><span class="bd">21</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="golden frieza frieza">
+  
+  <h3>Golden Frieza</h3>
+  <div class="who">1 fighter</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Changes form: new aura, new stats, and for most a new body.</p>
+  <div class="rows"><div><span>Cooldown</span><b>1s</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#frieza_dbz"><span class="sig sm" style="--c:rgb(170,90,255);color:#f3eff7" aria-hidden="true">FR</span><span class="nm">Frieza</span><span class="bd">24</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="legendary super saiyan (z) broly">
+  
+  <h3>Legendary Super Saiyan (Z)</h3>
+  <div class="who">1 fighter</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Changes form: new aura, new stats, and for most a new body.</p>
+  <div class="rows"><div><span>Cooldown</span><b>1s</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#broly_sparking_zero"><span class="sig sm" style="--c:rgb(70,235,90);color:#0a0810" aria-hidden="true">BR</span><span class="nm">Broly</span><span class="bd">22</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="orange piccolo piccolo">
+  
+  <h3>Orange Piccolo</h3>
+  <div class="who">1 fighter</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Changes form: new aura, new stats, and for most a new body.</p>
+  <div class="rows"><div><span>Cooldown</span><b>1s</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#piccolo_dbz"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">PI</span><span class="nm">Piccolo</span><span class="bd">9</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="perfect cell cell">
+  
+  <h3>Perfect Cell</h3>
+  <div class="who">1 fighter</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Changes form: new aura, new stats, and for most a new body.</p>
+  <div class="rows"><div><span>Cooldown</span><b>1s</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#cell_dbz"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">CE</span><span class="nm">Cell</span><span class="bd">11</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="piccolo (no cape) piccolo">
+  
+  <h3>Piccolo (No Cape)</h3>
+  <div class="who">1 fighter</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Changes form: new aura, new stats, and for most a new body.</p>
+  <div class="rows"><div><span>Cooldown</span><b>1s</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#piccolo_dbz"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">PI</span><span class="nm">Piccolo</span><span class="bd">9</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="piccolo (red sash, manga) piccolo">
+  
+  <h3>Piccolo (Red Sash, manga)</h3>
+  <div class="who">1 fighter</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Changes form: new aura, new stats, and for most a new body.</p>
+  <div class="rows"><div><span>Cooldown</span><b>1s</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#piccolo_dbz"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">PI</span><span class="nm">Piccolo</span><span class="bd">9</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="piccolo (super hero) piccolo">
+  
+  <h3>Piccolo (Super Hero)</h3>
+  <div class="who">1 fighter</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Changes form: new aura, new stats, and for most a new body.</p>
+  <div class="rows"><div><span>Cooldown</span><b>1s</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#piccolo_dbz"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">PI</span><span class="nm">Piccolo</span><span class="bd">9</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="semi-perfect cell cell">
+  
+  <h3>Semi-Perfect Cell</h3>
+  <div class="who">1 fighter</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Changes form: new aura, new stats, and for most a new body.</p>
+  <div class="rows"><div><span>Cooldown</span><b>1s</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#cell_dbz"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">CE</span><span class="nm">Cell</span><span class="bd">11</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="super full power jiren">
+  
+  <h3>Super Full Power</h3>
+  <div class="who">1 fighter</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Changes form: new aura, new stats, and for most a new body.</p>
+  <div class="rows"><div><span>Cooldown</span><b>1s</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#jiren_dbz"><span class="sig sm" style="--c:rgb(255,70,30);color:#f3eff7" aria-hidden="true">JI</span><span class="nm">Jiren</span><span class="bd">15</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="super perfect cell cell">
+  
+  <h3>Super Perfect Cell</h3>
+  <div class="who">1 fighter</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Changes form: new aura, new stats, and for most a new body.</p>
+  <div class="rows"><div><span>Cooldown</span><b>1s</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#cell_dbz"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">CE</span><span class="nm">Cell</span><span class="bd">11</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="super saiyan (super) broly">
+  
+  <h3>Super Saiyan (Super)</h3>
+  <div class="who">1 fighter</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Changes form: new aura, new stats, and for most a new body.</p>
+  <div class="rows"><div><span>Cooldown</span><b>1s</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#broly_sparking_zero"><span class="sig sm" style="--c:rgb(70,235,90);color:#0a0810" aria-hidden="true">BR</span><span class="nm">Broly</span><span class="bd">22</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="super saiyan (z) broly">
+  
+  <h3>Super Saiyan (Z)</h3>
+  <div class="who">1 fighter</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Changes form: new aura, new stats, and for most a new body.</p>
+  <div class="rows"><div><span>Cooldown</span><b>1s</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#broly_sparking_zero"><span class="sig sm" style="--c:rgb(70,235,90);color:#0a0810" aria-hidden="true">BR</span><span class="nm">Broly</span><span class="bd">22</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="super saiyan 4 (gt) gogeta">
+  
+  <h3>Super Saiyan 4 (GT)</h3>
+  <div class="who">1 fighter</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Changes form: new aura, new stats, and for most a new body.</p>
+  <div class="rows"><div><span>Cooldown</span><b>1s</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#gogeta_dbz"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">GO</span><span class="nm">Gogeta</span><span class="bd">26</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="super saiyan blue evolved vegeta">
+  
+  <h3>Super Saiyan Blue Evolved</h3>
+  <div class="who">1 fighter</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Changes form: new aura, new stats, and for most a new body.</p>
+  <div class="rows"><div><span>Cooldown</span><b>1s</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#vegeta_dbz"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">VE</span><span class="nm">Vegeta</span><span class="bd">17</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="super saiyan god vegeta">
+  
+  <h3>Super Saiyan God</h3>
+  <div class="who">1 fighter</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Changes form: new aura, new stats, and for most a new body.</p>
+  <div class="rows"><div><span>Cooldown</span><b>1s</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#vegeta_dbz"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">VE</span><span class="nm">Vegeta</span><span class="bd">17</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="super saiyan rage trunks">
+  
+  <h3>Super Saiyan Rage</h3>
+  <div class="who">1 fighter</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Changes form: new aura, new stats, and for most a new body.</p>
+  <div class="rows"><div><span>Cooldown</span><b>1s</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#trunks_dbz"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">TR</span><span class="nm">Trunks</span><span class="bd">13</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="ultra ego vegeta">
+  
+  <h3>Ultra Ego</h3>
+  <div class="who">1 fighter</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Changes form: new aura, new stats, and for most a new body.</p>
+  <div class="rows"><div><span>Cooldown</span><b>1s</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#vegeta_dbz"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">VE</span><span class="nm">Vegeta</span><span class="bd">17</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="ultra instinct goku">
+  
+  <h3>Ultra Instinct</h3>
+  <div class="who">1 fighter</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Changes form: new aura, new stats, and for most a new body.</p>
+  <div class="rows"><div><span>Cooldown</span><b>1s</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#goku_sparking_zero"><span class="sig sm" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">GO</span><span class="nm">Goku</span><span class="bd">19</span></a></div>
+</article><article class="card" style="--c:var(--ki)"
+  data-s="verdict of destruction beerus">
+  
+  <h3>Verdict of Destruction</h3>
+  <div class="who">1 fighter</div>
+  <p style="margin:10px 0 0;font-size:12.5px;color:var(--dim)">Changes form: new aura, new stats, and for most a new body.</p>
+  <div class="rows"><div><span>Cooldown</span><b>1s</b></div></div>
+  <div class="moves" style="gap:6px"><a class="fchip" href="index.html#beerus_dbz"><span class="sig sm" style="--c:rgb(170,80,255);color:#f3eff7" aria-hidden="true">BE</span><span class="nm">Beerus</span><span class="bd">28</span></a></div>
+</article></div>
+<footer class="foot">
+<p>Generated <b>2026-11-07T01:23:57-05:00</b> from the running Garry&#39;s Mod
+install &mdash; 12 Hero Arsenal heroes read out of the workshop
+<code>.gma</code> files, 54 Tenkaichi fighters read by executing
+<code>z_dbz_bt3.lua</code> itself. Rebuilt every ten minutes; nothing on this
+site is typed by hand.</p>
+<p>Hero Arsenal Engine DBZ by <b>FRITAS</b>. Tenkaichi 3 models by
+<b>RandomOne</b>. Tier bands, scaling and the patch layer are this
+repository&#39;s own.</p>
+</footer>
+
+<script>
+(function(){
+  var q=document.getElementById('q'), live=document.getElementById('count');
+  var chips=[].slice.call(document.querySelectorAll('.chip[data-k]'));
+  var items=[].slice.call(document.querySelectorAll('[data-s]'));
+  var total=items.length, state={};
+  function run(){
+    var t=(q&&q.value||'').trim().toLowerCase(), n=0;
+    for(var i=0;i<items.length;i++){
+      var el=items[i], ok=!t||el.getAttribute('data-s').indexOf(t)>-1;
+      for(var k in state){
+        if(state[k]&&state[k].length&&state[k].indexOf(el.getAttribute('data-'+k))<0) ok=false;
+      }
+      el.classList.toggle('hidden',!ok);
+      if(ok) n++;
+    }
+    [].forEach.call(document.querySelectorAll('[data-group]'),function(g){
+      g.classList.toggle('hidden',!g.querySelector('[data-s]:not(.hidden)'));
+    });
+    if(live) live.textContent=n+' of '+total+' shown';
+  }
+  chips.forEach(function(c){
+    c.addEventListener('click',function(){
+      var k=c.dataset.k, v=c.dataset.v, on=c.getAttribute('aria-pressed')==='true';
+      if(v===''){ // the "all" chip clears its own key
+        chips.filter(function(x){return x.dataset.k===k}).forEach(function(x){
+          x.setAttribute('aria-pressed', x===c?'true':'false');});
+        state[k]=[];
+      } else {
+        var all=chips.filter(function(x){return x.dataset.k===k&&x.dataset.v===''})[0];
+        if(all) all.setAttribute('aria-pressed','false');
+        c.setAttribute('aria-pressed', on?'false':'true');
+        state[k]=chips.filter(function(x){
+          return x.dataset.k===k&&x.dataset.v!==''&&x.getAttribute('aria-pressed')==='true';
+        }).map(function(x){return x.dataset.v});
+        if(!state[k].length&&all) all.setAttribute('aria-pressed','true');
+      }
+      run();
+    });
+  });
+  if(q) q.addEventListener('input',run);
+  run();
+})();
+</script>
+
+</main>
+</body>
+</html>

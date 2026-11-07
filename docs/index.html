@@ -1,0 +1,814 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hero Arsenal DBZ Roster</title>
+<meta name="description" content="Every fighter, ability and tier in the Hero Arsenal DBZ roster, read straight out of the running Garry's Mod install.">
+<meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap">
+<style>/* ---------------------------------------------------------------------------
+   Hero Arsenal DBZ -- one deliberately dark look.
+   Palette is the roster's own: Super Saiyan gold is the accent because it is
+   the colour the top of the ladder actually wears in game; Kamehameha blue
+   carries the beams; Rose pink marks the danger figures. Neutrals are pushed
+   violet rather than left pure grey so they sit under those three.
+   Figures are set in a mono face on purpose -- this is a site about power
+   levels, and the numbers have to line up in a column to be read.
+--------------------------------------------------------------------------- */
+:root{
+  color-scheme:dark;
+  --bg:#07060b; --bg-lift:#0c0a12; --panel:#12101a; --card:#191622;
+  --line:#231f2e; --line-hi:#332c42;
+  --ink:#f3eff7; --ink-2:#cdc5d8; --dim:#968ea6; --faint:#645c73;
+  --ki:#ffb020; --ki-soft:#ffd27a; --beam:#4ab8ff; --rose:#ff5f8f;
+  --namek:#5fd98a; --void:#a97bff;
+  --grad:linear-gradient(90deg,var(--ki),var(--rose) 55%,var(--void));
+  --display:'Archivo Black',Impact,'Haettenschweiler','Arial Narrow Bold',sans-serif;
+  --body:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --tierZ:#ffe08a; --tierX:#ffb020; --tierS:#ff7a4d; --tierA:#ff5f8f;
+  --tierB:#a97bff; --tierC:#4ab8ff; --tierD:#5fd98a; --tierF:#7e8596;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);
+  font-size:15px;line-height:1.55;min-height:100vh;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%,rgba(255,176,32,.09),transparent 70%),
+    radial-gradient(ellipse 60% 40% at 90% 100%,rgba(169,123,255,.07),transparent 70%);
+  background-attachment:fixed;
+}
+img{max-width:100%;display:block}
+a{color:var(--beam);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--ki);outline-offset:2px;border-radius:4px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* --- bar ---------------------------------------------------------------- */
+.bar{
+  position:sticky;top:0;z-index:50;display:flex;align-items:center;
+  gap:18px;flex-wrap:wrap;padding:11px clamp(14px,4vw,34px);
+  background:rgba(7,6,11,.93);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.brand{
+  font:400 17px/1 var(--display);letter-spacing:.055em;text-transform:uppercase;
+  white-space:nowrap;color:var(--ink);
+}
+.brand i{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto}
+.tabs a{
+  padding:7px 13px;border-radius:999px;border:1px solid var(--line-hi);
+  font:700 11px/1 var(--body);letter-spacing:.09em;text-transform:uppercase;
+  color:var(--dim);background:rgba(255,255,255,.015);transition:color .14s,border-color .14s,background .14s;
+}
+.tabs a:hover{color:var(--ink);border-color:var(--faint);text-decoration:none}
+.tabs a[aria-current="page"]{
+  color:#1b1205;background:var(--ki);border-color:var(--ki-soft);
+}
+
+/* --- layout ------------------------------------------------------------- */
+.wrap{max-width:1180px;margin:0 auto;padding:clamp(22px,4vw,46px) clamp(14px,4vw,34px) 80px}
+.hd{margin:0 0 6px;font:400 clamp(28px,5.4vw,46px)/1.02 var(--display);
+    letter-spacing:.012em;text-transform:uppercase;text-wrap:balance}
+.hd em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{margin:0 0 26px;max-width:66ch;color:var(--dim);font-size:15.5px}
+h2{margin:40px 0 14px;font:400 clamp(17px,2.6vw,21px)/1.15 var(--display);
+   letter-spacing:.05em;text-transform:uppercase;color:var(--ink)}
+h2:first-of-type{margin-top:28px}
+.eyebrow{font:700 10.5px/1 var(--body);letter-spacing:.17em;text-transform:uppercase;color:var(--faint)}
+
+/* --- meta strip --------------------------------------------------------- */
+.strip{display:flex;flex-wrap:wrap;gap:0;margin:0 0 30px;
+  border:1px solid var(--line);border-radius:12px;background:var(--panel);overflow:hidden}
+.strip div{flex:1 1 128px;padding:13px 16px;border-right:1px solid var(--line)}
+.strip div:last-child{border-right:0}
+.strip b{display:block;font:400 20px/1.1 var(--mono);font-weight:700;color:var(--ki);
+  font-variant-numeric:tabular-nums}
+.strip span{display:block;margin-top:3px;font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--faint);font-weight:700}
+
+/* --- controls ----------------------------------------------------------- */
+.ctl{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin:0 0 22px}
+.ctl input[type=search]{
+  flex:1 1 230px;min-width:0;padding:9px 13px;border-radius:9px;
+  border:1px solid var(--line-hi);background:var(--bg-lift);color:var(--ink);
+  font:500 14px var(--body)}
+.ctl input[type=search]::placeholder{color:var(--faint)}
+.chip{
+  padding:7px 12px;border-radius:999px;border:1px solid var(--line-hi);
+  background:transparent;color:var(--dim);cursor:pointer;
+  font:700 10.5px/1 var(--body);letter-spacing:.09em;text-transform:uppercase}
+.chip:hover{color:var(--ink);border-color:var(--faint)}
+.chip[aria-pressed="true"]{background:var(--ink);color:#0a0810;border-color:var(--ink)}
+.count{margin-left:auto;font:600 11px var(--mono);color:var(--faint);
+  letter-spacing:.06em;font-variant-numeric:tabular-nums}
+
+/* --- sigil (a fighter's own aura colour, not decoration) ---------------- */
+.sig{
+  flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:10px;
+  font:400 13px/1 var(--display);letter-spacing:.02em;color:#0a0810;
+  background:var(--c,var(--ki));box-shadow:0 0 0 1px rgba(255,255,255,.1) inset;
+}
+.sig.sm{width:28px;height:28px;border-radius:8px;font-size:10px}
+
+/* --- cards -------------------------------------------------------------- */
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(285px,1fr))}
+.card{
+  border:1px solid var(--line);border-radius:13px;background:var(--card);
+  padding:15px 16px;position:relative;overflow:hidden}
+.card::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--c,var(--line-hi))}
+.card h3{margin:0;font:400 15px/1.2 var(--display);letter-spacing:.025em;
+  text-transform:uppercase;padding-right:46px}
+.card .top{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+.card .top>div{min-width:0;flex:1}
+.card .who{margin-top:3px;font-size:11px;color:var(--faint);letter-spacing:.04em}
+.tag{
+  position:absolute;top:13px;right:14px;padding:3px 9px;border-radius:6px;
+  font:400 12px/1.25 var(--display);letter-spacing:.04em;color:#0a0810;background:var(--t,var(--ki))}
+.rows{display:grid;gap:0;margin:0;font-size:12.5px}
+.rows div{display:flex;justify-content:space-between;gap:12px;
+  padding:5px 0;border-top:1px solid var(--line)}
+.rows div:first-child{border-top:0}
+.rows dt,.rows span:first-child{color:var(--dim)}
+.rows b{font:600 12.5px var(--mono);color:var(--ink-2);font-variant-numeric:tabular-nums;
+  text-align:right;white-space:nowrap}
+.rows b.hi{color:var(--ki)}
+.moves{margin:12px 0 0;padding:11px 0 0;border-top:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:5px}
+.mv{padding:3px 8px;border-radius:6px;background:var(--bg-lift);
+  border:1px solid var(--line);font-size:11px;color:var(--ink-2);white-space:nowrap}
+.mv.form{border-color:rgba(255,176,32,.4);color:var(--ki-soft)}
+.mv.borrowed{opacity:.6}
+
+/* --- tier rows ---------------------------------------------------------- */
+.tier{display:flex;margin:0 0 11px;border:1px solid var(--line);border-radius:13px;
+  background:var(--panel);overflow:hidden;min-height:84px}
+.tier .let{
+  flex:none;width:78px;display:grid;place-content:center;gap:2px;text-align:center;
+  background:var(--t);color:#0a0810;padding:10px 4px}
+.tier .let b{font:400 32px/1 var(--display);letter-spacing:.01em}
+.tier .let span{font:700 9.5px/1 var(--body);letter-spacing:.1em;text-transform:uppercase;opacity:.72}
+.tier .body{flex:1;min-width:0;padding:11px 14px;display:flex;flex-direction:column;gap:9px}
+.tier .note{font-size:11.5px;color:var(--dim)}
+.tier .note b{color:var(--ink-2);font:600 11.5px var(--mono)}
+.tier .mem{display:flex;flex-wrap:wrap;gap:6px}
+.tier .empty{color:var(--faint);font-size:12px;font-style:italic}
+.fchip{
+  display:flex;align-items:center;gap:7px;padding:4px 10px 4px 4px;border-radius:999px;
+  background:var(--bg-lift);border:1px solid var(--line);font-size:12.5px;color:var(--ink-2);
+  max-width:100%}
+.fchip:hover{border-color:var(--faint);text-decoration:none;color:var(--ink)}
+.fchip .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fchip .bd{font:600 10.5px var(--mono);color:var(--faint);font-variant-numeric:tabular-nums}
+
+/* --- tables ------------------------------------------------------------- */
+.tscroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:580px}
+th,td{padding:9px 13px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:700 10px var(--body);letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);background:var(--bg-lift);position:sticky;top:0;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.n{font:600 13px var(--mono);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+tbody tr:hover td{background:rgba(255,255,255,.018)}
+
+/* --- prose -------------------------------------------------------------- */
+.prose{max-width:68ch}
+.prose p{margin:0 0 14px;color:var(--ink-2)}
+.prose code{font:600 12.5px var(--mono);background:var(--bg-lift);
+  border:1px solid var(--line);border-radius:5px;padding:1px 5px;color:var(--ki-soft)}
+.prose ul{margin:0 0 16px;padding-left:20px;color:var(--ink-2)}
+.prose li{margin:0 0 7px}
+.panel{border:1px solid var(--line);border-radius:12px;background:var(--panel);
+  padding:16px 18px;margin:0 0 18px}
+.foot{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
+  color:var(--faint);font-size:11.5px;line-height:1.75}
+.foot b{color:var(--dim);font-family:var(--mono);font-weight:600}
+.hidden{display:none!important}
+
+@media (max-width:700px){
+  .bar{gap:10px;padding:9px 13px}
+  .tabs{margin-left:0;width:100%;overflow-x:auto;flex-wrap:nowrap;
+    scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .tabs::-webkit-scrollbar{display:none}
+  .tabs a{flex:none}
+  .tier .let{width:58px}
+  .tier .let b{font-size:25px}
+  .strip div{flex:1 1 50%}
+  .count{margin-left:0;width:100%}
+}
+</style>
+</head>
+<body>
+<header class="bar">
+  <span class="brand">Hero Arsenal <i>DBZ</i></span>
+  <nav class="tabs" aria-label="Sections"><a href="index.html" aria-current="page">Roster</a><a href="tiers.html">Tier List</a><a href="abilities.html">Abilities</a><a href="forms.html">Forms</a><a href="about.html">How It Works</a></nav>
+</header>
+<main class="wrap">
+<p class="eyebrow">Garry&#39;s Mod &middot; Hero Arsenal Engine DBZ</p>
+<h1 class="hd">The <em>full roster</em></h1>
+<p class="sub">Sixty-six fighters on one power ladder. Every figure below is
+read out of the running install &mdash; band, scaling, and each character&#39;s
+own named arsenal, including the moves they only throw as AI.</p>
+<section class="strip"><div><b>66</b><span>fighters</span></div><div><b>97</b><span>distinct abilities</span></div><div><b>73</b><span>transformations</span></div><div><b>27</b><span>power bands</span></div><div><b>×32,768</b><span>top damage</span></div></section>
+<div class="ctl">
+  <input type="search" id="q" placeholder="Search a fighter, a move, a form&hellip;" aria-label="Search fighters">
+  <button class="chip" data-k="src" data-v="" aria-pressed="true">All</button>
+  <button class="chip" data-k="src" data-v="fritas">Hero Arsenal</button>
+  <button class="chip" data-k="src" data-v="bt3">Tenkaichi</button>
+  <span style="width:1px;height:22px;background:var(--line)"></span>
+  <button class="chip" data-k="tier" data-v="" aria-pressed="true">Any tier</button>
+  <button class="chip" data-k="tier" data-v="Z">Z</button><button class="chip" data-k="tier" data-v="X">X</button><button class="chip" data-k="tier" data-v="S">S</button><button class="chip" data-k="tier" data-v="A">A</button><button class="chip" data-k="tier" data-v="B">B</button><button class="chip" data-k="tier" data-v="C">C</button><button class="chip" data-k="tier" data-v="D">D</button><button class="chip" data-k="tier" data-v="F">F</button>
+  <span class="count" id="count" role="status"></span>
+</div>
+<div class="grid"><article class="card" id="bt3_gogeta_ssj4"
+  style="--c:rgb(255,220,60)" data-s="gogeta (ssj4) budokai tenkaichi 3 z kamehameha big bang kamehameha final flash galick gun spirit bomb ultra spirit bomb special beam cannon destructo disc stardust breaker energy wave yellow ki blast aura charge teleport"
+  data-src="bt3" data-tier="Z">
+  <span class="tag" style="--t:var(--tierZ)">Z</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,220,60);color:#0a0810" aria-hidden="true">GS</span><div><h3>Gogeta (SSJ4)</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Gogeta</div></div></div>
+  <div class="rows"><div><span>Band</span><b>30 / 30</b></div><div><span>Damage</span><b class="hi">×32,768</b></div><div><span>Effective health</span><b class="hi">1,000,000,000</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>14</b></div></div>
+  <div class="moves"><span class="mv" title="Beam">Kamehameha</span><span class="mv" title="Beam">Big Bang Kamehameha</span><span class="mv borrowed" title="Beam">Final Flash</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv borrowed" title="Projectile">Spirit Bomb</span><span class="mv borrowed" title="Projectile">Ultra Spirit Bomb</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv" title="Projectile">Stardust Breaker</span><span class="mv borrowed" title="Beam">Energy wave</span><span class="mv borrowed" title="Projectile">Yellow Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="bt3_gogeta_ssj4_alt"
+  style="--c:rgb(255,220,60)" data-s="gogeta (ssj4, alt) budokai tenkaichi 3 z kamehameha big bang kamehameha final flash galick gun spirit bomb ultra spirit bomb special beam cannon destructo disc stardust breaker energy wave yellow ki blast aura charge teleport"
+  data-src="bt3" data-tier="Z">
+  <span class="tag" style="--t:var(--tierZ)">Z</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,220,60);color:#0a0810" aria-hidden="true">GS</span><div><h3>Gogeta (SSJ4, Alt)</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Gogeta</div></div></div>
+  <div class="rows"><div><span>Band</span><b>30 / 30</b></div><div><span>Damage</span><b class="hi">×32,768</b></div><div><span>Effective health</span><b class="hi">1,000,000,000</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>14</b></div></div>
+  <div class="moves"><span class="mv" title="Beam">Kamehameha</span><span class="mv" title="Beam">Big Bang Kamehameha</span><span class="mv borrowed" title="Beam">Final Flash</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv borrowed" title="Projectile">Spirit Bomb</span><span class="mv borrowed" title="Projectile">Ultra Spirit Bomb</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv" title="Projectile">Stardust Breaker</span><span class="mv borrowed" title="Beam">Energy wave</span><span class="mv borrowed" title="Projectile">Yellow Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="beerus_dbz"
+  style="--c:rgb(170,80,255)" data-s="beerus hero arsenal x destruction beam destruction ki blast sphere of destruction super sphere of destruction hakai sleep kamehameha final kamehameha blue ki blast galick gun big bang final flash special beam cannon destructo disc aura charge teleport verdict of destruction"
+  data-src="fritas" data-tier="X">
+  <span class="tag" style="--t:var(--tierX)">X</span>
+  <div class="top"><span class="sig" style="--c:rgb(170,80,255);color:#f3eff7" aria-hidden="true">BE</span><div><h3>Beerus</h3>
+    <div class="who">Hero Arsenal &middot; SilkTeam, Fortnite ped port</div></div></div>
+  <div class="rows"><div><span>Band</span><b>28 / 30</b></div><div><span>Damage</span><b class="hi">×16,384</b></div><div><span>Effective health</span><b class="hi">819,200,000</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>17 + 1 forms</b></div></div>
+  <div class="moves"><span class="mv" title="Beam">Destruction beam</span><span class="mv" title="Projectile">Destruction ki blast</span><span class="mv" title="Projectile">Sphere of Destruction</span><span class="mv" title="Projectile">Super Sphere of Destruction</span><span class="mv" title="Erasure">Hakai</span><span class="mv" title="Buff">Sleep</span><span class="mv borrowed" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv borrowed" title="Beam">Final Flash</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span><span class="mv form">Verdict of Destruction</span></div>
+</article><article class="card" id="gogeta_dbz"
+  style="--c:rgb(255,200,40)" data-s="gogeta hero arsenal x kamehameha big bang kamehameha ki blast stardust breaker energy wave yellow ki blast spirit bomb ultra spirit bomb galick gun final flash special beam cannon destructo disc aura charge teleport super saiyan super saiyan blue super saiyan 4 (gt)"
+  data-src="fritas" data-tier="X">
+  <span class="tag" style="--t:var(--tierX)">X</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">GO</span><div><h3>Gogeta</h3>
+    <div class="who">Hero Arsenal &middot; SilkTeam, NotOfTheWorld</div></div></div>
+  <div class="rows"><div><span>Band</span><b>26 / 30</b></div><div><span>Damage</span><b class="hi">×8,192</b></div><div><span>Effective health</span><b class="hi">409,600,000</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15 + 3 forms</b></div></div>
+  <div class="moves"><span class="mv" title="Beam">Kamehameha</span><span class="mv" title="Beam">Big Bang Kamehameha</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Projectile">Stardust Breaker</span><span class="mv borrowed" title="Beam">Energy wave</span><span class="mv borrowed" title="Projectile">Yellow Ki blast</span><span class="mv borrowed" title="Projectile">Spirit Bomb</span><span class="mv borrowed" title="Projectile">Ultra Spirit Bomb</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv borrowed" title="Beam">Final Flash</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span><span class="mv form">Super Saiyan</span><span class="mv form">Super Saiyan Blue</span><span class="mv form">Super Saiyan 4 (GT)</span></div>
+</article><article class="card" id="frieza_dbz"
+  style="--c:rgb(170,90,255)" data-s="frieza hero arsenal x death beam ki blast death ball supernova death saucer kamehameha final kamehameha blue ki blast galick gun big bang final flash special beam cannon aura charge teleport 100% full power golden frieza black frieza"
+  data-src="fritas" data-tier="X">
+  <span class="tag" style="--t:var(--tierX)">X</span>
+  <div class="top"><span class="sig" style="--c:rgb(170,90,255);color:#f3eff7" aria-hidden="true">FR</span><div><h3>Frieza</h3>
+    <div class="who">Hero Arsenal &middot; SilkTeam, NotOfTheWorld</div></div></div>
+  <div class="rows"><div><span>Band</span><b>24 / 30</b></div><div><span>Damage</span><b class="hi">×4,096</b></div><div><span>Effective health</span><b class="hi">204,800,000</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15 + 3 forms</b></div></div>
+  <div class="moves"><span class="mv" title="Beam">Death Beam</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Projectile">Death Ball</span><span class="mv" title="Projectile">Supernova</span><span class="mv" title="Projectile">Death Saucer</span><span class="mv borrowed" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv borrowed" title="Beam">Final Flash</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span><span class="mv form">100% Full Power</span><span class="mv form">Golden Frieza</span><span class="mv form">Black Frieza</span></div>
+</article><article class="card" id="broly_sparking_zero"
+  style="--c:rgb(70,235,90)" data-s="broly hero arsenal s ki wave eraser cannon omega blaster mouth blast kamehameha final kamehameha blue ki blast ultra spirit bomb galick gun big bang final flash special beam cannon destructo disc aura charge teleport super saiyan (z) legendary super saiyan (z) broly (super) super saiyan (super) full power super saiyan (super)"
+  data-src="fritas" data-tier="S">
+  <span class="tag" style="--t:var(--tierS)">S</span>
+  <div class="top"><span class="sig" style="--c:rgb(70,235,90);color:#0a0810" aria-hidden="true">BR</span><div><h3>Broly</h3>
+    <div class="who">Hero Arsenal &middot; SilkTeam, Khoi Michael</div></div></div>
+  <div class="rows"><div><span>Band</span><b>22 / 30</b></div><div><span>Damage</span><b class="hi">×2,048</b></div><div><span>Effective health</span><b class="hi">102,400,000</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>16 + 5 forms</b></div></div>
+  <div class="moves"><span class="mv" title="Beam">Ki wave</span><span class="mv" title="Projectile">Eraser Cannon</span><span class="mv" title="Projectile">Omega Blaster</span><span class="mv" title="Beam">Mouth Blast</span><span class="mv borrowed" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv borrowed" title="Projectile">Ultra Spirit Bomb</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv borrowed" title="Beam">Final Flash</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span><span class="mv form">Super Saiyan (Z)</span><span class="mv form">Legendary Super Saiyan (Z)</span><span class="mv form">Broly (Super)</span><span class="mv form">Super Saiyan (Super)</span><span class="mv form">Full Power Super Saiyan (Super)</span></div>
+</article><article class="card" id="gohan_dbz"
+  style="--c:rgb(255,200,40)" data-s="gohan hero arsenal s kamehameha ki blast masenko special beam cannon energy wave final kamehameha blue ki blast spirit bomb ultra spirit bomb galick gun big bang destructo disc aura charge teleport super saiyan super saiyan 2 gohan beast"
+  data-src="fritas" data-tier="S">
+  <span class="tag" style="--t:var(--tierS)">S</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">GO</span><div><h3>Gohan</h3>
+    <div class="who">Hero Arsenal &middot; SilkTeam, Kwabz</div></div></div>
+  <div class="rows"><div><span>Band</span><b>21 / 30</b></div><div><span>Damage</span><b class="hi">×1,448</b></div><div><span>Effective health</span><b class="hi">72,407,734</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15 + 3 forms</b></div></div>
+  <div class="moves"><span class="mv" title="Beam">Kamehameha</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Beam">Masenko</span><span class="mv" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Beam">Energy wave</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv borrowed" title="Projectile">Spirit Bomb</span><span class="mv borrowed" title="Projectile">Ultra Spirit Bomb</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span><span class="mv form">Super Saiyan</span><span class="mv form">Super Saiyan 2</span><span class="mv form">Gohan Beast</span></div>
+</article><article class="card" id="bt3_vegito_super"
+  style="--c:rgb(255,200,40)" data-s="super vegito budokai tenkaichi 3 s kamehameha big bang kamehameha final flash galick gun spirit bomb ultra spirit bomb special beam cannon destructo disc stardust breaker energy wave yellow ki blast ki blast aura charge teleport"
+  data-src="bt3" data-tier="S">
+  <span class="tag" style="--t:var(--tierS)">S</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">SV</span><div><h3>Super Vegito</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Gogeta</div></div></div>
+  <div class="rows"><div><span>Band</span><b>20 / 30</b></div><div><span>Damage</span><b class="hi">×1,024</b></div><div><span>Effective health</span><b class="hi">51,200,000</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15</b></div></div>
+  <div class="moves"><span class="mv" title="Beam">Kamehameha</span><span class="mv" title="Beam">Big Bang Kamehameha</span><span class="mv borrowed" title="Beam">Final Flash</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv borrowed" title="Projectile">Spirit Bomb</span><span class="mv borrowed" title="Projectile">Ultra Spirit Bomb</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv" title="Projectile">Stardust Breaker</span><span class="mv borrowed" title="Beam">Energy wave</span><span class="mv borrowed" title="Projectile">Yellow Ki blast</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="goku_sparking_zero"
+  style="--c:rgb(255,200,40)" data-s="goku hero arsenal a ki wave kamehameha ki blast spirit bomb super spirit bomb final kamehameha blue ki blast galick gun big bang final flash special beam cannon destructo disc aura charge teleport super saiyan super saiyan 2 super saiyan 3 super saiyan 4 super saiyan blue kaioken ultra instinct"
+  data-src="fritas" data-tier="A">
+  <span class="tag" style="--t:var(--tierA)">A</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">GO</span><div><h3>Goku</h3>
+    <div class="who">Hero Arsenal &middot; SilkTeam, Khoi Michael</div></div></div>
+  <div class="rows"><div><span>Band</span><b>19 / 30</b></div><div><span>Damage</span><b class="hi">×724</b></div><div><span>Effective health</span><b class="hi">36,203,867</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15 + 7 forms</b></div></div>
+  <div class="moves"><span class="mv" title="Beam">Ki wave</span><span class="mv" title="Beam">Kamehameha</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Projectile">Spirit Bomb</span><span class="mv" title="Projectile">Super Spirit Bomb</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv borrowed" title="Beam">Final Flash</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span><span class="mv form">Super Saiyan</span><span class="mv form">Super Saiyan 2</span><span class="mv form">Super Saiyan 3</span><span class="mv form">Super Saiyan 4</span><span class="mv form">Super Saiyan Blue</span><span class="mv form">Kaioken</span><span class="mv form">Ultra Instinct</span></div>
+</article><article class="card" id="bt3_gogeta_super"
+  style="--c:rgb(255,200,40)" data-s="super gogeta budokai tenkaichi 3 a kamehameha big bang kamehameha final flash galick gun spirit bomb ultra spirit bomb special beam cannon destructo disc stardust breaker energy wave yellow ki blast ki blast aura charge teleport"
+  data-src="bt3" data-tier="A">
+  <span class="tag" style="--t:var(--tierA)">A</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">SG</span><div><h3>Super Gogeta</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Gogeta</div></div></div>
+  <div class="rows"><div><span>Band</span><b>19 / 30</b></div><div><span>Damage</span><b class="hi">×724</b></div><div><span>Effective health</span><b class="hi">36,203,867</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15</b></div></div>
+  <div class="moves"><span class="mv" title="Beam">Kamehameha</span><span class="mv" title="Beam">Big Bang Kamehameha</span><span class="mv borrowed" title="Beam">Final Flash</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv borrowed" title="Projectile">Spirit Bomb</span><span class="mv borrowed" title="Projectile">Ultra Spirit Bomb</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv" title="Projectile">Stardust Breaker</span><span class="mv borrowed" title="Beam">Energy wave</span><span class="mv borrowed" title="Projectile">Yellow Ki blast</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="bt3_broly_lssj"
+  style="--c:rgb(70,235,90)" data-s="broly (lssj) budokai tenkaichi 3 a kamehameha final kamehameha final flash galick gun omega blaster ultra spirit bomb special beam cannon destructo disc big bang ki wave eraser cannon blue ki blast aura charge teleport"
+  data-src="bt3" data-tier="A">
+  <span class="tag" style="--t:var(--tierA)">A</span>
+  <div class="top"><span class="sig" style="--c:rgb(70,235,90);color:#0a0810" aria-hidden="true">BL</span><div><h3>Broly (LSSJ)</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Broly</div></div></div>
+  <div class="rows"><div><span>Band</span><b>18 / 30</b></div><div><span>Damage</span><b class="hi">×512</b></div><div><span>Effective health</span><b class="hi">25,600,000</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15</b></div></div>
+  <div class="moves"><span class="mv borrowed" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv borrowed" title="Beam">Final Flash</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv" title="Projectile">Omega Blaster</span><span class="mv borrowed" title="Projectile">Ultra Spirit Bomb</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv" title="Beam">Ki wave</span><span class="mv" title="Projectile">Eraser Cannon</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="bt3_buu_buuhan"
+  style="--c:rgb(255,200,40)" data-s="super buu (gohan absorbed) budokai tenkaichi 3 a big bang energy wave destructo disc blue ki blast ki blast aura charge teleport"
+  data-src="bt3" data-tier="A">
+  <span class="tag" style="--t:var(--tierA)">A</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">SB</span><div><h3>Super Buu (Gohan absorbed)</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Cell</div></div></div>
+  <div class="rows"><div><span>Band</span><b>18 / 30</b></div><div><span>Damage</span><b class="hi">×512</b></div><div><span>Effective health</span><b class="hi">25,600,000</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>8</b></div></div>
+  <div class="moves"><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv borrowed" title="Beam">Energy wave</span><span class="mv" title="Projectile">Destructo Disc</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="bt3_gohan_ultimate"
+  style="--c:rgb(255,200,40)" data-s="ultimate gohan budokai tenkaichi 3 a kamehameha final kamehameha masenko galick gun spirit bomb ultra spirit bomb special beam cannon destructo disc big bang energy wave ki blast blue ki blast aura charge teleport"
+  data-src="bt3" data-tier="A">
+  <span class="tag" style="--t:var(--tierA)">A</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">UG</span><div><h3>Ultimate Gohan</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Gohan</div></div></div>
+  <div class="rows"><div><span>Band</span><b>18 / 30</b></div><div><span>Damage</span><b class="hi">×512</b></div><div><span>Effective health</span><b class="hi">25,600,000</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15</b></div></div>
+  <div class="moves"><span class="mv" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv" title="Beam">Masenko</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv borrowed" title="Projectile">Spirit Bomb</span><span class="mv borrowed" title="Projectile">Ultra Spirit Bomb</span><span class="mv" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv borrowed" title="Beam">Energy wave</span><span class="mv" title="Projectile">Ki blast</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="bt3_goku_ssj4"
+  style="--c:rgb(255,200,40)" data-s="bt3 goku (ssj4) budokai tenkaichi 3 a kamehameha final kamehameha final flash galick gun spirit bomb super spirit bomb special beam cannon destructo disc big bang ki wave ki blast blue ki blast aura charge teleport"
+  data-src="bt3" data-tier="A">
+  <span class="tag" style="--t:var(--tierA)">A</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">BG</span><div><h3>BT3 Goku (SSJ4)</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Goku</div></div></div>
+  <div class="rows"><div><span>Band</span><b>17 / 30</b></div><div><span>Damage</span><b class="hi">×362</b></div><div><span>Effective health</span><b class="hi">18,101,934</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15</b></div></div>
+  <div class="moves"><span class="mv" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv borrowed" title="Beam">Final Flash</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv" title="Projectile">Spirit Bomb</span><span class="mv" title="Projectile">Super Spirit Bomb</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv" title="Beam">Ki wave</span><span class="mv" title="Projectile">Ki blast</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="vegeta_dbz"
+  style="--c:rgb(255,200,40)" data-s="vegeta hero arsenal a ki wave ki blast galick gun big bang final flash kamehameha final kamehameha yellow ki blast spirit bomb ultra spirit bomb special beam cannon destructo disc aura charge teleport super saiyan super saiyan 4 super saiyan 2 super saiyan god super saiyan blue ultra ego super saiyan blue evolved"
+  data-src="fritas" data-tier="A">
+  <span class="tag" style="--t:var(--tierA)">A</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">VE</span><div><h3>Vegeta</h3>
+    <div class="who">Hero Arsenal &middot; SilkTeam, NotOfTheWorld</div></div></div>
+  <div class="rows"><div><span>Band</span><b>17 / 30</b></div><div><span>Damage</span><b class="hi">×362</b></div><div><span>Effective health</span><b class="hi">18,101,934</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15 + 7 forms</b></div></div>
+  <div class="moves"><span class="mv" title="Beam">Ki wave</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Beam">Galick Gun</span><span class="mv" title="Projectile">Big Bang</span><span class="mv" title="Beam">Final Flash</span><span class="mv borrowed" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv borrowed" title="Projectile">Yellow Ki blast</span><span class="mv borrowed" title="Projectile">Spirit Bomb</span><span class="mv borrowed" title="Projectile">Ultra Spirit Bomb</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span><span class="mv form">Super Saiyan</span><span class="mv form">Super Saiyan 4</span><span class="mv form">Super Saiyan 2</span><span class="mv form">Super Saiyan God</span><span class="mv form">Super Saiyan Blue</span><span class="mv form">Ultra Ego</span><span class="mv form">Super Saiyan Blue Evolved</span></div>
+</article><article class="card" id="bt3_vegito"
+  style="--c:rgb(255,200,40)" data-s="vegito budokai tenkaichi 3 a kamehameha big bang kamehameha final flash galick gun spirit bomb ultra spirit bomb special beam cannon destructo disc stardust breaker energy wave yellow ki blast ki blast aura charge teleport super vegito"
+  data-src="bt3" data-tier="A">
+  <span class="tag" style="--t:var(--tierA)">A</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">VE</span><div><h3>Vegito</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Gogeta</div></div></div>
+  <div class="rows"><div><span>Band</span><b>17 / 30</b></div><div><span>Damage</span><b class="hi">×362</b></div><div><span>Effective health</span><b class="hi">18,101,934</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15 + 1 forms</b></div></div>
+  <div class="moves"><span class="mv" title="Beam">Kamehameha</span><span class="mv" title="Beam">Big Bang Kamehameha</span><span class="mv borrowed" title="Beam">Final Flash</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv borrowed" title="Projectile">Spirit Bomb</span><span class="mv borrowed" title="Projectile">Ultra Spirit Bomb</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv" title="Projectile">Stardust Breaker</span><span class="mv borrowed" title="Beam">Energy wave</span><span class="mv borrowed" title="Projectile">Yellow Ki blast</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span><span class="mv form">Super Vegito</span></div>
+</article><article class="card" id="bt3_vegeta_ssj"
+  style="--c:rgb(255,200,40)" data-s="bt3 vegeta (ssj) budokai tenkaichi 3 a kamehameha final kamehameha final flash galick gun spirit bomb ultra spirit bomb special beam cannon destructo disc big bang ki wave yellow ki blast ki blast aura charge teleport"
+  data-src="bt3" data-tier="A">
+  <span class="tag" style="--t:var(--tierA)">A</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">BV</span><div><h3>BT3 Vegeta (SSJ)</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Vegeta</div></div></div>
+  <div class="rows"><div><span>Band</span><b>16 / 30</b></div><div><span>Damage</span><b class="hi">×256</b></div><div><span>Effective health</span><b class="hi">12,800,000</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15</b></div></div>
+  <div class="moves"><span class="mv borrowed" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv" title="Beam">Final Flash</span><span class="mv" title="Beam">Galick Gun</span><span class="mv borrowed" title="Projectile">Spirit Bomb</span><span class="mv borrowed" title="Projectile">Ultra Spirit Bomb</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv" title="Projectile">Big Bang</span><span class="mv" title="Beam">Ki wave</span><span class="mv borrowed" title="Projectile">Yellow Ki blast</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="bt3_goku_black"
+  style="--c:rgb(255,200,40)" data-s="goku black budokai tenkaichi 3 a kamehameha final kamehameha final flash galick gun spirit bomb super spirit bomb special beam cannon destructo disc big bang ki wave ki blast blue ki blast aura charge teleport super saiyan rose"
+  data-src="bt3" data-tier="A">
+  <span class="tag" style="--t:var(--tierA)">A</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">GB</span><div><h3>Goku Black</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Goku</div></div></div>
+  <div class="rows"><div><span>Band</span><b>16 / 30</b></div><div><span>Damage</span><b class="hi">×256</b></div><div><span>Effective health</span><b class="hi">12,800,000</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15 + 1 forms</b></div></div>
+  <div class="moves"><span class="mv" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv borrowed" title="Beam">Final Flash</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv" title="Projectile">Spirit Bomb</span><span class="mv" title="Projectile">Super Spirit Bomb</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv" title="Beam">Ki wave</span><span class="mv" title="Projectile">Ki blast</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span><span class="mv form">Super Saiyan Rose</span></div>
+</article><article class="card" id="bt3_buu_buutenks"
+  style="--c:rgb(255,200,40)" data-s="super buu (gotenks absorbed) budokai tenkaichi 3 a big bang energy wave destructo disc blue ki blast ki blast aura charge teleport"
+  data-src="bt3" data-tier="A">
+  <span class="tag" style="--t:var(--tierA)">A</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">SB</span><div><h3>Super Buu (Gotenks absorbed)</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Cell</div></div></div>
+  <div class="rows"><div><span>Band</span><b>16 / 30</b></div><div><span>Damage</span><b class="hi">×256</b></div><div><span>Effective health</span><b class="hi">12,800,000</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>8</b></div></div>
+  <div class="moves"><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv borrowed" title="Beam">Energy wave</span><span class="mv" title="Projectile">Destructo Disc</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="bt3_goku_ssj3_end"
+  style="--c:rgb(255,200,40)" data-s="bt3 goku (ssj3) budokai tenkaichi 3 b kamehameha final kamehameha final flash galick gun spirit bomb super spirit bomb special beam cannon destructo disc big bang ki wave ki blast blue ki blast aura charge teleport"
+  data-src="bt3" data-tier="B">
+  <span class="tag" style="--t:var(--tierB)">B</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">BG</span><div><h3>BT3 Goku (SSJ3)</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Goku</div></div></div>
+  <div class="rows"><div><span>Band</span><b>15 / 30</b></div><div><span>Damage</span><b class="hi">×181</b></div><div><span>Effective health</span><b class="hi">9,050,967</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15</b></div></div>
+  <div class="moves"><span class="mv" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv borrowed" title="Beam">Final Flash</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv" title="Projectile">Spirit Bomb</span><span class="mv" title="Projectile">Super Spirit Bomb</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv" title="Beam">Ki wave</span><span class="mv" title="Projectile">Ki blast</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="jiren_dbz"
+  style="--c:rgb(255,70,30)" data-s="jiren hero arsenal b full power beam ki blast colossal slash power impact infinity rush glare meditation energy wave final kamehameha blue ki blast ultra spirit bomb galick gun final flash special beam cannon destructo disc aura charge teleport full power super full power"
+  data-src="fritas" data-tier="B">
+  <span class="tag" style="--t:var(--tierB)">B</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,70,30);color:#f3eff7" aria-hidden="true">JI</span><div><h3>Jiren</h3>
+    <div class="who">Hero Arsenal &middot; SilkTeam, Kwabz</div></div></div>
+  <div class="rows"><div><span>Band</span><b>15 / 30</b></div><div><span>Damage</span><b class="hi">×181</b></div><div><span>Effective health</span><b class="hi">9,956,063</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>18 + 2 forms</b></div></div>
+  <div class="moves"><span class="mv" title="Beam">Full Power Beam</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Projectile">Colossal Slash</span><span class="mv" title="Projectile">Power Impact</span><span class="mv" title="Rush">Infinity Rush</span><span class="mv" title="Cone">Glare</span><span class="mv" title="Buff">Meditation</span><span class="mv borrowed" title="Beam">Energy wave</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv borrowed" title="Projectile">Ultra Spirit Bomb</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv borrowed" title="Beam">Final Flash</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span><span class="mv form">Full Power</span><span class="mv form">Super Full Power</span></div>
+</article><article class="card" id="bt3_buu_super"
+  style="--c:rgb(255,200,40)" data-s="super buu budokai tenkaichi 3 b big bang energy wave destructo disc blue ki blast ki blast aura charge teleport gotenks absorbed gohan absorbed"
+  data-src="bt3" data-tier="B">
+  <span class="tag" style="--t:var(--tierB)">B</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">SB</span><div><h3>Super Buu</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Cell</div></div></div>
+  <div class="rows"><div><span>Band</span><b>15 / 30</b></div><div><span>Damage</span><b class="hi">×181</b></div><div><span>Effective health</span><b class="hi">9,050,967</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>8 + 2 forms</b></div></div>
+  <div class="moves"><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv borrowed" title="Beam">Energy wave</span><span class="mv" title="Projectile">Destructo Disc</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span><span class="mv form">Gotenks Absorbed</span><span class="mv form">Gohan Absorbed</span></div>
+</article><article class="card" id="bt3_janemba"
+  style="--c:rgb(70,235,90)" data-s="super janemba budokai tenkaichi 3 b kamehameha final kamehameha final flash galick gun omega blaster ultra spirit bomb special beam cannon destructo disc big bang ki wave eraser cannon blue ki blast aura charge teleport"
+  data-src="bt3" data-tier="B">
+  <span class="tag" style="--t:var(--tierB)">B</span>
+  <div class="top"><span class="sig" style="--c:rgb(70,235,90);color:#0a0810" aria-hidden="true">SJ</span><div><h3>Super Janemba</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Broly</div></div></div>
+  <div class="rows"><div><span>Band</span><b>15 / 30</b></div><div><span>Damage</span><b class="hi">×181</b></div><div><span>Effective health</span><b class="hi">9,050,967</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15</b></div></div>
+  <div class="moves"><span class="mv borrowed" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv borrowed" title="Beam">Final Flash</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv" title="Projectile">Omega Blaster</span><span class="mv borrowed" title="Projectile">Ultra Spirit Bomb</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv" title="Beam">Ki wave</span><span class="mv" title="Projectile">Eraser Cannon</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="bt3_buu_kid"
+  style="--c:rgb(70,235,90)" data-s="kid buu budokai tenkaichi 3 b kamehameha final kamehameha final flash galick gun omega blaster ultra spirit bomb special beam cannon destructo disc big bang ki wave eraser cannon blue ki blast aura charge teleport"
+  data-src="bt3" data-tier="B">
+  <span class="tag" style="--t:var(--tierB)">B</span>
+  <div class="top"><span class="sig" style="--c:rgb(70,235,90);color:#0a0810" aria-hidden="true">KB</span><div><h3>Kid Buu</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Broly</div></div></div>
+  <div class="rows"><div><span>Band</span><b>14 / 30</b></div><div><span>Damage</span><b class="hi">×128</b></div><div><span>Effective health</span><b class="hi">6,400,000</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15</b></div></div>
+  <div class="moves"><span class="mv borrowed" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv borrowed" title="Beam">Final Flash</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv" title="Projectile">Omega Blaster</span><span class="mv borrowed" title="Projectile">Ultra Spirit Bomb</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv" title="Beam">Ki wave</span><span class="mv" title="Projectile">Eraser Cannon</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="bt3_buu_kid_dbsz"
+  style="--c:rgb(255,200,40)" data-s="kid buu (sparking) budokai tenkaichi 3 b big bang energy wave destructo disc blue ki blast ki blast aura charge teleport"
+  data-src="bt3" data-tier="B">
+  <span class="tag" style="--t:var(--tierB)">B</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">KB</span><div><h3>Kid Buu (Sparking)</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Cell</div></div></div>
+  <div class="rows"><div><span>Band</span><b>14 / 30</b></div><div><span>Damage</span><b class="hi">×128</b></div><div><span>Effective health</span><b class="hi">6,400,000</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>8</b></div></div>
+  <div class="moves"><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv borrowed" title="Beam">Energy wave</span><span class="mv" title="Projectile">Destructo Disc</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="bt3_goku_ssj2_end"
+  style="--c:rgb(255,200,40)" data-s="bt3 goku (ssj2) budokai tenkaichi 3 b kamehameha final kamehameha final flash galick gun spirit bomb super spirit bomb special beam cannon destructo disc big bang ki wave ki blast blue ki blast aura charge teleport"
+  data-src="bt3" data-tier="B">
+  <span class="tag" style="--t:var(--tierB)">B</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">BG</span><div><h3>BT3 Goku (SSJ2)</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Goku</div></div></div>
+  <div class="rows"><div><span>Band</span><b>13 / 30</b></div><div><span>Damage</span><b class="hi">×90.51</b></div><div><span>Effective health</span><b class="hi">4,525,483</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15</b></div></div>
+  <div class="moves"><span class="mv" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv borrowed" title="Beam">Final Flash</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv" title="Projectile">Spirit Bomb</span><span class="mv" title="Projectile">Super Spirit Bomb</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv" title="Beam">Ki wave</span><span class="mv" title="Projectile">Ki blast</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="bt3_cell_perfect"
+  style="--c:rgb(255,200,40)" data-s="cell (perfect form) budokai tenkaichi 3 b kamehameha final kamehameha final flash galick gun spirit bomb ultra spirit bomb special beam cannon destructo disc big bang energy wave ki blast blue ki blast aura charge teleport"
+  data-src="bt3" data-tier="B">
+  <span class="tag" style="--t:var(--tierB)">B</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">CP</span><div><h3>Cell (Perfect Form)</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Cell</div></div></div>
+  <div class="rows"><div><span>Band</span><b>13 / 30</b></div><div><span>Damage</span><b class="hi">×90.51</b></div><div><span>Effective health</span><b class="hi">4,525,483</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15</b></div></div>
+  <div class="moves"><span class="mv" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv borrowed" title="Beam">Final Flash</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv borrowed" title="Projectile">Spirit Bomb</span><span class="mv borrowed" title="Projectile">Ultra Spirit Bomb</span><span class="mv" title="Beam">Special Beam Cannon</span><span class="mv" title="Projectile">Destructo Disc</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv borrowed" title="Beam">Energy wave</span><span class="mv" title="Projectile">Ki blast</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="bt3_buu_majin"
+  style="--c:rgb(255,200,40)" data-s="majin buu budokai tenkaichi 3 b big bang energy wave destructo disc blue ki blast ki blast aura charge teleport evil buu super buu gotenks absorbed gohan absorbed"
+  data-src="bt3" data-tier="B">
+  <span class="tag" style="--t:var(--tierB)">B</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">MB</span><div><h3>Majin Buu</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Cell</div></div></div>
+  <div class="rows"><div><span>Band</span><b>13 / 30</b></div><div><span>Damage</span><b class="hi">×90.51</b></div><div><span>Effective health</span><b class="hi">4,525,483</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>8 + 4 forms</b></div></div>
+  <div class="moves"><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv borrowed" title="Beam">Energy wave</span><span class="mv" title="Projectile">Destructo Disc</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span><span class="mv form">Evil Buu</span><span class="mv form">Super Buu</span><span class="mv form">Gotenks Absorbed</span><span class="mv form">Gohan Absorbed</span></div>
+</article><article class="card" id="trunks_dbz"
+  style="--c:rgb(255,200,40)" data-s="trunks hero arsenal b masenko buster cannon ki blast burning attack heat dome attack final kamehameha blue ki blast spirit bomb ultra spirit bomb galick gun special beam cannon destructo disc aura charge teleport fists sword high strike sword of hope super saiyan super saiyan rage"
+  data-src="fritas" data-tier="B">
+  <span class="tag" style="--t:var(--tierB)">B</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">TR</span><div><h3>Trunks</h3>
+    <div class="who">Hero Arsenal &middot; SilkTeam, NotOfTheWorld</div></div></div>
+  <div class="rows"><div><span>Band</span><b>13 / 30</b></div><div><span>Damage</span><b class="hi">×90.51</b></div><div><span>Effective health</span><b class="hi">4,525,483</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>19 + 2 forms</b></div></div>
+  <div class="moves"><span class="mv" title="Beam">Masenko</span><span class="mv" title="Beam">Buster Cannon</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Projectile">Burning Attack</span><span class="mv" title="Beam">Heat Dome Attack</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv borrowed" title="Projectile">Spirit Bomb</span><span class="mv borrowed" title="Projectile">Ultra Spirit Bomb</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span><span class="mv" title="Stance">Fists</span><span class="mv" title="Stance">Sword</span><span class="mv" title="Slam">High Strike</span><span class="mv" title="Slam">Sword of Hope</span><span class="mv form">Super Saiyan</span><span class="mv form">Super Saiyan Rage</span></div>
+</article><article class="card" id="bt3_buu_evil"
+  style="--c:rgb(255,200,40)" data-s="evil buu budokai tenkaichi 3 b big bang energy wave destructo disc blue ki blast ki blast aura charge teleport"
+  data-src="bt3" data-tier="B">
+  <span class="tag" style="--t:var(--tierB)">B</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">EB</span><div><h3>Evil Buu</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Cell</div></div></div>
+  <div class="rows"><div><span>Band</span><b>12 / 30</b></div><div><span>Damage</span><b class="hi">×64</b></div><div><span>Effective health</span><b class="hi">3,200,000</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>8</b></div></div>
+  <div class="moves"><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv borrowed" title="Beam">Energy wave</span><span class="mv" title="Projectile">Destructo Disc</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="bt3_piccolo_end"
+  style="--c:rgb(255,200,40)" data-s="piccolo (end) budokai tenkaichi 3 b kamehameha final kamehameha final flash galick gun spirit bomb ultra spirit bomb special beam cannon destructo disc big bang explosive demon wave ki blast blue ki blast aura charge teleport"
+  data-src="bt3" data-tier="B">
+  <span class="tag" style="--t:var(--tierB)">B</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">PE</span><div><h3>Piccolo (End)</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Piccolo</div></div></div>
+  <div class="rows"><div><span>Band</span><b>12 / 30</b></div><div><span>Damage</span><b class="hi">×64</b></div><div><span>Effective health</span><b class="hi">3,200,000</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15</b></div></div>
+  <div class="moves"><span class="mv borrowed" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv borrowed" title="Beam">Final Flash</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv borrowed" title="Projectile">Spirit Bomb</span><span class="mv borrowed" title="Projectile">Ultra Spirit Bomb</span><span class="mv" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv" title="Beam">Explosive Demon Wave</span><span class="mv" title="Projectile">Ki blast</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="bt3_piccolo_bare"
+  style="--c:rgb(255,200,40)" data-s="piccolo (no turban) budokai tenkaichi 3 b kamehameha final kamehameha final flash galick gun spirit bomb ultra spirit bomb special beam cannon destructo disc big bang explosive demon wave ki blast blue ki blast aura charge teleport"
+  data-src="bt3" data-tier="B">
+  <span class="tag" style="--t:var(--tierB)">B</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">PN</span><div><h3>Piccolo (No Turban)</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Piccolo</div></div></div>
+  <div class="rows"><div><span>Band</span><b>12 / 30</b></div><div><span>Damage</span><b class="hi">×64</b></div><div><span>Effective health</span><b class="hi">3,200,000</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15</b></div></div>
+  <div class="moves"><span class="mv borrowed" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv borrowed" title="Beam">Final Flash</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv borrowed" title="Projectile">Spirit Bomb</span><span class="mv borrowed" title="Projectile">Ultra Spirit Bomb</span><span class="mv" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv" title="Beam">Explosive Demon Wave</span><span class="mv" title="Projectile">Ki blast</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="bt3_goku_ssj_end"
+  style="--c:rgb(255,200,40)" data-s="bt3 goku (ssj) budokai tenkaichi 3 c kamehameha final kamehameha final flash galick gun spirit bomb super spirit bomb special beam cannon destructo disc big bang ki wave ki blast blue ki blast aura charge teleport"
+  data-src="bt3" data-tier="C">
+  <span class="tag" style="--t:var(--tierC)">C</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">BG</span><div><h3>BT3 Goku (SSJ)</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Goku</div></div></div>
+  <div class="rows"><div><span>Band</span><b>11 / 30</b></div><div><span>Damage</span><b class="hi">×45.25</b></div><div><span>Effective health</span><b class="hi">2,262,742</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15</b></div></div>
+  <div class="moves"><span class="mv" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv borrowed" title="Beam">Final Flash</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv" title="Projectile">Spirit Bomb</span><span class="mv" title="Projectile">Super Spirit Bomb</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv" title="Beam">Ki wave</span><span class="mv" title="Projectile">Ki blast</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="bt3_goku_ssj_dmg"
+  style="--c:rgb(255,200,40)" data-s="bt3 goku (ssj, damaged) budokai tenkaichi 3 c kamehameha final kamehameha final flash galick gun spirit bomb super spirit bomb special beam cannon destructo disc big bang ki wave ki blast blue ki blast aura charge teleport"
+  data-src="bt3" data-tier="C">
+  <span class="tag" style="--t:var(--tierC)">C</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">BG</span><div><h3>BT3 Goku (SSJ, Damaged)</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Goku</div></div></div>
+  <div class="rows"><div><span>Band</span><b>11 / 30</b></div><div><span>Damage</span><b class="hi">×45.25</b></div><div><span>Effective health</span><b class="hi">2,262,742</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15</b></div></div>
+  <div class="moves"><span class="mv" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv borrowed" title="Beam">Final Flash</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv" title="Projectile">Spirit Bomb</span><span class="mv" title="Projectile">Super Spirit Bomb</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv" title="Beam">Ki wave</span><span class="mv" title="Projectile">Ki blast</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="cell_dbz"
+  style="--c:rgb(255,200,40)" data-s="cell hero arsenal c kamehameha ki blast special beam cannon destructo disc energy wave final kamehameha blue ki blast spirit bomb ultra spirit bomb galick gun big bang final flash aura charge teleport semi-perfect cell perfect cell super perfect cell"
+  data-src="fritas" data-tier="C">
+  <span class="tag" style="--t:var(--tierC)">C</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">CE</span><div><h3>Cell</h3>
+    <div class="who">Hero Arsenal &middot; SilkTeam, NotOfTheWorld</div></div></div>
+  <div class="rows"><div><span>Band</span><b>11 / 30</b></div><div><span>Damage</span><b class="hi">×45.25</b></div><div><span>Effective health</span><b class="hi">2,262,742</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15 + 3 forms</b></div></div>
+  <div class="moves"><span class="mv" title="Beam">Kamehameha</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Beam">Special Beam Cannon</span><span class="mv" title="Projectile">Destructo Disc</span><span class="mv borrowed" title="Beam">Energy wave</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv borrowed" title="Projectile">Spirit Bomb</span><span class="mv borrowed" title="Projectile">Ultra Spirit Bomb</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv borrowed" title="Beam">Final Flash</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span><span class="mv form">Semi-Perfect Cell</span><span class="mv form">Perfect Cell</span><span class="mv form">Super Perfect Cell</span></div>
+</article><article class="card" id="bt3_cooler_meta"
+  style="--c:rgb(170,90,255)" data-s="meta-cooler budokai tenkaichi 3 c death saucer big bang death beam blue ki blast ki blast aura charge teleport"
+  data-src="bt3" data-tier="C">
+  <span class="tag" style="--t:var(--tierC)">C</span>
+  <div class="top"><span class="sig" style="--c:rgb(170,90,255);color:#f3eff7" aria-hidden="true">MC</span><div><h3>Meta-Cooler</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Frieza</div></div></div>
+  <div class="rows"><div><span>Band</span><b>11 / 30</b></div><div><span>Damage</span><b class="hi">×45.25</b></div><div><span>Effective health</span><b class="hi">2,262,742</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>8</b></div></div>
+  <div class="moves"><span class="mv" title="Projectile">Death Saucer</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv" title="Beam">Death Beam</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="bt3_cooler_meta_acc"
+  style="--c:rgb(170,90,255)" data-s="meta-cooler (armored) budokai tenkaichi 3 c death saucer big bang death beam blue ki blast ki blast aura charge teleport"
+  data-src="bt3" data-tier="C">
+  <span class="tag" style="--t:var(--tierC)">C</span>
+  <div class="top"><span class="sig" style="--c:rgb(170,90,255);color:#f3eff7" aria-hidden="true">MC</span><div><h3>Meta-Cooler (Armored)</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Frieza</div></div></div>
+  <div class="rows"><div><span>Band</span><b>11 / 30</b></div><div><span>Damage</span><b class="hi">×45.25</b></div><div><span>Effective health</span><b class="hi">2,262,742</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>8</b></div></div>
+  <div class="moves"><span class="mv" title="Projectile">Death Saucer</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv" title="Beam">Death Beam</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="bt3_cooler_final"
+  style="--c:rgb(170,90,255)" data-s="cooler (final form) budokai tenkaichi 3 c death saucer big bang death beam blue ki blast ki blast aura charge teleport"
+  data-src="bt3" data-tier="C">
+  <span class="tag" style="--t:var(--tierC)">C</span>
+  <div class="top"><span class="sig" style="--c:rgb(170,90,255);color:#f3eff7" aria-hidden="true">CF</span><div><h3>Cooler (Final Form)</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Frieza</div></div></div>
+  <div class="rows"><div><span>Band</span><b>10 / 30</b></div><div><span>Damage</span><b class="hi">×32</b></div><div><span>Effective health</span><b class="hi">1,600,000</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>8</b></div></div>
+  <div class="moves"><span class="mv" title="Projectile">Death Saucer</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv" title="Beam">Death Beam</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="bt3_goku_end"
+  style="--c:rgb(255,200,40)" data-s="bt3 goku (end) budokai tenkaichi 3 c kamehameha final kamehameha final flash galick gun spirit bomb super spirit bomb special beam cannon destructo disc big bang ki wave ki blast blue ki blast aura charge teleport super saiyan super saiyan 2 super saiyan 3 super saiyan 4"
+  data-src="bt3" data-tier="C">
+  <span class="tag" style="--t:var(--tierC)">C</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">BG</span><div><h3>BT3 Goku (End)</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Goku</div></div></div>
+  <div class="rows"><div><span>Band</span><b>9 / 30</b></div><div><span>Damage</span><b class="hi">×22.63</b></div><div><span>Effective health</span><b class="hi">1,131,371</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15 + 4 forms</b></div></div>
+  <div class="moves"><span class="mv" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv borrowed" title="Beam">Final Flash</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv" title="Projectile">Spirit Bomb</span><span class="mv" title="Projectile">Super Spirit Bomb</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv" title="Beam">Ki wave</span><span class="mv" title="Projectile">Ki blast</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span><span class="mv form">Super Saiyan</span><span class="mv form">Super Saiyan 2</span><span class="mv form">Super Saiyan 3</span><span class="mv form">Super Saiyan 4</span></div>
+</article><article class="card" id="piccolo_dbz"
+  style="--c:rgb(255,200,40)" data-s="piccolo hero arsenal c explosive demon wave ki blast special beam cannon kamehameha final kamehameha blue ki blast spirit bomb ultra spirit bomb galick gun big bang final flash destructo disc aura charge teleport piccolo (no cape) piccolo (red sash, manga) piccolo (super hero) orange piccolo"
+  data-src="fritas" data-tier="C">
+  <span class="tag" style="--t:var(--tierC)">C</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">PI</span><div><h3>Piccolo</h3>
+    <div class="who">Hero Arsenal &middot; SilkTeam, NotOfTheWorld</div></div></div>
+  <div class="rows"><div><span>Band</span><b>9 / 30</b></div><div><span>Damage</span><b class="hi">×22.63</b></div><div><span>Effective health</span><b class="hi">1,131,371</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15 + 4 forms</b></div></div>
+  <div class="moves"><span class="mv" title="Beam">Explosive Demon Wave</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv borrowed" title="Projectile">Spirit Bomb</span><span class="mv borrowed" title="Projectile">Ultra Spirit Bomb</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv borrowed" title="Beam">Final Flash</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span><span class="mv form">Piccolo (No Cape)</span><span class="mv form">Piccolo (Red Sash, manga)</span><span class="mv form">Piccolo (Super Hero)</span><span class="mv form">Orange Piccolo</span></div>
+</article><article class="card" id="bt3_yamcha"
+  style="--c:rgb(255,200,40)" data-s="yamcha budokai tenkaichi 3 c buster cannon aura charge teleport kaioken x2 kaioken x3 kaioken x4 kaioken x20"
+  data-src="bt3" data-tier="C">
+  <span class="tag" style="--t:var(--tierC)">C</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">YA</span><div><h3>Yamcha</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Trunks</div></div></div>
+  <div class="rows"><div><span>Band</span><b>9 / 30</b></div><div><span>Damage</span><b class="hi">×22.63</b></div><div><span>Effective health</span><b class="hi">1,131,371</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>4 + 4 forms</b></div></div>
+  <div class="moves"><span class="mv" title="Beam">Buster Cannon</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span><span class="mv form">Kaioken x2</span><span class="mv form">Kaioken x3</span><span class="mv form">Kaioken x4</span><span class="mv form">Kaioken x20</span></div>
+</article><article class="card" id="bt3_tien"
+  style="--c:rgb(255,200,40)" data-s="tien shinhan budokai tenkaichi 3 c kamehameha final kamehameha final flash galick gun spirit bomb ultra spirit bomb special beam cannon destructo disc big bang ki wave yellow ki blast ki blast aura charge teleport kaioken x2 kaioken x3 kaioken x4 kaioken x20"
+  data-src="bt3" data-tier="C">
+  <span class="tag" style="--t:var(--tierC)">C</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">TS</span><div><h3>Tien Shinhan</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Vegeta</div></div></div>
+  <div class="rows"><div><span>Band</span><b>8 / 30</b></div><div><span>Damage</span><b class="hi">×16</b></div><div><span>Effective health</span><b class="hi">800,000</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15 + 4 forms</b></div></div>
+  <div class="moves"><span class="mv borrowed" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv" title="Beam">Final Flash</span><span class="mv" title="Beam">Galick Gun</span><span class="mv borrowed" title="Projectile">Spirit Bomb</span><span class="mv borrowed" title="Projectile">Ultra Spirit Bomb</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv" title="Projectile">Big Bang</span><span class="mv" title="Beam">Ki wave</span><span class="mv borrowed" title="Projectile">Yellow Ki blast</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span><span class="mv form">Kaioken x2</span><span class="mv form">Kaioken x3</span><span class="mv form">Kaioken x4</span><span class="mv form">Kaioken x20</span></div>
+</article><article class="card" id="bt3_tien_shirtless"
+  style="--c:rgb(255,200,40)" data-s="tien shinhan (shirtless) budokai tenkaichi 3 c kamehameha final kamehameha final flash galick gun spirit bomb ultra spirit bomb special beam cannon destructo disc big bang ki wave yellow ki blast ki blast aura charge teleport kaioken x2 kaioken x3 kaioken x4 kaioken x20"
+  data-src="bt3" data-tier="C">
+  <span class="tag" style="--t:var(--tierC)">C</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">TS</span><div><h3>Tien Shinhan (Shirtless)</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Vegeta</div></div></div>
+  <div class="rows"><div><span>Band</span><b>8 / 30</b></div><div><span>Damage</span><b class="hi">×16</b></div><div><span>Effective health</span><b class="hi">800,000</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15 + 4 forms</b></div></div>
+  <div class="moves"><span class="mv borrowed" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv" title="Beam">Final Flash</span><span class="mv" title="Beam">Galick Gun</span><span class="mv borrowed" title="Projectile">Spirit Bomb</span><span class="mv borrowed" title="Projectile">Ultra Spirit Bomb</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv" title="Projectile">Big Bang</span><span class="mv" title="Beam">Ki wave</span><span class="mv borrowed" title="Projectile">Yellow Ki blast</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span><span class="mv form">Kaioken x2</span><span class="mv form">Kaioken x3</span><span class="mv form">Kaioken x4</span><span class="mv form">Kaioken x20</span></div>
+</article><article class="card" id="bt3_cooler"
+  style="--c:rgb(170,90,255)" data-s="cooler budokai tenkaichi 3 d death saucer big bang death beam blue ki blast ki blast aura charge teleport final form"
+  data-src="bt3" data-tier="D">
+  <span class="tag" style="--t:var(--tierD)">D</span>
+  <div class="top"><span class="sig" style="--c:rgb(170,90,255);color:#f3eff7" aria-hidden="true">CO</span><div><h3>Cooler</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Frieza</div></div></div>
+  <div class="rows"><div><span>Band</span><b>7 / 30</b></div><div><span>Damage</span><b class="hi">×11.31</b></div><div><span>Effective health</span><b class="hi">565,685</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>8 + 1 forms</b></div></div>
+  <div class="moves"><span class="mv" title="Projectile">Death Saucer</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv" title="Beam">Death Beam</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span><span class="mv form">Final Form</span></div>
+</article><article class="card" id="bt3_cooler_acc"
+  style="--c:rgb(170,90,255)" data-s="cooler (armored) budokai tenkaichi 3 d death saucer big bang death beam blue ki blast ki blast aura charge teleport final form"
+  data-src="bt3" data-tier="D">
+  <span class="tag" style="--t:var(--tierD)">D</span>
+  <div class="top"><span class="sig" style="--c:rgb(170,90,255);color:#f3eff7" aria-hidden="true">CA</span><div><h3>Cooler (Armored)</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Frieza</div></div></div>
+  <div class="rows"><div><span>Band</span><b>7 / 30</b></div><div><span>Damage</span><b class="hi">×11.31</b></div><div><span>Effective health</span><b class="hi">565,685</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>8 + 1 forms</b></div></div>
+  <div class="moves"><span class="mv" title="Projectile">Death Saucer</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv" title="Beam">Death Beam</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span><span class="mv form">Final Form</span></div>
+</article><article class="card" id="oozaru_dbz"
+  style="--c:rgb(205,90,255)" data-s="oozaru hero arsenal d mouth energy wave ground punch foot smash jump attack smash eat roar"
+  data-src="fritas" data-tier="D">
+  <span class="tag" style="--t:var(--tierD)">D</span>
+  <div class="top"><span class="sig" style="--c:rgb(205,90,255);color:#f3eff7" aria-hidden="true">OO</span><div><h3>Oozaru</h3>
+    <div class="who">Hero Arsenal &middot; SilkTeam, NotOfTheWorld, JulioNIB</div></div></div>
+  <div class="rows"><div><span>Band</span><b>7 / 30</b></div><div><span>Damage</span><b class="hi">×11.31</b></div><div><span>Effective health</span><b class="hi">169,706</b></div><div><span>Run speed</span><b>40</b></div><div><span>Moves</span><b>7</b></div></div>
+  <div class="moves"><span class="mv" title="Beam">Mouth Energy Wave</span><span class="mv" title="Shockwave">Ground Punch</span><span class="mv" title="Shockwave">Foot Smash</span><span class="mv" title="Rush">Jump Attack</span><span class="mv" title="Slam">Smash</span><span class="mv" title="Devour">Eat</span><span class="mv" title="Area">Roar</span></div>
+</article><article class="card" id="bt3_turles"
+  style="--c:rgb(255,200,40)" data-s="turles budokai tenkaichi 3 d kamehameha final kamehameha final flash galick gun spirit bomb super spirit bomb special beam cannon destructo disc big bang ki wave ki blast blue ki blast aura charge teleport kaioken x20"
+  data-src="bt3" data-tier="D">
+  <span class="tag" style="--t:var(--tierD)">D</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">TU</span><div><h3>Turles</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Goku</div></div></div>
+  <div class="rows"><div><span>Band</span><b>7 / 30</b></div><div><span>Damage</span><b class="hi">×11.31</b></div><div><span>Effective health</span><b class="hi">565,685</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15 + 1 forms</b></div></div>
+  <div class="moves"><span class="mv" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv borrowed" title="Beam">Final Flash</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv" title="Projectile">Spirit Bomb</span><span class="mv" title="Projectile">Super Spirit Bomb</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv" title="Beam">Ki wave</span><span class="mv" title="Projectile">Ki blast</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span><span class="mv form">Kaioken x20</span></div>
+</article><article class="card" id="bt3_vegeta"
+  style="--c:rgb(255,200,40)" data-s="bt3 vegeta budokai tenkaichi 3 d kamehameha final kamehameha final flash galick gun spirit bomb ultra spirit bomb special beam cannon destructo disc big bang ki wave yellow ki blast ki blast aura charge teleport super saiyan"
+  data-src="bt3" data-tier="D">
+  <span class="tag" style="--t:var(--tierD)">D</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">BV</span><div><h3>BT3 Vegeta</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Vegeta</div></div></div>
+  <div class="rows"><div><span>Band</span><b>6 / 30</b></div><div><span>Damage</span><b class="hi">×8</b></div><div><span>Effective health</span><b class="hi">400,000</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15 + 1 forms</b></div></div>
+  <div class="moves"><span class="mv borrowed" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv" title="Beam">Final Flash</span><span class="mv" title="Beam">Galick Gun</span><span class="mv borrowed" title="Projectile">Spirit Bomb</span><span class="mv borrowed" title="Projectile">Ultra Spirit Bomb</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv" title="Projectile">Big Bang</span><span class="mv" title="Beam">Ki wave</span><span class="mv borrowed" title="Projectile">Yellow Ki blast</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span><span class="mv form">Super Saiyan</span></div>
+</article><article class="card" id="bt3_frieza_fullpwr"
+  style="--c:rgb(170,90,255)" data-s="frieza (full power) budokai tenkaichi 3 d death saucer big bang death beam blue ki blast ki blast aura charge teleport"
+  data-src="bt3" data-tier="D">
+  <span class="tag" style="--t:var(--tierD)">D</span>
+  <div class="top"><span class="sig" style="--c:rgb(170,90,255);color:#f3eff7" aria-hidden="true">FF</span><div><h3>Frieza (Full Power)</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Frieza</div></div></div>
+  <div class="rows"><div><span>Band</span><b>6 / 30</b></div><div><span>Damage</span><b class="hi">×8</b></div><div><span>Effective health</span><b class="hi">400,000</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>8</b></div></div>
+  <div class="moves"><span class="mv" title="Projectile">Death Saucer</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv" title="Beam">Death Beam</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="bt3_frieza_fullpwr_acc"
+  style="--c:rgb(170,90,255)" data-s="frieza (full power, armored) budokai tenkaichi 3 d death saucer big bang death beam blue ki blast ki blast aura charge teleport"
+  data-src="bt3" data-tier="D">
+  <span class="tag" style="--t:var(--tierD)">D</span>
+  <div class="top"><span class="sig" style="--c:rgb(170,90,255);color:#f3eff7" aria-hidden="true">FF</span><div><h3>Frieza (Full Power, Armored)</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Frieza</div></div></div>
+  <div class="rows"><div><span>Band</span><b>6 / 30</b></div><div><span>Damage</span><b class="hi">×8</b></div><div><span>Effective health</span><b class="hi">400,000</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>8</b></div></div>
+  <div class="moves"><span class="mv" title="Projectile">Death Saucer</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv" title="Beam">Death Beam</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="bt3_goku_mid"
+  style="--c:rgb(255,200,40)" data-s="bt3 goku (mid) budokai tenkaichi 3 d kamehameha final kamehameha final flash galick gun spirit bomb super spirit bomb special beam cannon destructo disc big bang ki wave ki blast blue ki blast aura charge teleport kaioken x20 super saiyan"
+  data-src="bt3" data-tier="D">
+  <span class="tag" style="--t:var(--tierD)">D</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">BG</span><div><h3>BT3 Goku (Mid)</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Goku</div></div></div>
+  <div class="rows"><div><span>Band</span><b>5 / 30</b></div><div><span>Damage</span><b class="hi">×5.66</b></div><div><span>Effective health</span><b class="hi">282,843</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15 + 2 forms</b></div></div>
+  <div class="moves"><span class="mv" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv borrowed" title="Beam">Final Flash</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv" title="Projectile">Spirit Bomb</span><span class="mv" title="Projectile">Super Spirit Bomb</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv" title="Beam">Ki wave</span><span class="mv" title="Projectile">Ki blast</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span><span class="mv form">Kaioken x20</span><span class="mv form">Super Saiyan</span></div>
+</article><article class="card" id="bt3_frieza_final"
+  style="--c:rgb(170,90,255)" data-s="frieza (final form) budokai tenkaichi 3 d death saucer big bang death beam blue ki blast ki blast aura charge teleport"
+  data-src="bt3" data-tier="D">
+  <span class="tag" style="--t:var(--tierD)">D</span>
+  <div class="top"><span class="sig" style="--c:rgb(170,90,255);color:#f3eff7" aria-hidden="true">FF</span><div><h3>Frieza (Final Form)</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Frieza</div></div></div>
+  <div class="rows"><div><span>Band</span><b>5 / 30</b></div><div><span>Damage</span><b class="hi">×5.66</b></div><div><span>Effective health</span><b class="hi">282,843</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>8</b></div></div>
+  <div class="moves"><span class="mv" title="Projectile">Death Saucer</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv" title="Beam">Death Beam</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="bt3_frieza_final_acc"
+  style="--c:rgb(170,90,255)" data-s="frieza (final form, armored) budokai tenkaichi 3 d death saucer big bang death beam blue ki blast ki blast aura charge teleport"
+  data-src="bt3" data-tier="D">
+  <span class="tag" style="--t:var(--tierD)">D</span>
+  <div class="top"><span class="sig" style="--c:rgb(170,90,255);color:#f3eff7" aria-hidden="true">FF</span><div><h3>Frieza (Final Form, Armored)</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Frieza</div></div></div>
+  <div class="rows"><div><span>Band</span><b>5 / 30</b></div><div><span>Damage</span><b class="hi">×5.66</b></div><div><span>Effective health</span><b class="hi">282,843</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>8</b></div></div>
+  <div class="moves"><span class="mv" title="Projectile">Death Saucer</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv" title="Beam">Death Beam</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="bt3_piccolo_early"
+  style="--c:rgb(255,200,40)" data-s="piccolo (early) budokai tenkaichi 3 d kamehameha final kamehameha final flash galick gun spirit bomb ultra spirit bomb special beam cannon destructo disc big bang explosive demon wave ki blast blue ki blast aura charge teleport"
+  data-src="bt3" data-tier="D">
+  <span class="tag" style="--t:var(--tierD)">D</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">PE</span><div><h3>Piccolo (Early)</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Piccolo</div></div></div>
+  <div class="rows"><div><span>Band</span><b>5 / 30</b></div><div><span>Damage</span><b class="hi">×5.66</b></div><div><span>Effective health</span><b class="hi">282,843</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15</b></div></div>
+  <div class="moves"><span class="mv borrowed" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv borrowed" title="Beam">Final Flash</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv borrowed" title="Projectile">Spirit Bomb</span><span class="mv borrowed" title="Projectile">Ultra Spirit Bomb</span><span class="mv" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv" title="Beam">Explosive Demon Wave</span><span class="mv" title="Projectile">Ki blast</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="bt3_bardock"
+  style="--c:rgb(255,200,40)" data-s="bardock budokai tenkaichi 3 d kamehameha final kamehameha final flash galick gun spirit bomb ultra spirit bomb special beam cannon destructo disc big bang ki wave yellow ki blast ki blast aura charge teleport"
+  data-src="bt3" data-tier="D">
+  <span class="tag" style="--t:var(--tierD)">D</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">BA</span><div><h3>Bardock</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Vegeta</div></div></div>
+  <div class="rows"><div><span>Band</span><b>4 / 30</b></div><div><span>Damage</span><b class="hi">×4</b></div><div><span>Effective health</span><b class="hi">200,000</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15</b></div></div>
+  <div class="moves"><span class="mv borrowed" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv" title="Beam">Final Flash</span><span class="mv" title="Beam">Galick Gun</span><span class="mv borrowed" title="Projectile">Spirit Bomb</span><span class="mv borrowed" title="Projectile">Ultra Spirit Bomb</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv" title="Projectile">Big Bang</span><span class="mv" title="Beam">Ki wave</span><span class="mv borrowed" title="Projectile">Yellow Ki blast</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="bt3_bardock_dmg"
+  style="--c:rgb(255,200,40)" data-s="bardock (damaged) budokai tenkaichi 3 d kamehameha final kamehameha final flash galick gun spirit bomb ultra spirit bomb special beam cannon destructo disc big bang ki wave yellow ki blast ki blast aura charge teleport"
+  data-src="bt3" data-tier="D">
+  <span class="tag" style="--t:var(--tierD)">D</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">BD</span><div><h3>Bardock (Damaged)</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Vegeta</div></div></div>
+  <div class="rows"><div><span>Band</span><b>4 / 30</b></div><div><span>Damage</span><b class="hi">×4</b></div><div><span>Effective health</span><b class="hi">200,000</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15</b></div></div>
+  <div class="moves"><span class="mv borrowed" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv" title="Beam">Final Flash</span><span class="mv" title="Beam">Galick Gun</span><span class="mv borrowed" title="Projectile">Spirit Bomb</span><span class="mv borrowed" title="Projectile">Ultra Spirit Bomb</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv" title="Projectile">Big Bang</span><span class="mv" title="Beam">Ki wave</span><span class="mv borrowed" title="Projectile">Yellow Ki blast</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="bt3_nappa"
+  style="--c:rgb(255,200,40)" data-s="nappa budokai tenkaichi 3 f kamehameha final kamehameha final flash galick gun spirit bomb ultra spirit bomb special beam cannon destructo disc big bang ki wave yellow ki blast ki blast aura charge teleport"
+  data-src="bt3" data-tier="F">
+  <span class="tag" style="--t:var(--tierF)">F</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">NA</span><div><h3>Nappa</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Vegeta</div></div></div>
+  <div class="rows"><div><span>Band</span><b>3 / 30</b></div><div><span>Damage</span><b class="hi">×2.83</b></div><div><span>Effective health</span><b class="hi">141,421</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15</b></div></div>
+  <div class="moves"><span class="mv borrowed" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv" title="Beam">Final Flash</span><span class="mv" title="Beam">Galick Gun</span><span class="mv borrowed" title="Projectile">Spirit Bomb</span><span class="mv borrowed" title="Projectile">Ultra Spirit Bomb</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv" title="Projectile">Big Bang</span><span class="mv" title="Beam">Ki wave</span><span class="mv borrowed" title="Projectile">Yellow Ki blast</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="bt3_nappa_armorless"
+  style="--c:rgb(255,200,40)" data-s="nappa (armorless) budokai tenkaichi 3 f kamehameha final kamehameha final flash galick gun spirit bomb ultra spirit bomb special beam cannon destructo disc big bang ki wave yellow ki blast ki blast aura charge teleport"
+  data-src="bt3" data-tier="F">
+  <span class="tag" style="--t:var(--tierF)">F</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">NA</span><div><h3>Nappa (Armorless)</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Vegeta</div></div></div>
+  <div class="rows"><div><span>Band</span><b>3 / 30</b></div><div><span>Damage</span><b class="hi">×2.83</b></div><div><span>Effective health</span><b class="hi">141,421</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15</b></div></div>
+  <div class="moves"><span class="mv borrowed" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv" title="Beam">Final Flash</span><span class="mv" title="Beam">Galick Gun</span><span class="mv borrowed" title="Projectile">Spirit Bomb</span><span class="mv borrowed" title="Projectile">Ultra Spirit Bomb</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv" title="Projectile">Big Bang</span><span class="mv" title="Beam">Ki wave</span><span class="mv borrowed" title="Projectile">Yellow Ki blast</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="bt3_goku_early"
+  style="--c:rgb(255,200,40)" data-s="bt3 goku (early) budokai tenkaichi 3 f kamehameha final kamehameha final flash galick gun spirit bomb super spirit bomb special beam cannon destructo disc big bang ki wave ki blast blue ki blast aura charge teleport kaioken kaioken x3 kaioken x4"
+  data-src="bt3" data-tier="F">
+  <span class="tag" style="--t:var(--tierF)">F</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">BG</span><div><h3>BT3 Goku (Early)</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Goku</div></div></div>
+  <div class="rows"><div><span>Band</span><b>2 / 30</b></div><div><span>Damage</span><b class="hi">×2</b></div><div><span>Effective health</span><b class="hi">100,000</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15 + 3 forms</b></div></div>
+  <div class="moves"><span class="mv" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv borrowed" title="Beam">Final Flash</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv" title="Projectile">Spirit Bomb</span><span class="mv" title="Projectile">Super Spirit Bomb</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv" title="Beam">Ki wave</span><span class="mv" title="Projectile">Ki blast</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span><span class="mv form">Kaioken</span><span class="mv form">Kaioken x3</span><span class="mv form">Kaioken x4</span></div>
+</article><article class="card" id="bt3_chocolate"
+  style="--c:rgb(255,200,40)" data-s="chocolate budokai tenkaichi 3 f kamehameha final kamehameha final flash galick gun spirit bomb ultra spirit bomb special beam cannon destructo disc big bang energy wave ki blast blue ki blast aura charge teleport"
+  data-src="bt3" data-tier="F">
+  <span class="tag" style="--t:var(--tierF)">F</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">CH</span><div><h3>Chocolate</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Cell</div></div></div>
+  <div class="rows"><div><span>Band</span><b>2 / 30</b></div><div><span>Damage</span><b class="hi">×2</b></div><div><span>Effective health</span><b class="hi">100,000</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15</b></div></div>
+  <div class="moves"><span class="mv" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv borrowed" title="Beam">Final Flash</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv borrowed" title="Projectile">Spirit Bomb</span><span class="mv borrowed" title="Projectile">Ultra Spirit Bomb</span><span class="mv" title="Beam">Special Beam Cannon</span><span class="mv" title="Projectile">Destructo Disc</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv borrowed" title="Beam">Energy wave</span><span class="mv" title="Projectile">Ki blast</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="bt3_raditz"
+  style="--c:rgb(255,200,40)" data-s="raditz budokai tenkaichi 3 f kamehameha final kamehameha final flash galick gun spirit bomb ultra spirit bomb special beam cannon destructo disc big bang ki wave yellow ki blast ki blast aura charge teleport"
+  data-src="bt3" data-tier="F">
+  <span class="tag" style="--t:var(--tierF)">F</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">RA</span><div><h3>Raditz</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Vegeta</div></div></div>
+  <div class="rows"><div><span>Band</span><b>2 / 30</b></div><div><span>Damage</span><b class="hi">×2</b></div><div><span>Effective health</span><b class="hi">100,000</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15</b></div></div>
+  <div class="moves"><span class="mv borrowed" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv" title="Beam">Final Flash</span><span class="mv" title="Beam">Galick Gun</span><span class="mv borrowed" title="Projectile">Spirit Bomb</span><span class="mv borrowed" title="Projectile">Ultra Spirit Bomb</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv" title="Projectile">Big Bang</span><span class="mv" title="Beam">Ki wave</span><span class="mv borrowed" title="Projectile">Yellow Ki blast</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="bt3_salza"
+  style="--c:rgb(170,90,255)" data-s="salza budokai tenkaichi 3 f kamehameha final kamehameha final flash galick gun death ball supernova special beam cannon death saucer big bang death beam ki blast blue ki blast aura charge teleport"
+  data-src="bt3" data-tier="F">
+  <span class="tag" style="--t:var(--tierF)">F</span>
+  <div class="top"><span class="sig" style="--c:rgb(170,90,255);color:#f3eff7" aria-hidden="true">SA</span><div><h3>Salza</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Frieza</div></div></div>
+  <div class="rows"><div><span>Band</span><b>2 / 30</b></div><div><span>Damage</span><b class="hi">×2</b></div><div><span>Effective health</span><b class="hi">100,000</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15</b></div></div>
+  <div class="moves"><span class="mv borrowed" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv borrowed" title="Beam">Final Flash</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv" title="Projectile">Death Ball</span><span class="mv" title="Projectile">Supernova</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv" title="Projectile">Death Saucer</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv" title="Beam">Death Beam</span><span class="mv" title="Projectile">Ki blast</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="bt3_frieza_soldier"
+  style="--c:rgb(170,90,255)" data-s="frieza soldier budokai tenkaichi 3 f death saucer big bang death beam blue ki blast ki blast aura charge teleport"
+  data-src="bt3" data-tier="F">
+  <span class="tag" style="--t:var(--tierF)">F</span>
+  <div class="top"><span class="sig" style="--c:rgb(170,90,255);color:#f3eff7" aria-hidden="true">FS</span><div><h3>Frieza Soldier</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Frieza</div></div></div>
+  <div class="rows"><div><span>Band</span><b>1 / 30</b></div><div><span>Damage</span><b class="hi">×1.41</b></div><div><span>Effective health</span><b class="hi">70,711</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>8</b></div></div>
+  <div class="moves"><span class="mv" title="Projectile">Death Saucer</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv" title="Beam">Death Beam</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="bt3_frieza_soldier_alt"
+  style="--c:rgb(170,90,255)" data-s="frieza soldier (alt) budokai tenkaichi 3 f death saucer big bang death beam blue ki blast ki blast aura charge teleport"
+  data-src="bt3" data-tier="F">
+  <span class="tag" style="--t:var(--tierF)">F</span>
+  <div class="top"><span class="sig" style="--c:rgb(170,90,255);color:#f3eff7" aria-hidden="true">FS</span><div><h3>Frieza Soldier (Alt)</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Frieza</div></div></div>
+  <div class="rows"><div><span>Band</span><b>1 / 30</b></div><div><span>Damage</span><b class="hi">×1.41</b></div><div><span>Effective health</span><b class="hi">70,711</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>8</b></div></div>
+  <div class="moves"><span class="mv" title="Projectile">Death Saucer</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv" title="Beam">Death Beam</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Projectile">Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="bt3_kid_goku"
+  style="--c:rgb(255,200,40)" data-s="kid goku budokai tenkaichi 3 f kamehameha final kamehameha final flash galick gun spirit bomb super spirit bomb special beam cannon destructo disc big bang ki wave ki blast blue ki blast aura charge teleport"
+  data-src="bt3" data-tier="F">
+  <span class="tag" style="--t:var(--tierF)">F</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">KG</span><div><h3>Kid Goku</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Goku</div></div></div>
+  <div class="rows"><div><span>Band</span><b>0 / 30</b></div><div><span>Damage</span><b class="hi">×1</b></div><div><span>Effective health</span><b class="hi">50,000</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15</b></div></div>
+  <div class="moves"><span class="mv" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv borrowed" title="Beam">Final Flash</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv" title="Projectile">Spirit Bomb</span><span class="mv" title="Projectile">Super Spirit Bomb</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv" title="Beam">Ki wave</span><span class="mv" title="Projectile">Ki blast</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article><article class="card" id="bt3_kid_goku_alt"
+  style="--c:rgb(255,200,40)" data-s="kid goku (alt) budokai tenkaichi 3 f kamehameha final kamehameha final flash galick gun spirit bomb super spirit bomb special beam cannon destructo disc big bang ki wave ki blast blue ki blast aura charge teleport"
+  data-src="bt3" data-tier="F">
+  <span class="tag" style="--t:var(--tierF)">F</span>
+  <div class="top"><span class="sig" style="--c:rgb(255,200,40);color:#0a0810" aria-hidden="true">KG</span><div><h3>Kid Goku (Alt)</h3>
+    <div class="who">Budokai Tenkaichi 3 &middot; RandomOne &middot; arsenal from Goku</div></div></div>
+  <div class="rows"><div><span>Band</span><b>0 / 30</b></div><div><span>Damage</span><b class="hi">×1</b></div><div><span>Effective health</span><b class="hi">50,000</b></div><div><span>Run speed</span><b>9</b></div><div><span>Moves</span><b>15</b></div></div>
+  <div class="moves"><span class="mv" title="Beam">Kamehameha</span><span class="mv borrowed" title="Beam">Final Kamehameha</span><span class="mv borrowed" title="Beam">Final Flash</span><span class="mv borrowed" title="Beam">Galick Gun</span><span class="mv" title="Projectile">Spirit Bomb</span><span class="mv" title="Projectile">Super Spirit Bomb</span><span class="mv borrowed" title="Beam">Special Beam Cannon</span><span class="mv borrowed" title="Projectile">Destructo Disc</span><span class="mv borrowed" title="Projectile">Big Bang</span><span class="mv" title="Beam">Ki wave</span><span class="mv" title="Projectile">Ki blast</span><span class="mv borrowed" title="Projectile">Blue Ki blast</span><span class="mv" title="Toggle">Aura</span><span class="mv" title="Buff">Charge</span><span class="mv" title="Movement">Teleport</span></div>
+</article></div>
+<footer class="foot">
+<p>Generated <b>2026-11-07T01:23:57-05:00</b> from the running Garry&#39;s Mod
+install &mdash; 12 Hero Arsenal heroes read out of the workshop
+<code>.gma</code> files, 54 Tenkaichi fighters read by executing
+<code>z_dbz_bt3.lua</code> itself. Rebuilt every ten minutes; nothing on this
+site is typed by hand.</p>
+<p>Hero Arsenal Engine DBZ by <b>FRITAS</b>. Tenkaichi 3 models by
+<b>RandomOne</b>. Tier bands, scaling and the patch layer are this
+repository&#39;s own.</p>
+</footer>
+
+<script>
+(function(){
+  var q=document.getElementById('q'), live=document.getElementById('count');
+  var chips=[].slice.call(document.querySelectorAll('.chip[data-k]'));
+  var items=[].slice.call(document.querySelectorAll('[data-s]'));
+  var total=items.length, state={};
+  function run(){
+    var t=(q&&q.value||'').trim().toLowerCase(), n=0;
+    for(var i=0;i<items.length;i++){
+      var el=items[i], ok=!t||el.getAttribute('data-s').indexOf(t)>-1;
+      for(var k in state){
+        if(state[k]&&state[k].length&&state[k].indexOf(el.getAttribute('data-'+k))<0) ok=false;
+      }
+      el.classList.toggle('hidden',!ok);
+      if(ok) n++;
+    }
+    [].forEach.call(document.querySelectorAll('[data-group]'),function(g){
+      g.classList.toggle('hidden',!g.querySelector('[data-s]:not(.hidden)'));
+    });
+    if(live) live.textContent=n+' of '+total+' shown';
+  }
+  chips.forEach(function(c){
+    c.addEventListener('click',function(){
+      var k=c.dataset.k, v=c.dataset.v, on=c.getAttribute('aria-pressed')==='true';
+      if(v===''){ // the "all" chip clears its own key
+        chips.filter(function(x){return x.dataset.k===k}).forEach(function(x){
+          x.setAttribute('aria-pressed', x===c?'true':'false');});
+        state[k]=[];
+      } else {
+        var all=chips.filter(function(x){return x.dataset.k===k&&x.dataset.v===''})[0];
+        if(all) all.setAttribute('aria-pressed','false');
+        c.setAttribute('aria-pressed', on?'false':'true');
+        state[k]=chips.filter(function(x){
+          return x.dataset.k===k&&x.dataset.v!==''&&x.getAttribute('aria-pressed')==='true';
+        }).map(function(x){return x.dataset.v});
+        if(!state[k].length&&all) all.setAttribute('aria-pressed','true');
+      }
+      run();
+    });
+  });
+  if(q) q.addEventListener('input',run);
+  run();
+})();
+</script>
+
+</main>
+</body>
+</html>
