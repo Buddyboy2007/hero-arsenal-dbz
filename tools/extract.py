@@ -426,6 +426,59 @@ def power_profile(band, spread, scale, base_health):
     return rating, mult, dmg, hp
 
 
+def write_census(errors):
+    """
+    The wider census -- every spawnable character in the whole addon tree.
+
+    Kept in its own file rather than folded into data.json: it is an order of
+    magnitude more rows than the roster, it answers a different question, and
+    nothing on the tier pages depends on it.  Written pretty-printed for the
+    same reason data.json is -- it is committed, and a diff nobody can read is
+    a diff nobody checks.
+    """
+    try:
+        import census
+        rows = census.census()
+    except Exception as ex:
+        errors.append("census scan failed: %s" % ex)
+        return
+
+    packs = {}
+    for row in rows:
+        key = (row["pack"], row["ws"])
+        packs[key] = packs.get(key, 0) + 1
+
+    families = {}
+    for row in rows:
+        families[row["family"]] = families.get(row["family"], 0) + 1
+
+    data = {
+        "generatedAt": datetime.now(timezone.utc).astimezone().isoformat(
+            timespec="seconds"),
+        "counts": {
+            "characters": len(rows),
+            "packs": len(packs),
+            "families": families,
+            "withHealth": sum(1 for r in rows if r.get("health")),
+            "sprites": sum(1 for r in rows if r.get("sprite")),
+        },
+        "packs": [
+            {"pack": p, "ws": w, "count": n}
+            for (p, w), n in sorted(packs.items(), key=lambda kv: (-kv[1], kv[0][0].lower()))
+        ],
+        "characters": rows,
+    }
+
+    with open(os.path.join(ROOT, "census.json"), "w", encoding="utf-8") as fh:
+        json.dump(data, fh, indent=1)
+        fh.write("\n")
+
+    print("census.json: %d characters across %d packs (%s)" % (
+        len(rows), len(packs),
+        ", ".join("%d %s" % (n, f) for f, n in sorted(
+            families.items(), key=lambda kv: -kv[1]))))
+
+
 def main():
     errors = []
     heroes = load_fritas(errors)
@@ -625,6 +678,8 @@ def main():
         },
         "errors": errors,
     }
+
+    write_census(errors)
 
     out = os.path.join(ROOT, "data.json")
     with open(out, "w", encoding="utf-8") as fh:

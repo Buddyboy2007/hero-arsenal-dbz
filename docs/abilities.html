@@ -207,12 +207,51 @@ tbody tr:hover td{background:rgba(255,255,255,.018)}
   .strip div{flex:1 1 50%}
   .count{margin-left:0;width:100%}
 }
+
+/* --- the census: every character installed, grouped by the pack that -----
+   shipped it.  Deliberately NOT the roster card treatment: these are a
+   thousand-plus names with almost nothing declared about them, so the unit
+   is a dense pill, and the pack header carries what little provenance the
+   .gma archive actually knows. */
+.pack{margin:0 0 10px;border:1px solid var(--line);border-radius:12px;
+  background:var(--panel);overflow:hidden}
+.pack>h3{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:0;
+  padding:10px 14px;border-bottom:1px solid var(--line);background:var(--bg-lift);
+  font:400 13.5px/1.25 var(--display);letter-spacing:.02em;color:var(--ink)}
+.pack>h3 a{font:600 10.5px var(--mono);color:var(--faint)}
+.pack>h3 .cnt{margin-left:auto;font:700 9.5px var(--body);letter-spacing:.11em;
+  text-transform:uppercase;color:var(--faint);white-space:nowrap}
+.pack .mem{display:flex;flex-wrap:wrap;gap:6px;padding:12px 14px}
+.nchip{display:flex;align-items:center;gap:7px;max-width:100%;
+  padding:4px 10px;border-radius:999px;background:var(--bg-lift);
+  border:1px solid var(--line);font-size:12.5px;color:var(--ink-2)}
+.nchip .dot{flex:none;width:7px;height:7px;border-radius:50%;background:var(--f)}
+.nchip .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nchip .hp{font:600 10.5px var(--mono);color:var(--faint);
+  font-variant-numeric:tabular-nums}
+/* A pack that never declared PrintName gets its class name title-cased, and
+   says so rather than passing the guess off as the author's own wording. */
+.nchip.guessed .nm{font-style:italic;color:var(--dim)}
+
+/* --- the band explainer ------------------------------------------------- */
+.define{display:flex;gap:14px;align-items:flex-start;margin:0 0 26px;padding:14px 16px;
+  border:1px solid var(--line-hi);border-radius:12px;background:var(--panel)}
+.define .k{flex:none;font:700 9.5px/1 var(--body);letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ki);padding-top:3px}
+.define p{margin:0;font-size:13.5px;color:var(--ink-2);max-width:72ch}
+.define b{color:var(--ink);font-weight:600}
+.define code{font:600 12.5px var(--mono);background:var(--bg-lift);
+  border:1px solid var(--line);border-radius:5px;padding:1px 5px;color:var(--ki-soft)}
+h2[id]{scroll-margin-top:84px}
+/* Which of a pack's twenty same-named classes this pill actually is. */
+.nchip .var{font:600 10px var(--mono);color:var(--void);opacity:.85;
+  white-space:nowrap;max-width:14ch;overflow:hidden;text-overflow:ellipsis}
 </style>
 </head>
 <body>
 <header class="bar">
   <span class="brand">Hero Arsenal <i>DBZ</i></span>
-  <nav class="tabs" aria-label="Sections"><a href="index.html">Roster</a><a href="tiers.html">Tier List</a><a href="abilities.html" aria-current="page">Abilities</a><a href="forms.html">Forms</a><a href="about.html">How It Works</a></nav>
+  <nav class="tabs" aria-label="Sections"><a href="index.html">Roster</a><a href="tiers.html">Tier List</a><a href="abilities.html" aria-current="page">Abilities</a><a href="forms.html">Forms</a><a href="characters.html">Every Character</a><a href="about.html">How It Works</a></nav>
 </header>
 <main class="wrap">
 <p class="eyebrow">97 distinct moves</p>

@@ -207,12 +207,51 @@ tbody tr:hover td{background:rgba(255,255,255,.018)}
   .strip div{flex:1 1 50%}
   .count{margin-left:0;width:100%}
 }
+
+/* --- the census: every character installed, grouped by the pack that -----
+   shipped it.  Deliberately NOT the roster card treatment: these are a
+   thousand-plus names with almost nothing declared about them, so the unit
+   is a dense pill, and the pack header carries what little provenance the
+   .gma archive actually knows. */
+.pack{margin:0 0 10px;border:1px solid var(--line);border-radius:12px;
+  background:var(--panel);overflow:hidden}
+.pack>h3{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:0;
+  padding:10px 14px;border-bottom:1px solid var(--line);background:var(--bg-lift);
+  font:400 13.5px/1.25 var(--display);letter-spacing:.02em;color:var(--ink)}
+.pack>h3 a{font:600 10.5px var(--mono);color:var(--faint)}
+.pack>h3 .cnt{margin-left:auto;font:700 9.5px var(--body);letter-spacing:.11em;
+  text-transform:uppercase;color:var(--faint);white-space:nowrap}
+.pack .mem{display:flex;flex-wrap:wrap;gap:6px;padding:12px 14px}
+.nchip{display:flex;align-items:center;gap:7px;max-width:100%;
+  padding:4px 10px;border-radius:999px;background:var(--bg-lift);
+  border:1px solid var(--line);font-size:12.5px;color:var(--ink-2)}
+.nchip .dot{flex:none;width:7px;height:7px;border-radius:50%;background:var(--f)}
+.nchip .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nchip .hp{font:600 10.5px var(--mono);color:var(--faint);
+  font-variant-numeric:tabular-nums}
+/* A pack that never declared PrintName gets its class name title-cased, and
+   says so rather than passing the guess off as the author's own wording. */
+.nchip.guessed .nm{font-style:italic;color:var(--dim)}
+
+/* --- the band explainer ------------------------------------------------- */
+.define{display:flex;gap:14px;align-items:flex-start;margin:0 0 26px;padding:14px 16px;
+  border:1px solid var(--line-hi);border-radius:12px;background:var(--panel)}
+.define .k{flex:none;font:700 9.5px/1 var(--body);letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ki);padding-top:3px}
+.define p{margin:0;font-size:13.5px;color:var(--ink-2);max-width:72ch}
+.define b{color:var(--ink);font-weight:600}
+.define code{font:600 12.5px var(--mono);background:var(--bg-lift);
+  border:1px solid var(--line);border-radius:5px;padding:1px 5px;color:var(--ki-soft)}
+h2[id]{scroll-margin-top:84px}
+/* Which of a pack's twenty same-named classes this pill actually is. */
+.nchip .var{font:600 10px var(--mono);color:var(--void);opacity:.85;
+  white-space:nowrap;max-width:14ch;overflow:hidden;text-overflow:ellipsis}
 </style>
 </head>
 <body>
 <header class="bar">
   <span class="brand">Hero Arsenal <i>DBZ</i></span>
-  <nav class="tabs" aria-label="Sections"><a href="index.html">Roster</a><a href="tiers.html" aria-current="page">Tier List</a><a href="abilities.html">Abilities</a><a href="forms.html">Forms</a><a href="about.html">How It Works</a></nav>
+  <nav class="tabs" aria-label="Sections"><a href="index.html">Roster</a><a href="tiers.html" aria-current="page">Tier List</a><a href="abilities.html">Abilities</a><a href="forms.html">Forms</a><a href="characters.html">Every Character</a><a href="about.html">How It Works</a></nav>
 </header>
 <main class="wrap">
 <p class="eyebrow">Updated 2026-11-07</p>
@@ -221,6 +260,52 @@ tbody tr:hover td{background:rgba(255,255,255,.018)}
 the band, and the band is the only thing the game itself cares about &mdash;
 every fighter&#39;s health and damage come out of it by the same formula.</p>
 <section class="strip"><div><b>8</b><span>tiers</span></div><div><b>27</b><span>bands in use</span></div><div><b>×2</b><span>gain per band</span></div><div><b>×32,768</b><span>top of the ladder</span></div></section>
+<h2 id="band">What a &ldquo;band&rdquo; is</h2>
+<div class="prose">
+<p>A <b>band</b> is one rung of the power ladder: a whole number from
+<code>0</code> to <code>30</code> carried by every fighter. It is not a
+description of them &mdash; it is the input. Hand the game a band and it
+works out that character&#39;s health and damage from it, by formula, with no
+per-fighter tuning anywhere.</p>
+<p>It goes in three steps:</p>
+<ul>
+<li>The band becomes a <b>rating</b>: <code>rating = 2 ^ band</code>.
+So each band <em>doubles</em> the rating &mdash; band 10 rates
+<code>1,024</code>, band 20 rates <code>1.05M</code>.</li>
+<li>Damage is multiplied by <code>rating ^ 0.5</code> &mdash; the square
+root of the rating.</li>
+<li>Health is multiplied by <code>rating ^ 0.5</code> as well:
+the <em>same</em> exponent.</li>
+</ul>
+<p>Taking the square root is what makes the ladder usable. Doubling the
+rating only multiplies damage by <code>1.41</code>, so in
+plain terms:</p>
+<ul>
+<li><b>One band up</b> &asymp; <b>1.41&times;</b> the damage
+and 1.41&times; the health.</li>
+<li><b>Two bands up</b> = exactly <b>double</b> both.</li>
+<li><b>Ten bands up</b> = <b>×32</b> both.</li>
+</ul>
+<p>And because damage and health take the <em>same</em> exponent, they grow
+together. A band-30 fight does not end faster than a band-0 one &mdash;
+it lasts about as long, with far bigger numbers floating over it. The band
+decides <em>who wins</em> when two fighters are mismatched, not how quickly
+anybody dies.</p>
+<p>The <b>tier letter</b> adds nothing. It is a reading of the band and
+nothing else: Z 30 / X 24-29 / S 20-23 / A 16-19 / B 12-15 / C 8-11 / D 4-7 / F 0-3.
+Band <code>0</code> is special only in that it means &ldquo;unscaled&rdquo;
+&mdash; the stats the model shipped with.</p>
+</div>
+<div class="tscroll"><table>
+<thead><tr><th style="text-align:right">Band</th>
+<th style="text-align:right">Rating</th>
+<th style="text-align:right">Damage</th>
+<th style="text-align:right">Health</th>
+<th>Who sits here</th></tr></thead>
+<tbody><tr><td class="n">0</td><td class="n">1</td><td class="n">×1</td><td class="n">×1</td><td>Kid Goku, Kid Goku (Alt)</td></tr><tr><td class="n">6</td><td class="n">64</td><td class="n">×8</td><td class="n">×8</td><td>BT3 Vegeta, Frieza (Full Power), Frieza (Full Power, Armored)</td></tr><tr><td class="n">12</td><td class="n">4,096</td><td class="n">×64</td><td class="n">×64</td><td>Evil Buu, Piccolo (End), Piccolo (No Turban)</td></tr><tr><td class="n">18</td><td class="n">262,144</td><td class="n">×512</td><td class="n">×512</td><td>Broly (LSSJ), Super Buu (Gohan absorbed), Ultimate Gohan</td></tr><tr><td class="n">24</td><td class="n">16.8M</td><td class="n">×4,096</td><td class="n">×4,096</td><td>Frieza</td></tr><tr><td class="n">30</td><td class="n">1.07B</td><td class="n">×32,768</td><td class="n">×32,768</td><td>Gogeta (SSJ4), Gogeta (SSJ4, Alt)</td></tr></tbody></table></div>
+<p class="sub" style="margin:14px 0 30px">Damage and health share a column of
+numbers because they share an exponent &mdash; that is the whole design, not a
+coincidence.</p>
 <section class="tier">
   <div class="let" style="--t:var(--tierZ)">
     <b>Z</b><span>2 fighters</span></div>
