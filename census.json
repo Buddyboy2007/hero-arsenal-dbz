@@ -1,12 +1,12 @@
 {
- "generatedAt": "2026-11-07T22:52:32-05:00",
+ "generatedAt": "2026-11-07T23:02:32-05:00",
  "counts": {
-  "characters": 1656,
-  "packs": 157,
+  "characters": 1661,
+  "packs": 160,
   "families": {
-   "DrGBase": 895,
+   "DrGBase": 898,
    "VJ Base": 760,
-   "Nextbot": 1
+   "Nextbot": 3
   },
   "withHealth": 476,
   "sprites": 84
@@ -398,6 +398,11 @@
    "count": 2
   },
   {
+   "pack": "[DrGBase] Super Shin Sonic",
+   "ws": "3592158714",
+   "count": 2
+  },
+  {
    "pack": "[DrGBase] Trevor Henderson Final Boss: Precursor Of The First War SNPCs ",
    "ws": "2642833917",
    "count": 2
@@ -460,6 +465,11 @@
   {
    "pack": "Huskar SNPC",
    "ws": "2026689487",
+   "count": 2
+  },
+  {
+   "pack": "Lambda Players | The Zeta Player Sequel",
+   "ws": "2947828836",
    "count": 2
   },
   {
@@ -780,6 +790,11 @@
   {
    "pack": "Ryomen Sukuna [DrGBase]",
    "ws": "3708638667",
+   "count": 1
+  },
+  {
+   "pack": "SUPAAAAAAAAAA",
+   "ws": "3363229745",
    "count": 1
   },
   {
@@ -6436,6 +6451,30 @@
    "pack": "[DrGBase] Soulsborne Base",
    "ws": "2844185890",
    "category": "Ohhh Elden Ring",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_big_super_shin_sonic",
+   "name": "Big Super Shin Sonic",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DrGBase] Super Shin Sonic",
+   "ws": "3592158714",
+   "category": "Shin Sonic TAPES",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_super_shin_sonic",
+   "name": "Small Super Shin Sonic",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DrGBase] Super Shin Sonic",
+   "ws": "3592158714",
+   "category": "Shin Sonic TAPES",
    "health": null,
    "adminOnly": false
   },
@@ -12796,6 +12835,30 @@
    "pack": "Kinji Hakari [DrGBase]",
    "ws": "3768096313",
    "category": "Jujutsu Kaisen",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_lambdaantlion",
+   "name": "Lambda Antlion",
+   "named": true,
+   "family": "Nextbot",
+   "sprite": false,
+   "pack": "Lambda Players | The Zeta Player Sequel",
+   "ws": "2947828836",
+   "category": "",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_lambdaplayer",
+   "name": "Lambda Player",
+   "named": true,
+   "family": "Nextbot",
+   "sprite": false,
+   "pack": "Lambda Players | The Zeta Player Sequel",
+   "ws": "2947828836",
+   "category": "",
    "health": null,
    "adminOnly": false
   },
@@ -19264,6 +19327,18 @@
    "pack": "SuNdee's Military SNPCs - United States",
    "ws": "3507311681",
    "category": "Military",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_super_sonic_tapes_5",
+   "name": "SUPER SONIC TAPES",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "SUPAAAAAAAAAA",
+   "ws": "3363229745",
+   "category": "Dark Corners",
    "health": null,
    "adminOnly": false
   },
