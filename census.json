@@ -1,12 +1,12 @@
 {
- "generatedAt": "2026-11-07T23:34:02-05:00",
+ "generatedAt": "2026-11-07T23:44:02-05:00",
  "counts": {
-  "characters": 1661,
-  "packs": 160,
+  "characters": 1659,
+  "packs": 159,
   "families": {
    "DrGBase": 898,
    "VJ Base": 760,
-   "Nextbot": 3
+   "Nextbot": 1
   },
   "withHealth": 476,
   "sprites": 84
@@ -465,11 +465,6 @@
   {
    "pack": "Huskar SNPC",
    "ws": "2026689487",
-   "count": 2
-  },
-  {
-   "pack": "Lambda Players | The Zeta Player Sequel",
-   "ws": "2947828836",
    "count": 2
   },
   {
@@ -12835,30 +12830,6 @@
    "pack": "Kinji Hakari [DrGBase]",
    "ws": "3768096313",
    "category": "Jujutsu Kaisen",
-   "health": null,
-   "adminOnly": false
-  },
-  {
-   "class": "npc_lambdaantlion",
-   "name": "Lambda Antlion",
-   "named": true,
-   "family": "Nextbot",
-   "sprite": false,
-   "pack": "Lambda Players | The Zeta Player Sequel",
-   "ws": "2947828836",
-   "category": "",
-   "health": null,
-   "adminOnly": false
-  },
-  {
-   "class": "npc_lambdaplayer",
-   "name": "Lambda Player",
-   "named": true,
-   "family": "Nextbot",
-   "sprite": false,
-   "pack": "Lambda Players | The Zeta Player Sequel",
-   "ws": "2947828836",
-   "category": "",
    "health": null,
    "adminOnly": false
   },
