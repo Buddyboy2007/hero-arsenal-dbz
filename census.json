@@ -1,15 +1,15 @@
 {
- "generatedAt": "2026-11-07T22:42:32-05:00",
+ "generatedAt": "2026-11-07T22:52:32-05:00",
  "counts": {
-  "characters": 1631,
-  "packs": 153,
+  "characters": 1656,
+  "packs": 157,
   "families": {
-   "DrGBase": 885,
-   "VJ Base": 745,
+   "DrGBase": 895,
+   "VJ Base": 760,
    "Nextbot": 1
   },
-  "withHealth": 461,
-  "sprites": 83
+  "withHealth": 476,
+  "sprites": 84
  },
  "packs": [
   {
@@ -158,6 +158,11 @@
    "count": 15
   },
   {
+   "pack": "[VJ Base] Sonic.exe \u7d22\u5c3c\u514b.exe SNPC",
+   "ws": "2589393497",
+   "count": 15
+  },
+  {
    "pack": "[VJ] SCP Foundation SNPCs",
    "ws": "3485594805",
    "count": 15
@@ -263,6 +268,11 @@
    "count": 6
   },
   {
+   "pack": "Sonic Heroes NEXTBOTS",
+   "ws": "2970422159",
+   "count": 6
+  },
+  {
    "pack": "[DrGBase] ULTRAKILL - Enemies - Act I",
    "ws": "2910970965",
    "count": 5
@@ -320,6 +330,11 @@
   {
    "pack": "[DrGBase] KILL la KILL Nextbots : Mobs",
    "ws": "2956747256",
+   "count": 3
+  },
+  {
+   "pack": "[DRGBASE] Shin Sonic Tapes PACK",
+   "ws": "3349398376",
    "count": 3
   },
   {
@@ -550,6 +565,11 @@
   {
    "pack": "[DrGBase] Sephiroth",
    "ws": "3508748319",
+   "count": 1
+  },
+  {
+   "pack": "[DrGBase] Sonic",
+   "ws": "3462994923",
    "count": 1
   },
   {
@@ -6204,6 +6224,54 @@
    "adminOnly": false
   },
   {
+   "class": "npc_big_sonic_tapes_5",
+   "name": "BIG Shin Sonic Tapes",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DRGBASE] Shin Sonic Tapes PACK",
+   "ws": "3349398376",
+   "category": "Shin Sonic TAPES",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_shrek_tapes_5",
+   "name": "SHREK TAPES",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DRGBASE] Shin Sonic Tapes PACK",
+   "ws": "3349398376",
+   "category": "Shin Sonic TAPES",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_small_sonic_tapes_5",
+   "name": "Small Sonic Tapes",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DRGBASE] Shin Sonic Tapes PACK",
+   "ws": "3349398376",
+   "category": "Shin Sonic TAPES",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "bun_sonic_nextbot",
+   "name": "Sonic",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": true,
+   "pack": "[DrGBase] Sonic",
+   "ws": "3462994923",
+   "category": "Sonic Mania",
+   "health": null,
+   "adminOnly": false
+  },
+  {
    "class": "npc_drg_forces_amy",
    "name": "Amy Rose",
    "named": true,
@@ -7953,6 +8021,186 @@
    "ws": "3552749304",
    "category": "[DRGBASE] TJOC:R CLASSIC",
    "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_vj_satansonic",
+   "name": "Satan Sonic.exe",
+   "named": true,
+   "family": "VJ Base",
+   "sprite": false,
+   "pack": "[VJ Base] Sonic.exe \u7d22\u5c3c\u514b.exe SNPC",
+   "ws": "2589393497",
+   "category": "AIDS",
+   "health": 66666,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_vj_sonicthehedgehog",
+   "name": "Sonic the Hedgehog",
+   "named": true,
+   "family": "VJ Base",
+   "sprite": false,
+   "pack": "[VJ Base] Sonic.exe \u7d22\u5c3c\u514b.exe SNPC",
+   "ws": "2589393497",
+   "category": "AIDS",
+   "health": 8000,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_vj_sonicexe",
+   "name": "Sonic.exe",
+   "named": true,
+   "family": "VJ Base",
+   "sprite": false,
+   "pack": "[VJ Base] Sonic.exe \u7d22\u5c3c\u514b.exe SNPC",
+   "ws": "2589393497",
+   "category": "AIDS",
+   "health": 66666,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_vj_sonicexe1",
+   "name": "Sonic.exe",
+   "named": true,
+   "family": "VJ Base",
+   "sprite": false,
+   "pack": "[VJ Base] Sonic.exe \u7d22\u5c3c\u514b.exe SNPC",
+   "ws": "2589393497",
+   "category": "AIDS",
+   "health": 66666,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_vj_sonicexe2",
+   "name": "Sonic.exe",
+   "named": true,
+   "family": "VJ Base",
+   "sprite": false,
+   "pack": "[VJ Base] Sonic.exe \u7d22\u5c3c\u514b.exe SNPC",
+   "ws": "2589393497",
+   "category": "NPC",
+   "health": 66666,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_vj_sonicexe3",
+   "name": "Sonic.exe",
+   "named": true,
+   "family": "VJ Base",
+   "sprite": false,
+   "pack": "[VJ Base] Sonic.exe \u7d22\u5c3c\u514b.exe SNPC",
+   "ws": "2589393497",
+   "category": "AIDS",
+   "health": 66666,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_vj_sonicexe4",
+   "name": "Sonic.exe",
+   "named": true,
+   "family": "VJ Base",
+   "sprite": false,
+   "pack": "[VJ Base] Sonic.exe \u7d22\u5c3c\u514b.exe SNPC",
+   "ws": "2589393497",
+   "category": "AIDS",
+   "health": 66666,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_vj_sonicexe5",
+   "name": "Sonic.exe",
+   "named": true,
+   "family": "VJ Base",
+   "sprite": false,
+   "pack": "[VJ Base] Sonic.exe \u7d22\u5c3c\u514b.exe SNPC",
+   "ws": "2589393497",
+   "category": "AIDS",
+   "health": 66666,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_vj_sonicexe6",
+   "name": "Sonic.exe",
+   "named": true,
+   "family": "VJ Base",
+   "sprite": false,
+   "pack": "[VJ Base] Sonic.exe \u7d22\u5c3c\u514b.exe SNPC",
+   "ws": "2589393497",
+   "category": "AIDS",
+   "health": 66666,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_vj_sonicexe7",
+   "name": "Sonic.exe",
+   "named": true,
+   "family": "VJ Base",
+   "sprite": false,
+   "pack": "[VJ Base] Sonic.exe \u7d22\u5c3c\u514b.exe SNPC",
+   "ws": "2589393497",
+   "category": "AIDS",
+   "health": 66666,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_vj_sonicexe8",
+   "name": "Sonic.exe",
+   "named": true,
+   "family": "VJ Base",
+   "sprite": false,
+   "pack": "[VJ Base] Sonic.exe \u7d22\u5c3c\u514b.exe SNPC",
+   "ws": "2589393497",
+   "category": "AIDS",
+   "health": 66666,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_vj_sonicexeweak",
+   "name": "Sonic.exe",
+   "named": true,
+   "family": "VJ Base",
+   "sprite": false,
+   "pack": "[VJ Base] Sonic.exe \u7d22\u5c3c\u514b.exe SNPC",
+   "ws": "2589393497",
+   "category": "AIDS",
+   "health": 66666,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_vj_sonicexephantom",
+   "name": "Sonic.exe Phantom",
+   "named": true,
+   "family": "VJ Base",
+   "sprite": false,
+   "pack": "[VJ Base] Sonic.exe \u7d22\u5c3c\u514b.exe SNPC",
+   "ws": "2589393497",
+   "category": "AIDS",
+   "health": 1,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_vj_supersonic",
+   "name": "Super Sonic",
+   "named": true,
+   "family": "VJ Base",
+   "sprite": false,
+   "pack": "[VJ Base] Sonic.exe \u7d22\u5c3c\u514b.exe SNPC",
+   "ws": "2589393497",
+   "category": "AIDS",
+   "health": 70000,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_vj_supersonicexe",
+   "name": "Super Sonic.exe",
+   "named": true,
+   "family": "VJ Base",
+   "sprite": false,
+   "pack": "[VJ Base] Sonic.exe \u7d22\u5c3c\u514b.exe SNPC",
+   "ws": "2589393497",
+   "category": "AIDS",
+   "health": 66666,
    "adminOnly": false
   },
   {
@@ -18380,6 +18628,78 @@
    "pack": "sf2_first_pack",
    "ws": "2547184015",
    "category": "Slender Fortress",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_jjk_sonicheroes_knuckles",
+   "name": "Knuckles",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "Sonic Heroes NEXTBOTS",
+   "ws": "2970422159",
+   "category": "JJK Sonic",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_jjk_sonicheroes_shadow",
+   "name": "Shadow",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "Sonic Heroes NEXTBOTS",
+   "ws": "2970422159",
+   "category": "JJK Sonic",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_jjk_sonicheroes_sonicclassic",
+   "name": "Sonic (Classic)",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "Sonic Heroes NEXTBOTS",
+   "ws": "2970422159",
+   "category": "JJK Sonic",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_jjk_sonicheroes_sonic",
+   "name": "Sonic (Modern)",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "Sonic Heroes NEXTBOTS",
+   "ws": "2970422159",
+   "category": "JJK Sonic",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_jjk_sonicheroes_supersonic",
+   "name": "Super Sonic",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "Sonic Heroes NEXTBOTS",
+   "ws": "2970422159",
+   "category": "JJK Sonic",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_jjk_sonicheroes_tails",
+   "name": "Tails",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "Sonic Heroes NEXTBOTS",
+   "ws": "2970422159",
+   "category": "JJK Sonic",
    "health": null,
    "adminOnly": false
   },
