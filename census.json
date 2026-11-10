@@ -1,15 +1,15 @@
 {
- "generatedAt": "2026-11-10T00:55:47-05:00",
+ "generatedAt": "2026-11-10T01:06:17-05:00",
  "counts": {
-  "characters": 1659,
-  "packs": 159,
+  "characters": 1675,
+  "packs": 164,
   "families": {
-   "DrGBase": 898,
+   "DrGBase": 914,
    "VJ Base": 760,
    "Nextbot": 1
   },
   "withHealth": 476,
-  "sprites": 84
+  "sprites": 96
  },
  "packs": [
   {
@@ -223,6 +223,11 @@
    "count": 12
   },
   {
+   "pack": "(2023)(DRGBASE)The Sonic Tapes",
+   "ws": "3362624675",
+   "count": 11
+  },
+  {
    "pack": "[DRGBase] Fazbear's Ultimate UNW NPCS UPDATED!",
    "ws": "3001405484",
    "count": 10
@@ -393,6 +398,11 @@
    "count": 2
   },
   {
+   "pack": "[DRGBASE] Pillar Chase Nextbots",
+   "ws": "3832024829",
+   "count": 2
+  },
+  {
    "pack": "[DrGBase] SCP-096:SL Nextbot",
    "ws": "2501837429",
    "count": 2
@@ -488,6 +498,11 @@
    "count": 2
   },
   {
+   "pack": "(2024)(DRGBASE)Luce",
+   "ws": "3363826176",
+   "count": 1
+  },
+  {
    "pack": "[ DRGBase ] Doro Nextbot",
    "ws": "3505279804",
    "count": 1
@@ -565,6 +580,11 @@
   {
    "pack": "[DrGBase] Mr Frog NextBot",
    "ws": "3827786692",
+   "count": 1
+  },
+  {
+   "pack": "[DRGbase] Natsuki",
+   "ws": "3824549914",
    "count": 1
   },
   {
@@ -793,6 +813,11 @@
    "count": 1
   },
   {
+   "pack": "Super Shrakt NextBot (DrGBase)",
+   "ws": "3835913981",
+   "count": 1
+  },
+  {
    "pack": "Superman NEXTBOT",
    "ws": "2535675205",
    "count": 1
@@ -809,6 +834,150 @@
   }
  ],
  "characters": [
+  {
+   "class": "7_chaos_emerald",
+   "name": "7 Chaos Emerald",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": true,
+   "pack": "(2023)(DRGBASE)The Sonic Tapes",
+   "ws": "3362624675",
+   "category": "The Sonic Tape",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "box_animal_flesh",
+   "name": "Box (Animal Flesh)",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": true,
+   "pack": "(2023)(DRGBASE)The Sonic Tapes",
+   "ws": "3362624675",
+   "category": "The Sonic Tape",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "the_sonic_tape_knuckle",
+   "name": "Knuckle",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": true,
+   "pack": "(2023)(DRGBASE)The Sonic Tapes",
+   "ws": "3362624675",
+   "category": "The Sonic Tape",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "the_sonic_tape_shinic",
+   "name": "Shinic",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": true,
+   "pack": "(2023)(DRGBASE)The Sonic Tapes",
+   "ws": "3362624675",
+   "category": "The Sonic Tape",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "the_sonic_tape_shinic_phase_1",
+   "name": "Shinic Phase 1",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": true,
+   "pack": "(2023)(DRGBASE)The Sonic Tapes",
+   "ws": "3362624675",
+   "category": "The Sonic Tape",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "the_sonic_tape_shinic_phase_2",
+   "name": "Shinic Phase 2",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": true,
+   "pack": "(2023)(DRGBASE)The Sonic Tapes",
+   "ws": "3362624675",
+   "category": "The Sonic Tape",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "the_sonic_tape_shinic_phase_3",
+   "name": "Shinic Phase 3",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": true,
+   "pack": "(2023)(DRGBASE)The Sonic Tapes",
+   "ws": "3362624675",
+   "category": "The Sonic Tape",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "the_sonic_tape_shinic_phase_4",
+   "name": "Shinic Phase 4",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": true,
+   "pack": "(2023)(DRGBASE)The Sonic Tapes",
+   "ws": "3362624675",
+   "category": "The Sonic Tape",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "the_sonic_tape_shinic_phase_5",
+   "name": "Shinic Phase 5",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": true,
+   "pack": "(2023)(DRGBASE)The Sonic Tapes",
+   "ws": "3362624675",
+   "category": "The Sonic Tape",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "the_sonic_tape_shinic_phase_6",
+   "name": "Shinic Phase 6",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": true,
+   "pack": "(2023)(DRGBASE)The Sonic Tapes",
+   "ws": "3362624675",
+   "category": "The Sonic Tape",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "the_sonic_tape_tail",
+   "name": "Tail Monster",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": true,
+   "pack": "(2023)(DRGBASE)The Sonic Tapes",
+   "ws": "3362624675",
+   "category": "The Sonic Tape",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "luce_luce",
+   "name": "Luce",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": true,
+   "pack": "(2024)(DRGBASE)Luce",
+   "ws": "3363826176",
+   "category": "Luce",
+   "health": null,
+   "adminOnly": false
+  },
   {
    "class": "npc_drg_godspawner",
    "name": "G\u0338\u0305\u0314\u0354\u033c\u0354\u0323\u0339O\u0338\u0344\u035b\u0342\u0309\u034dD\u0334\u0352\u034a\u031a\u0312\u033a\u0325\u032e\u034d",
@@ -5658,6 +5827,18 @@
    "adminOnly": false
   },
   {
+   "class": "npc_drg_natsuki",
+   "name": "Natsuki",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DRGbase] Natsuki",
+   "ws": "3824549914",
+   "category": "",
+   "health": null,
+   "adminOnly": false
+  },
+  {
    "class": "npc_drg_om_amy",
    "name": "Amy",
    "named": true,
@@ -5858,6 +6039,30 @@
    "pack": "[Drgbase] Outcome Memories Nextbots",
    "ws": "3641002565",
    "category": "Outcome memories: Executer",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_pcr2_agatha",
+   "name": "Agatha",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DRGBASE] Pillar Chase Nextbots",
+   "ws": "3832024829",
+   "category": "Pillar Chase Recode",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_pcr2_mx",
+   "name": "MX",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DRGBASE] Pillar Chase Nextbots",
+   "ws": "3832024829",
+   "category": "Pillar Chase Recode",
    "health": null,
    "adminOnly": false
   },
@@ -19310,6 +19515,18 @@
    "pack": "SUPAAAAAAAAAA",
    "ws": "3363229745",
    "category": "Dark Corners",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_shrek2",
+   "name": "Super Shrakt",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "Super Shrakt NextBot (DrGBase)",
+   "ws": "3835913981",
+   "category": "Super Shrakt NextBot",
    "health": null,
    "adminOnly": false
   },
