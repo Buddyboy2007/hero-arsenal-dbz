@@ -1,10 +1,10 @@
 {
- "generatedAt": "2026-11-10T01:16:47-05:00",
+ "generatedAt": "2026-11-10T01:26:47-05:00",
  "counts": {
-  "characters": 1676,
-  "packs": 165,
+  "characters": 1703,
+  "packs": 172,
   "families": {
-   "DrGBase": 915,
+   "DrGBase": 942,
    "VJ Base": 760,
    "Nextbot": 1
   },
@@ -188,6 +188,11 @@
    "count": 13
   },
   {
+   "pack": "[DrGBase] Pillar Chase 2 Nextbots {part 2}",
+   "ws": "3380174110",
+   "count": 13
+  },
+  {
    "pack": "[DrGBase] Resident Evil 5 Pack",
    "ws": "2592842864",
    "count": 13
@@ -256,6 +261,11 @@
    "pack": "[VJ] Halloween 2026 NPCS PACK",
    "ws": "3817529691",
    "count": 8
+  },
+  {
+   "pack": "[DrGBase] Pillar Chase 2 Nextbots { part 1 }",
+   "ws": "3331724686",
+   "count": 7
   },
   {
    "pack": "[DrGBase] ULTRAKILL Addon Expansion - Flesh Bosses (FLESH PANOPTICON)",
@@ -398,6 +408,11 @@
    "count": 2
   },
   {
+   "pack": "[DrGBase] Pillar Chase 2 Nextbots { Bonus character: Mother }",
+   "ws": "3559531298",
+   "count": 2
+  },
+  {
    "pack": "[DRGBASE] Pillar Chase Nextbots",
    "ws": "3832024829",
    "count": 2
@@ -415,6 +430,11 @@
   {
    "pack": "[DrGBase] Trevor Henderson Final Boss: Precursor Of The First War SNPCs ",
    "ws": "2642833917",
+   "count": 2
+  },
+  {
+   "pack": "[DrGBase] Vita Carnis Organism's: Trucidatum Carnis NEXTBOTS",
+   "ws": "3539678083",
    "count": 2
   },
   {
@@ -528,6 +548,11 @@
    "count": 1
   },
   {
+   "pack": "[DrGBase] Fredbear Runaway",
+   "ws": "3608172603",
+   "count": 1
+  },
+  {
    "pack": "[Drgbase] Godzilla Nemesis",
    "ws": "3632201004",
    "count": 1
@@ -590,6 +615,11 @@
   {
    "pack": "[DRGbase] Natsuki",
    "ws": "3824549914",
+   "count": 1
+  },
+  {
+   "pack": "[DrGBase] Pillar chase 2 unlisted characters (Only get if you want Baldi)",
+   "ws": "3338938988",
    "count": 1
   },
   {
@@ -810,6 +840,11 @@
   {
    "pack": "Ryomen Sukuna [DrGBase]",
    "ws": "3708638667",
+   "count": 1
+  },
+  {
+   "pack": "SCP-096 SCP Ultimate Edition SNPCs [DRGBASE]",
+   "ws": "2454663404",
    "count": 1
   },
   {
@@ -4152,6 +4187,18 @@
    "adminOnly": false
   },
   {
+   "class": "fredbear_runaway",
+   "name": "Fredbear",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DrGBase] Fredbear Runaway",
+   "ws": "3608172603",
+   "category": "Hello Neighbor Mod",
+   "health": null,
+   "adminOnly": false
+  },
+  {
    "class": "npc_drg_godzillanemesis_zn",
    "name": "Godzilla Nemesis",
    "named": true,
@@ -6060,6 +6107,282 @@
    "adminOnly": false
   },
   {
+   "class": "npc_drg_pc2_babymother",
+   "name": "Furby",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DrGBase] Pillar Chase 2 Nextbots { Bonus character: Mother }",
+   "ws": "3559531298",
+   "category": "",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_pc2_mother",
+   "name": "Mother",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DrGBase] Pillar Chase 2 Nextbots { Bonus character: Mother }",
+   "ws": "3559531298",
+   "category": "Pillar Chase 2",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_pc2_forestking",
+   "name": "Forest King",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DrGBase] Pillar Chase 2 Nextbots { part 1 }",
+   "ws": "3331724686",
+   "category": "Pillar Chase 2",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_pc2_rev_fuwatti",
+   "name": "Fuwatti (revamp)",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DrGBase] Pillar Chase 2 Nextbots { part 1 }",
+   "ws": "3331724686",
+   "category": "Pillar Chase 2",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_pc2_rev_mx",
+   "name": "MX (revamp)",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DrGBase] Pillar Chase 2 Nextbots { part 1 }",
+   "ws": "3331724686",
+   "category": "Pillar Chase 2",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_pc2_rev_niloticus",
+   "name": "Niloticus",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DrGBase] Pillar Chase 2 Nextbots { part 1 }",
+   "ws": "3331724686",
+   "category": "Pillar Chase 2",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_pc2_rev_springtrap",
+   "name": "SpringTrap (revamp)",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DrGBase] Pillar Chase 2 Nextbots { part 1 }",
+   "ws": "3331724686",
+   "category": "Pillar Chase 2",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_pc2_rev_samsonite",
+   "name": "Uncle Samsonite",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DrGBase] Pillar Chase 2 Nextbots { part 1 }",
+   "ws": "3331724686",
+   "category": "Pillar Chase 2",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_pc2_rev_wyst",
+   "name": "Wyst (revamp)",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DrGBase] Pillar Chase 2 Nextbots { part 1 }",
+   "ws": "3331724686",
+   "category": "Pillar Chase 2",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_pc2_a01",
+   "name": "A01",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DrGBase] Pillar Chase 2 Nextbots {part 2}",
+   "ws": "3380174110",
+   "category": "Pillar Chase 2",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_pc2_aooni",
+   "name": "Ao Oni",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DrGBase] Pillar Chase 2 Nextbots {part 2}",
+   "ws": "3380174110",
+   "category": "Pillar Chase 2",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_pc2_exe",
+   "name": "EXE",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DrGBase] Pillar Chase 2 Nextbots {part 2}",
+   "ws": "3380174110",
+   "category": "Pillar Chase 2",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_pc2_fogborn",
+   "name": "Fogborn",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DrGBase] Pillar Chase 2 Nextbots {part 2}",
+   "ws": "3380174110",
+   "category": "Pillar Chase 2",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_pc2_inkfell",
+   "name": "Inkfell",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DrGBase] Pillar Chase 2 Nextbots {part 2}",
+   "ws": "3380174110",
+   "category": "Pillar Chase 2",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_pc2_rev_jeff",
+   "name": "Jeff",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DrGBase] Pillar Chase 2 Nextbots {part 2}",
+   "ws": "3380174110",
+   "category": "Pillar Chase 2",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_pc2_pcx",
+   "name": "PCX",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DrGBase] Pillar Chase 2 Nextbots {part 2}",
+   "ws": "3380174110",
+   "category": "Pillar Chase 2",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_pc2_rev_rosemary",
+   "name": "Rosemary",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DrGBase] Pillar Chase 2 Nextbots {part 2}",
+   "ws": "3380174110",
+   "category": "Pillar Chase 2",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_pc2_vapor_minion",
+   "name": "Spider crab",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DrGBase] Pillar Chase 2 Nextbots {part 2}",
+   "ws": "3380174110",
+   "category": "Pillar Chase 2",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_pc2_rev_stricken",
+   "name": "Stricken",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DrGBase] Pillar Chase 2 Nextbots {part 2}",
+   "ws": "3380174110",
+   "category": "Pillar Chase 2",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_pc2_valem",
+   "name": "Valem",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DrGBase] Pillar Chase 2 Nextbots {part 2}",
+   "ws": "3380174110",
+   "category": "Pillar Chase 2",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_pc2_rev_vapor",
+   "name": "Vapor",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DrGBase] Pillar Chase 2 Nextbots {part 2}",
+   "ws": "3380174110",
+   "category": "Pillar Chase 2",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_pc2_vitamimic",
+   "name": "Vita Mimic",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DrGBase] Pillar Chase 2 Nextbots {part 2}",
+   "ws": "3380174110",
+   "category": "Pillar Chase 2",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_pc2_baldi",
+   "name": "Baldi",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DrGBase] Pillar chase 2 unlisted characters (Only get if you want Baldi)",
+   "ws": "3338938988",
+   "category": "Pillar Chase 2",
+   "health": null,
+   "adminOnly": false
+  },
+  {
    "class": "npc_drg_pcr2_agatha",
    "name": "Agatha",
    "named": true,
@@ -7952,6 +8275,30 @@
    "pack": "[DrGBase] ULTRAKILL Addon Expansion - V Series Machines (V1)",
    "ws": "3708282959",
    "category": "ULTRAKILL - Bosses",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_vitamimicelderlsd",
+   "name": "Elder Trucidatum Carnis",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DrGBase] Vita Carnis Organism's: Trucidatum Carnis NEXTBOTS",
+   "ws": "3539678083",
+   "category": "Vita Carnis: Organisms",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_vitamimiclsd",
+   "name": "Trucidatum Carnis",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DrGBase] Vita Carnis Organism's: Trucidatum Carnis NEXTBOTS",
+   "ws": "3539678083",
+   "category": "Vita Carnis: Organisms",
    "health": null,
    "adminOnly": false
   },
@@ -18728,6 +19075,18 @@
    "pack": "Ryomen Sukuna [DrGBase]",
    "ws": "3708638667",
    "category": "Jujutsu Kaisen",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "drg_scp096mod2b",
+   "name": "SCP-096-B",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "SCP-096 SCP Ultimate Edition SNPCs [DRGBASE]",
+   "ws": "2454663404",
+   "category": "SCP Ultimate Edition",
    "health": null,
    "adminOnly": false
   },
