@@ -1,15 +1,15 @@
 {
- "generatedAt": "2026-11-10T05:23:20-05:00",
+ "generatedAt": "2026-11-10T05:33:47-05:00",
  "counts": {
-  "characters": 1703,
-  "packs": 172,
+  "characters": 1692,
+  "packs": 171,
   "families": {
-   "DrGBase": 942,
+   "DrGBase": 931,
    "VJ Base": 760,
    "Nextbot": 1
   },
   "withHealth": 476,
-  "sprites": 96
+  "sprites": 85
  },
  "packs": [
   {
@@ -226,11 +226,6 @@
    "pack": "[VJ] Girls' Frontline SNPCs : Expansion Pack",
    "ws": "2812238765",
    "count": 12
-  },
-  {
-   "pack": "(2023)(DRGBASE)The Sonic Tapes",
-   "ws": "3362624675",
-   "count": 11
   },
   {
    "pack": "[DRGBase] Fazbear's Ultimate UNW NPCS UPDATED!",
@@ -874,138 +869,6 @@
   }
  ],
  "characters": [
-  {
-   "class": "7_chaos_emerald",
-   "name": "7 Chaos Emerald",
-   "named": true,
-   "family": "DrGBase",
-   "sprite": true,
-   "pack": "(2023)(DRGBASE)The Sonic Tapes",
-   "ws": "3362624675",
-   "category": "The Sonic Tape",
-   "health": null,
-   "adminOnly": false
-  },
-  {
-   "class": "box_animal_flesh",
-   "name": "Box (Animal Flesh)",
-   "named": true,
-   "family": "DrGBase",
-   "sprite": true,
-   "pack": "(2023)(DRGBASE)The Sonic Tapes",
-   "ws": "3362624675",
-   "category": "The Sonic Tape",
-   "health": null,
-   "adminOnly": false
-  },
-  {
-   "class": "the_sonic_tape_knuckle",
-   "name": "Knuckle",
-   "named": true,
-   "family": "DrGBase",
-   "sprite": true,
-   "pack": "(2023)(DRGBASE)The Sonic Tapes",
-   "ws": "3362624675",
-   "category": "The Sonic Tape",
-   "health": null,
-   "adminOnly": false
-  },
-  {
-   "class": "the_sonic_tape_shinic",
-   "name": "Shinic",
-   "named": true,
-   "family": "DrGBase",
-   "sprite": true,
-   "pack": "(2023)(DRGBASE)The Sonic Tapes",
-   "ws": "3362624675",
-   "category": "The Sonic Tape",
-   "health": null,
-   "adminOnly": false
-  },
-  {
-   "class": "the_sonic_tape_shinic_phase_1",
-   "name": "Shinic Phase 1",
-   "named": true,
-   "family": "DrGBase",
-   "sprite": true,
-   "pack": "(2023)(DRGBASE)The Sonic Tapes",
-   "ws": "3362624675",
-   "category": "The Sonic Tape",
-   "health": null,
-   "adminOnly": false
-  },
-  {
-   "class": "the_sonic_tape_shinic_phase_2",
-   "name": "Shinic Phase 2",
-   "named": true,
-   "family": "DrGBase",
-   "sprite": true,
-   "pack": "(2023)(DRGBASE)The Sonic Tapes",
-   "ws": "3362624675",
-   "category": "The Sonic Tape",
-   "health": null,
-   "adminOnly": false
-  },
-  {
-   "class": "the_sonic_tape_shinic_phase_3",
-   "name": "Shinic Phase 3",
-   "named": true,
-   "family": "DrGBase",
-   "sprite": true,
-   "pack": "(2023)(DRGBASE)The Sonic Tapes",
-   "ws": "3362624675",
-   "category": "The Sonic Tape",
-   "health": null,
-   "adminOnly": false
-  },
-  {
-   "class": "the_sonic_tape_shinic_phase_4",
-   "name": "Shinic Phase 4",
-   "named": true,
-   "family": "DrGBase",
-   "sprite": true,
-   "pack": "(2023)(DRGBASE)The Sonic Tapes",
-   "ws": "3362624675",
-   "category": "The Sonic Tape",
-   "health": null,
-   "adminOnly": false
-  },
-  {
-   "class": "the_sonic_tape_shinic_phase_5",
-   "name": "Shinic Phase 5",
-   "named": true,
-   "family": "DrGBase",
-   "sprite": true,
-   "pack": "(2023)(DRGBASE)The Sonic Tapes",
-   "ws": "3362624675",
-   "category": "The Sonic Tape",
-   "health": null,
-   "adminOnly": false
-  },
-  {
-   "class": "the_sonic_tape_shinic_phase_6",
-   "name": "Shinic Phase 6",
-   "named": true,
-   "family": "DrGBase",
-   "sprite": true,
-   "pack": "(2023)(DRGBASE)The Sonic Tapes",
-   "ws": "3362624675",
-   "category": "The Sonic Tape",
-   "health": null,
-   "adminOnly": false
-  },
-  {
-   "class": "the_sonic_tape_tail",
-   "name": "Tail Monster",
-   "named": true,
-   "family": "DrGBase",
-   "sprite": true,
-   "pack": "(2023)(DRGBASE)The Sonic Tapes",
-   "ws": "3362624675",
-   "category": "The Sonic Tape",
-   "health": null,
-   "adminOnly": false
-  },
   {
    "class": "luce_luce",
    "name": "Luce",
