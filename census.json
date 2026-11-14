@@ -1,10 +1,10 @@
 {
- "generatedAt": "2026-11-14T17:39:52-05:00",
+ "generatedAt": "2026-11-14T17:50:22-05:00",
  "counts": {
-  "characters": 1692,
+  "characters": 1698,
   "packs": 171,
   "families": {
-   "DrGBase": 931,
+   "DrGBase": 937,
    "VJ Base": 760,
    "Nextbot": 1
   },
@@ -253,6 +253,11 @@
    "count": 8
   },
   {
+   "pack": "[DRGBASE] Pillar Chase Nextbots",
+   "ws": "3832024829",
+   "count": 8
+  },
+  {
    "pack": "[VJ] Halloween 2026 NPCS PACK",
    "ws": "3817529691",
    "count": 8
@@ -405,11 +410,6 @@
   {
    "pack": "[DrGBase] Pillar Chase 2 Nextbots { Bonus character: Mother }",
    "ws": "3559531298",
-   "count": 2
-  },
-  {
-   "pack": "[DRGBASE] Pillar Chase Nextbots",
-   "ws": "3832024829",
    "count": 2
   },
   {
@@ -6266,6 +6266,78 @@
    "pack": "[DRGBASE] Pillar Chase Nextbots",
    "ws": "3832024829",
    "category": "Pillar Chase Recode",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_pcr2_palpercy",
+   "name": "Pal Percy",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DRGBASE] Pillar Chase Nextbots",
+   "ws": "3832024829",
+   "category": "Pillar Chase Recode",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_pcr2_suitmations",
+   "name": "Suitmations",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DRGBASE] Pillar Chase Nextbots",
+   "ws": "3832024829",
+   "category": "Pillar Chase Recode",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_pcr2_tamabruti",
+   "name": "Tama Brti",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DRGBASE] Pillar Chase Nextbots",
+   "ws": "3832024829",
+   "category": "Pillar Chase Minions",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_pcr2_tamalanki",
+   "name": "Tama lanki",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DRGBASE] Pillar Chase Nextbots",
+   "ws": "3832024829",
+   "category": "Pillar Chase Minions",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_pcr2_tamaopti",
+   "name": "Tama Opti",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DRGBASE] Pillar Chase Nextbots",
+   "ws": "3832024829",
+   "category": "Pillar Chase Minions",
+   "health": null,
+   "adminOnly": false
+  },
+  {
+   "class": "npc_drg_pcr2_tamaroachi",
+   "name": "Tama Roachi",
+   "named": true,
+   "family": "DrGBase",
+   "sprite": false,
+   "pack": "[DRGBASE] Pillar Chase Nextbots",
+   "ws": "3832024829",
+   "category": "Pillar Chase Minions",
    "health": null,
    "adminOnly": false
   },
