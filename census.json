@@ -1,10 +1,10 @@
 {
- "generatedAt": "2026-11-18T14:28:11-05:00",
+ "generatedAt": "2026-11-18T14:38:41-05:00",
  "counts": {
-  "characters": 2387,
-  "packs": 216,
+  "characters": 2386,
+  "packs": 215,
   "families": {
-   "DrGBase": 1240,
+   "DrGBase": 1239,
    "VJ Base": 1143,
    "Nextbot": 4
   },
@@ -950,11 +950,6 @@
   {
    "pack": "Big Raga Nextbot",
    "ws": "3154942757",
-   "count": 1
-  },
-  {
-   "pack": "captain clark [drgbase]",
-   "ws": "3833052415",
    "count": 1
   },
   {
@@ -12107,18 +12102,6 @@
    "pack": "BlizzardSpawn",
    "ws": "2467761569",
    "category": "Trevor Henderson (BlizzardSpawn)",
-   "health": null,
-   "adminOnly": false
-  },
-  {
-   "class": "capitan_clark",
-   "name": "Captain Clark",
-   "named": true,
-   "family": "DrGBase",
-   "sprite": false,
-   "pack": "captain clark [drgbase]",
-   "ws": "3833052415",
-   "category": "Backrooms",
    "health": null,
    "adminOnly": false
   },
